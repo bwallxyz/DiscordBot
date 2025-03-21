@@ -1,0 +1,29 @@
+{
+  "name": "discord-room-bot",
+  "version": "1.0.0",
+  "description": "A modular Discord bot that allows users to create and manage their own rooms",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "lint": "eslint .",
+    "test": "jest",
+    "deploy-commands": "node deploy-commands.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "mongoose": "^8.0.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.53.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "author": "",
+  "license": "MIT"
+}

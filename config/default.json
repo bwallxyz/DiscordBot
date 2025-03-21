@@ -1,0 +1,19 @@
+{
+    "bot": {
+      "prefix": "/",
+      "activityType": "LISTENING",
+      "activityName": "for commands"
+    },
+    "rooms": {
+      "autoDeleteEmptyRooms": true,
+      "defaultMaxRoomsPerUser": 1,
+      "defaultRoomPrefix": "",
+      "defaultUserLimit": 0
+    },
+    "commands": {
+      "cooldown": 3
+    },
+    "logging": {
+      "level": "info"
+    }
+  }
