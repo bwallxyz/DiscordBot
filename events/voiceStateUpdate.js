@@ -1,12 +1,18 @@
 // Voice state update event handler
 const logger = require('../utils/logger');
 const RoomService = require('../services/RoomService');
+const ActivityTrackerService = require('../services/ActivityTrackerService');
 const { getGuildConfig } = require('../database/schemas/guildConfig');
 
 module.exports = {
   async execute(client, oldState, newState) {
     try {
+      // Initialize services
       const roomService = new RoomService(client);
+      const activityTracker = new ActivityTrackerService(client);
+      
+      // Track user activity for this voice state change
+      await activityTracker.handleVoiceStateUpdate(oldState, newState);
       
       // Check if user joined the creation channel
       if (newState.channelId) {

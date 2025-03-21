@@ -1,5 +1,4 @@
-// Load environment variables
-dotenv.config();
+
 
 // Main application entry point
 const { Client, GatewayIntentBits } = require('discord.js');
@@ -10,6 +9,9 @@ const logger = require('./utils/logger');
 const { connectDatabase } = require('./database/db');
 const commandHandler = require('./commands');
 const eventHandler = require('./events');
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Discord client with required intents
 const client = new Client({
