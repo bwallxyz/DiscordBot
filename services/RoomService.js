@@ -3,12 +3,14 @@ const { ChannelType } = require('discord.js');
 const logger = require('../utils/logger');
 const Room = require('../models/Room');
 const PermissionService = require('./PermissionService');
+const AuditLogService = require('./AuditLogService');
 const { getGuildConfig } = require('../database/schemas/guildConfig');
 
 class RoomService {
   constructor(client) {
     this.client = client;
     this.permissionService = new PermissionService();
+    this.auditLogService = new AuditLogService(client);
   }
   
   /**
@@ -116,6 +118,13 @@ class RoomService {
       
       await room.save();
       
+      // Log the room creation to audit log
+      await this.auditLogService.logRoomCreation(guild, member, {
+        id: channel.id,
+        name: roomName,
+        channelId: channel.id
+      });
+      
       // IMPORTANT: Immediately move the user to their new room
       logger.info(`[IMMEDIATE] Moving ${member.user.tag} to their new room ${channel.id}`);
       await member.voice.setChannel(channel);
@@ -163,6 +172,13 @@ class RoomService {
       
       await room.save();
       
+      // Log the room creation to audit log
+      await this.auditLogService.logRoomCreation(guild, member, {
+        id: channel.id,
+        name: roomName,
+        channelId: channel.id
+      });
+      
       // Send welcome message to the user
       this.sendWelcomeMessage(member, roomName);
       
@@ -178,7 +194,7 @@ class RoomService {
    * Handle potential room deletion when a voice channel becomes empty
    */
   async handlePotentialRoomDeletion(oldState, newState) {
-    const { channel, channelId } = oldState;
+    const { channel, channelId, guild } = oldState;
     
     try {
       // Check if channel is empty and is a user-created room
@@ -198,6 +214,10 @@ class RoomService {
       if (room && channel.members.size === 0) {
         // Delete the room
         logger.info(`Deleting empty room ${room.name} (${channelId})`);
+        
+        // Log the room deletion to audit log before deleting the room
+        await this.auditLogService.logRoomDeletion(guild, room);
+        
         await this.deleteRoom(room, channel);
       }
     } catch (error) {

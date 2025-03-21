@@ -3,6 +3,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
 const PermissionService = require('../../services/PermissionService');
+const AuditLogService = require('../../services/AuditLogService');
 const { isInVoiceChannel, isRoomOwner } = require('../../utils/validators');
 
 module.exports = {
@@ -14,6 +15,11 @@ module.exports = {
       option.setName('user')
         .setDescription('The user to mute')
         .setRequired(true)
+    )
+    .addStringOption(option =>
+      option.setName('reason')
+        .setDescription('Reason for muting the user')
+        .setRequired(false)
     ),
   
   // Command execution
@@ -22,6 +28,7 @@ module.exports = {
       // Get the target user
       const targetUser = interaction.options.getUser('user');
       const targetMember = await interaction.guild.members.fetch(targetUser.id).catch(() => null);
+      const reason = interaction.options.getString('reason') || 'No reason provided';
       
       // Check if the command user is in a voice channel
       if (!isInVoiceChannel(interaction.member)) {
@@ -55,9 +62,23 @@ module.exports = {
       const permissionService = new PermissionService();
       await permissionService.muteUser(voiceChannel, targetUser.id);
       
+      // Log the mute action
+      const auditLogService = new AuditLogService(client);
+      await auditLogService.logUserMute(
+        interaction.guild,
+        interaction.member,
+        targetMember,
+        {
+          id: voiceChannel.id,
+          name: voiceChannel.name,
+          channelId: voiceChannel.id
+        },
+        reason
+      );
+      
       // Reply to the interaction
       await interaction.reply({ 
-        content: `${targetUser} has been muted in this room.`
+        content: `${targetUser} has been muted in this room. Reason: ${reason}`
       });
       
       logger.info(`User ${targetUser.tag} muted in room ${voiceChannel.name} by ${interaction.user.tag}`);

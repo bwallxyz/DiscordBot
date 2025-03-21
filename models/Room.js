@@ -51,4 +51,5 @@ roomSchema.pre('save', function(next) {
 // Create the model
 const Room = mongoose.model('Room', roomSchema);
 
+// Export the model directly
 module.exports = Room;

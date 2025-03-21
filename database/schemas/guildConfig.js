@@ -16,6 +16,11 @@ const guildConfigSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  // Added audit channel ID for logging moderation actions
+  auditChannelId: {
+    type: String,
+    default: null
+  },
   autoDeleteEmptyRooms: {
     type: Boolean,
     default: true

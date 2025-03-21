@@ -1,5 +1,5 @@
 // Setup command for room creation system
-const { SlashCommandBuilder, ChannelType, PermissionFlagsBits } = require('discord.js');
+const { SlashCommandBuilder, ChannelType, PermissionFlagsBits, EmbedBuilder, Colors } = require('discord.js');
 const { setGuildConfig } = require('../../database/schemas/guildConfig');
 const logger = require('../../utils/logger');
 
@@ -19,6 +19,12 @@ module.exports = {
         .setDescription('The category where rooms will be created')
         .addChannelTypes(ChannelType.GuildCategory)
         .setRequired(true)
+    )
+    .addChannelOption(option => 
+      option.setName('audit_channel')
+        .setDescription('The text channel where moderation actions will be logged')
+        .addChannelTypes(ChannelType.GuildText)
+        .setRequired(false)
     )
     .addBooleanOption(option => 
       option.setName('auto_delete')
@@ -45,6 +51,7 @@ module.exports = {
       // Extract options
       const creationChannel = interaction.options.getChannel('creation_channel');
       const roomCategory = interaction.options.getChannel('rooms_category');
+      const auditChannel = interaction.options.getChannel('audit_channel');
       const autoDelete = interaction.options.getBoolean('auto_delete') ?? true;
       const roomPrefix = interaction.options.getString('room_prefix') ?? '';
       const maxRooms = interaction.options.getInteger('max_rooms') ?? 1;
@@ -64,25 +71,73 @@ module.exports = {
         });
       }
       
+      if (auditChannel && auditChannel.type !== ChannelType.GuildText) {
+        return interaction.reply({ 
+          content: 'Audit channel must be a text channel', 
+          ephemeral: true 
+        });
+      }
+      
       // Save config to database
       await setGuildConfig(interaction.guild.id, {
         creationChannelId: creationChannel.id,
         roomCategoryId: roomCategory.id,
+        auditChannelId: auditChannel ? auditChannel.id : null,
         autoDeleteEmptyRooms: autoDelete,
         roomPrefix,
         maxRoomsPerUser: maxRooms
       });
       
+      // Create information embed
+      const setupEmbed = new EmbedBuilder()
+        .setColor(Colors.Green)
+        .setTitle('🔊 Room Creation System Setup')
+        .setDescription('Your room creation system has been configured successfully!')
+        .addFields(
+          { name: 'Creation Channel', value: `${creationChannel}`, inline: true },
+          { name: 'Rooms Category', value: `${roomCategory}`, inline: true },
+          { name: 'Auto-delete Empty Rooms', value: autoDelete ? 'Enabled' : 'Disabled', inline: true },
+          { name: 'Room Prefix', value: roomPrefix ? `"${roomPrefix}"` : 'None', inline: true },
+          { name: 'Max Rooms Per User', value: `${maxRooms}`, inline: true }
+        )
+        .setFooter({ text: `Setup by ${interaction.user.tag}` })
+        .setTimestamp();
+      
+      // Add audit channel information if provided
+      if (auditChannel) {
+        setupEmbed.addFields({
+          name: 'Audit Log Channel', 
+          value: `${auditChannel}`,
+          inline: true
+        });
+        
+        // Send a test message to the audit channel
+        try {
+          const testEmbed = new EmbedBuilder()
+            .setColor(Colors.Blue)
+            .setTitle('🔧 Audit Log Channel Setup')
+            .setDescription('This channel has been configured as the audit log channel for the room creation system.')
+            .addFields({
+              name: 'Information',
+              value: 'Moderation actions and room events will be logged here.'
+            })
+            .setFooter({ text: `Setup by ${interaction.user.tag}` })
+            .setTimestamp();
+          
+          await auditChannel.send({ embeds: [testEmbed] });
+        } catch (error) {
+          logger.error(`Error sending test message to audit channel:`, error);
+          setupEmbed.addFields({
+            name: '⚠️ Warning',
+            value: 'Could not send a test message to the audit channel. Please check bot permissions.',
+            inline: false
+          });
+        }
+      }
+      
       // Respond to the interaction
       await interaction.reply({
-        content: `Room creation system has been set up! Users can join ${creationChannel} to create their own rooms.
-        
-Configuration:
-• Creation Channel: ${creationChannel}
-• Rooms Category: ${roomCategory}
-• Auto-delete Empty Rooms: ${autoDelete ? 'Yes' : 'No'}
-• Room Prefix: ${roomPrefix ? `"${roomPrefix}"` : 'None'}
-• Max Rooms Per User: ${maxRooms}`,
+        embeds: [setupEmbed],
         ephemeral: true
       });
       
