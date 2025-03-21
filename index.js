@@ -9,6 +9,7 @@ const logger = require('./utils/logger');
 const { connectDatabase } = require('./database/db');
 const commandHandler = require('./commands');
 const eventHandler = require('./events');
+const LevelingService = require('./services/LevelingService');
 
 // Load environment variables
 dotenv.config();
@@ -61,6 +62,14 @@ async function init() {
     logger.error('Initialization error:', error);
     process.exit(1);
   }
+
+  const levelingService = new LevelingService(client);
+setInterval(() => {
+  levelingService.updateActiveVoiceXp().catch(error => {
+    logger.error('Error in voice XP update interval:', error);
+  });
+}, 5 * 60 * 1000);
+
 }
 
 // Start the application

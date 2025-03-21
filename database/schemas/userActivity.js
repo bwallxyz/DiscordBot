@@ -28,6 +28,9 @@ const activitySessionSchema = new mongoose.Schema({
   isOwner: {
     type: Boolean,
     default: false
+  },
+  lastUpdate: {
+    type: Date
   }
 });
 
@@ -231,6 +234,10 @@ async function getTopUsersByTime(guildId, limit = 10) {
   return await UserActivity.find({ guildId })
     .sort({ totalTimeMs: -1 })
     .limit(limit);
+}
+
+async function getUserActivity(guildId, userId) {
+  return await UserActivity.findOne({ guildId, userId });
 }
 
 module.exports = {
