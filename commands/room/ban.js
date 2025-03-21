@@ -1,25 +1,25 @@
-// Enhanced Room mute command with state tracking
+// Room ban command
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
 const PermissionService = require('../../services/PermissionService');
 const AuditLogService = require('../../services/AuditLogService');
-const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
+const { UserStateTrackerService } = require('../../services/UserStateTrackerService'); // Fixed import path
 const { isInVoiceChannel } = require('../../utils/validators');
 
 module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
-    .setName('mute')
-    .setDescription('Mute a user in your room')
+    .setName('ban')
+    .setDescription('Ban a user from your room')
     .addUserOption(option => 
       option.setName('user')
-        .setDescription('The user to mute')
+        .setDescription('The user to ban')
         .setRequired(true)
     )
     .addStringOption(option =>
       option.setName('reason')
-        .setDescription('Reason for muting the user')
+        .setDescription('Reason for banning the user')
         .setRequired(false)
     ),
   
@@ -51,10 +51,10 @@ module.exports = {
         });
       }
       
-      // Check if user is trying to mute themselves
+      // Check if user is trying to ban themselves
       if (targetUser.id === interaction.user.id) {
         return interaction.reply({
-          content: 'You cannot mute yourself.',
+          content: 'You cannot ban yourself from your own room.',
           ephemeral: true
         });
       }
@@ -64,24 +64,36 @@ module.exports = {
       const auditLogService = new AuditLogService(client);
       const stateTracker = new UserStateTrackerService();
       
-      // Check if user is already muted
-      const isMuted = await stateTracker.hasUserState({
+      // Check if user is already banned
+      const isBanned = await stateTracker.hasUserState({
         guildId: interaction.guild.id,
         userId: targetUser.id,
         roomId: voiceChannel.id,
-        state: 'MUTED'
+        state: 'BANNED'
       });
       
-      if (isMuted) {
+      if (isBanned) {
         return interaction.reply({
-          content: `${targetUser} is already muted in this room.`,
+          content: `${targetUser} is already banned from this room.`,
           ephemeral: true
         });
       }
       
-      // IMPORTANT: First, track the muted state in the database
-      // This ensures the state is saved before any permission changes
-      await stateTracker.trackMutedUser({
+      // First, kick the user if they're in the channel
+      if (targetMember && voiceChannel.members.has(targetUser.id)) {
+        const afkChannel = interaction.guild.afkChannel;
+        if (afkChannel) {
+          await targetMember.voice.setChannel(afkChannel);
+        } else {
+          await targetMember.voice.disconnect();
+        }
+      }
+      
+      // Ban the user from the channel
+      await permissionService.banUser(voiceChannel, targetUser.id);
+      
+      // Track the banned state
+      await stateTracker.trackBannedUser({
         guildId: interaction.guild.id,
         userId: targetUser.id,
         roomId: voiceChannel.id,
@@ -89,21 +101,8 @@ module.exports = {
         reason
       });
       
-      // Apply the mute - both permission overwrites and server mute
-      await permissionService.muteUser(voiceChannel, targetUser.id);
-      
-      // If the user is in the channel, also apply server mute directly
-      if (targetMember && targetMember.voice.channelId === voiceChannel.id && !targetMember.voice.serverMute) {
-        try {
-          await targetMember.voice.setMute(true, reason);
-          logger.info(`Server muted ${targetUser.tag} in ${voiceChannel.name}`);
-        } catch (muteError) {
-          logger.error(`Error applying server mute: ${muteError.message}`);
-        }
-      }
-      
-      // Log the mute action
-      await auditLogService.logUserMute(
+      // Log the ban action
+      await auditLogService.logUserBan(
         interaction.guild,
         interaction.member,
         targetMember || { id: targetUser.id, user: targetUser },
@@ -116,34 +115,33 @@ module.exports = {
       );
       
       // Create an embed for better visual feedback
-      const muteEmbed = new EmbedBuilder()
+      const banEmbed = new EmbedBuilder()
         .setColor(Colors.Red)
-        .setTitle('User Muted')
-        .setDescription(`${targetUser} has been muted in this room.`)
+        .setTitle('User Banned')
+        .setDescription(`${targetUser} has been banned from this room.`)
         .addFields(
-          { name: 'Reason', value: reason },
-          { name: 'Persistence', value: 'Mute will remain active even if they leave and rejoin' }
+          { name: 'Reason', value: reason }
         )
-        .setFooter({ text: `Muted by ${interaction.user.tag}` })
+        .setFooter({ text: `Banned by ${interaction.user.tag}` })
         .setTimestamp();
       
       // Reply to the interaction
       await interaction.reply({ 
-        embeds: [muteEmbed]
+        embeds: [banEmbed]
       });
       
-      // Try to notify the user via DM
+      // Try to notify the user
       try {
-        await targetUser.send(`You have been muted in room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}\n\nThis mute will persist even if you leave and rejoin the channel.`);
+        await targetUser.send(`You have been banned from room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
       }
       
-      logger.info(`User ${targetUser.tag} muted in room ${voiceChannel.name} by ${interaction.user.tag} with persistence`);
+      logger.info(`User ${targetUser.tag} banned from room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {
-      logger.error(`Error executing mute command:`, error);
+      logger.error(`Error executing ban command:`, error);
       await interaction.reply({ 
-        content: 'An error occurred while trying to mute the user.',
+        content: 'An error occurred while trying to ban the user.',
         ephemeral: true 
       });
     }

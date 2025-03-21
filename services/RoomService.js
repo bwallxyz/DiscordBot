@@ -1,9 +1,10 @@
-// Room creation & management service
+// Enhanced Room creation & management service with state tracking
 const { ChannelType } = require('discord.js');
 const logger = require('../utils/logger');
 const Room = require('../models/Room');
 const PermissionService = require('./PermissionService');
 const AuditLogService = require('./AuditLogService');
+const { UserStateTrackerService } = require('../services/UserStateTrackerService'); // Fixed import path
 const { getGuildConfig } = require('../database/schemas/guildConfig');
 
 class RoomService {
@@ -11,6 +12,7 @@ class RoomService {
     this.client = client;
     this.permissionService = new PermissionService();
     this.auditLogService = new AuditLogService(client);
+    this.stateTracker = new UserStateTrackerService();
   }
   
   /**
@@ -230,6 +232,10 @@ class RoomService {
    */
   async deleteRoom(room, channel) {
     try {
+      // Clear all room states first
+      await this.stateTracker.clearAllStatesForRoom(room.guildId, room.channelId);
+      logger.info(`Cleared all user states for room ${room.name} (${room.channelId})`);
+      
       // Delete channel first
       if (channel) {
         await channel.delete();
@@ -270,6 +276,24 @@ class RoomService {
   async isRoomOwner(channelId, userId) {
     const room = await Room.findOne({ channelId });
     return room && room.ownerId === userId;
+  }
+  
+  /**
+   * Get moderation statistics for a room
+   */
+  async getRoomModerationStats(channelId) {
+    try {
+      const room = await Room.findOne({ channelId });
+      
+      if (!room) {
+        return null;
+      }
+      
+      return await this.stateTracker.getRoomModerationStats(room.guildId, channelId);
+    } catch (error) {
+      logger.error(`Error getting room moderation stats:`, error);
+      throw error;
+    }
   }
 }
 
