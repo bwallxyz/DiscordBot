@@ -82,35 +82,40 @@ const guildLevelSettingsSchema = new mongoose.Schema({
   },
   
   // XP rate configuration
-  xpSettings: {
+  // XP rate configuration
+xpSettings: {
     // Voice activity (XP per minute)
     voiceXpPerMinute: {
       type: Number,
-      default: 15,
-      min: 1
+      default: 1,  // Changed from 15 to 1
+      min: 0.1     // Allow fractional XP for flexibility
     },
     // Message activity (XP per message)
     messageXpPerMessage: {
       type: Number,
-      default: 5,
-      min: 1
+      default: 1,  // Changed from 5 to 1
+      min: 0.1
     },
     // Cooldown between message XP awards in seconds
     messageXpCooldown: {
       type: Number,
-      default: 60,
+      default: 60, // 1 minute cooldown between messages
       min: 10
     },
-    // Base XP required for level 1
-    baseXpRequired: {
+    // Formula customization parameters
+    baseMultiplier: {
       type: Number,
-      default: 100,
-      min: 10
+      default: 8,
+      min: 1
     },
-    // XP scaling factor (multiplier for each level)
-    xpScalingFactor: {
+    scalingMultiplier: {
       type: Number,
       default: 1.5,
+      min: 0.1
+    },
+    scalingPower: {
+      type: Number,
+      default: 2,
       min: 1.1
     }
   },
@@ -239,48 +244,64 @@ async function setRoleMultiplier(guildId, roleId, multiplier, description = "") 
  * @returns {Number} XP required for this level
  */
 function getXpRequiredForLevel(level, settings) {
-    const baseXp = settings.xpSettings.baseXpRequired;
-    const scalingFactor = settings.xpSettings.xpScalingFactor;
+    if (level <= 0) return 0;
     
-    return Math.floor(baseXp * Math.pow(scalingFactor, level - 1));
+    // Allow customization via settings, but provide sensible defaults
+    // Since 1 XP = 1 minute, we need to scale our formula accordingly
+    const baseMultiplier = settings?.xpSettings?.baseMultiplier || 8;  // Base level multiplier 
+    const scalingPower = settings?.xpSettings?.scalingPower || 2;      // Power for the scaling curve
+    const scalingMultiplier = settings?.xpSettings?.scalingMultiplier || 1.5; // Multiplier for the curve
+    
+    // New formula adjusted for 1 XP = 1 minute scaling
+    return Math.floor(baseMultiplier * level + scalingMultiplier * Math.pow(level, scalingPower));
   }
-
-/**
- * Calculate the level for a given amount of XP
- * @param {Number} xp - Current XP
- * @param {Object} settings - Guild level settings
- * @returns {Number} Current level based on XP
- */
-function calculateLevelFromXp(xp, settings) {
-    const baseXp = settings.xpSettings.baseXpRequired;
-    const scalingFactor = settings.xpSettings.xpScalingFactor;
-    
-    // Level 0 has 0 XP
+  
+  /**
+   * Calculate the level for a given amount of XP
+   * @param {Number} xp - Current XP
+   * @param {Object} settings - Guild level settings
+   * @returns {Number} Current level based on XP
+   */
+  function calculateLevelFromXp(xp, settings) {
     if (xp === 0) return 0;
     
     let level = 0;
-    let totalXpForNextLevel = 0;
+    let totalXp = 0;
     
-    // Keep increasing level until we find the correct one
     while (true) {
-      const xpForNextLevel = Math.floor(baseXp * Math.pow(scalingFactor, level));
-      totalXpForNextLevel += xpForNextLevel;
+      level++;
+      const levelXp = getXpRequiredForLevel(level, settings);
       
-      if (xp < totalXpForNextLevel) {
-        return level;
+      if (totalXp + levelXp > xp) {
+        return level - 1;
       }
       
-      level++;
+      totalXp += levelXp;
     }
   }
+  
+  /**
+   * Get total XP needed to reach a level
+   * @param {Number} level - The level to calculate total XP for
+   * @param {Object} settings - Guild level settings
+   * @returns {Number} Total XP needed to reach this level
+   */
+  function getTotalXpForLevel(level, settings) {
+    let totalXp = 0;
+    for (let i = 1; i <= level; i++) {
+      totalXp += getXpRequiredForLevel(i, settings);
+    }
+    return totalXp;
+  }
 
-module.exports = {
-  UserLevel,
-  GuildLevelSettings,
-  getUserLevel,
-  getGuildLevelSettings,
-  updateGuildLevelSettings,
-  setRoleMultiplier,
-  getXpRequiredForLevel,
-  calculateLevelFromXp
-};
+  module.exports = {
+    UserLevel,
+    GuildLevelSettings,
+    getUserLevel,
+    getGuildLevelSettings,
+    updateGuildLevelSettings,
+    setRoleMultiplier,
+    getXpRequiredForLevel,
+    calculateLevelFromXp,
+    getTotalXpForLevel
+  };

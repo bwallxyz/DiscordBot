@@ -159,7 +159,7 @@ class ActivityTrackerService {
         return { success: false, reason: 'too_soon' };
       }
       
-      // Award XP for this time period
+      // Award XP for this time period - now 1 XP per minute by default
       const xpResult = await this.levelingService.awardVoiceXp({
         guildId: guild.id,
         userId: member.id,

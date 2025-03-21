@@ -6,7 +6,8 @@ const {
   GuildLevelSettings, 
   getGuildLevelSettings,
   getXpRequiredForLevel,
-  calculateLevelFromXp
+  calculateLevelFromXp,
+  getTotalXpForLevel
 } = require('../database/schemas/userLevel');
 
 // Add import for getUserActivity
@@ -148,11 +149,6 @@ class LevelingService {
     }
   }
   
-  /**
-   * Award XP to a user for sending a message
-   * @param {Object} options - Message XP options
-   * @returns {Promise<Object>} Updated user level data and level up info
-   */
   async awardMessageXp(options) {
     const { 
       guildId, 
@@ -192,7 +188,7 @@ class LevelingService {
       userLevel.username = username || userLevel.username;
       userLevel.displayName = displayName || userLevel.displayName;
       
-      // Check for message XP cooldown
+      // Check for message XP cooldown - strict 1 minute cooldown
       const now = new Date();
       const cooldownMs = guildSettings.xpSettings.messageXpCooldown * 1000;
       
@@ -201,45 +197,18 @@ class LevelingService {
         return { success: false, reason: 'cooldown' };
       }
       
-      // Calculate base XP from message
-      const baseXpGain = guildSettings.xpSettings.messageXpPerMessage;
+      // Award 1 XP per message (or custom amount from settings)
+      const xpGain = guildSettings.xpSettings.messageXpPerMessage;
       
-      // Get the member to check roles for multipliers
-      const guild = this.client.guilds.cache.get(guildId);
-      let xpMultiplier = 1.0;
-      
-      if (guild) {
-        try {
-          const member = await guild.members.fetch(userId);
-          if (member) {
-            // Get the highest multiplier from the member's roles
-            const memberRoleIds = Array.from(member.roles.cache.keys());
-            const roleMultipliers = guildSettings.roleMultipliers.filter(
-              rm => memberRoleIds.includes(rm.roleId)
-            );
-            
-            if (roleMultipliers.length > 0) {
-              // Apply the highest multiplier only
-              xpMultiplier = Math.max(...roleMultipliers.map(rm => rm.multiplier));
-            }
-          }
-        } catch (error) {
-          logger.error(`Error fetching member for role multipliers: ${error}`);
-        }
-      }
-      
-      // Apply multiplier to XP gain
-      const totalXpGain = Math.floor(baseXpGain * xpMultiplier);
-      
-     // Record previous level
+      // Record previous level
       const oldLevel = userLevel.level;
-
+  
       // Update XP
-      userLevel.messageXp += totalXpGain;
-      userLevel.xp += totalXpGain;
+      userLevel.messageXp += xpGain;
+      userLevel.xp += xpGain;
       userLevel.lastUpdated = now;
       userLevel.lastMessageXpAwarded = now;
-
+  
       // Calculate new level
       userLevel.level = calculateLevelFromXp(userLevel.xp, guildSettings);
       
@@ -390,11 +359,11 @@ class LevelingService {
   }
   
   /**
-   * Get user level info
-   * @param {String} guildId - Guild ID
-   * @param {String} userId - User ID
-   * @returns {Promise<Object>} User level info
-   */
+ * Get user level info
+ * @param {String} guildId - Guild ID
+ * @param {String} userId - User ID
+ * @returns {Promise<Object>} User level info
+ */
   async getUserLevelInfo(guildId, userId) {
     try {
       // Get guild settings
@@ -404,21 +373,31 @@ class LevelingService {
       const userLevel = await UserLevel.findOne({ guildId, userId });
       
       if (!userLevel) {
+        // For new users with no data
+        const xpForLevel1 = getXpRequiredForLevel(1, guildSettings);
         return {
           userId,
           username: 'Unknown',
           displayName: 'Unknown',
           level: 0,
           xp: 0,
+          voiceXp: 0,
+          messageXp: 0,
           rank: null,
-          nextLevelXp: getXpRequiredForLevel(1, guildSettings),
-          xpToNextLevel: getXpRequiredForLevel(1, guildSettings)
+          nextLevelXp: xpForLevel1,
+          xpProgress: 0,
+          progressPercentage: 0
         };
       }
       
-      // Calculate XP for next level
-      const nextLevelXp = getXpRequiredForLevel(userLevel.level + 1, guildSettings);
-      const xpToNextLevel = nextLevelXp - userLevel.xp;
+      // Calculate XP for current and next level
+      const currentLevelTotalXp = getTotalXpForLevel(userLevel.level, guildSettings);
+      const nextLevelTotalXp = getTotalXpForLevel(userLevel.level + 1, guildSettings);
+      const xpForNextLevel = nextLevelTotalXp - currentLevelTotalXp;
+      
+      // Calculate progress within current level
+      const xpProgress = userLevel.xp - currentLevelTotalXp;
+      const progressPercentage = Math.floor((xpProgress / xpForNextLevel) * 100);
       
       // Get user rank
       const rank = await this.getUserRank(guildId, userId);
@@ -429,11 +408,12 @@ class LevelingService {
         displayName: userLevel.displayName,
         level: userLevel.level,
         xp: userLevel.xp,
-        voiceXp: userLevel.voiceXp,
-        messageXp: userLevel.messageXp,
+        voiceXp: userLevel.voiceXp || 0,
+        messageXp: userLevel.messageXp || 0,
         rank,
-        nextLevelXp,
-        xpToNextLevel,
+        nextLevelXp: xpForNextLevel,
+        xpProgress: xpProgress,
+        progressPercentage: progressPercentage,
         lastUpdated: userLevel.lastUpdated
       };
     } catch (error) {
@@ -441,6 +421,7 @@ class LevelingService {
       throw error;
     }
   }
+  
   
   /**
    * Get user rank

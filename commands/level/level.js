@@ -230,7 +230,7 @@ module.exports = {
         { name: 'Level', value: `${levelInfo.level}`, inline: true },
         { name: 'Rank', value: levelInfo.rank ? `#${levelInfo.rank}` : 'Unranked', inline: true },
         { name: 'Total XP', value: `${levelInfo.xp} XP`, inline: true },
-        { name: 'Progress to Next Level', value: `${levelInfo.xp}/${levelInfo.nextLevelXp} XP (${Math.floor((levelInfo.xp / levelInfo.nextLevelXp) * 100)}%)`, inline: false },
+        { name: 'Progress to Next Level', value: `${levelInfo.xpProgress || 0}/${levelInfo.nextLevelXp || 100} XP (${levelInfo.progressPercentage || 0}%)`, inline: false },
         { name: 'Voice XP', value: `${levelInfo.voiceXp} XP`, inline: true },
         { name: 'Message XP', value: `${levelInfo.messageXp} XP`, inline: true }
       )
