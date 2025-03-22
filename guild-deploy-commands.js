@@ -24,6 +24,20 @@ if (!guildId) {
   process.exit(1);
 }
 
+// Check client ID and token
+const clientId = process.env.CLIENT_ID;
+const token = process.env.BOT_TOKEN;
+
+if (!clientId) {
+  log('ERROR: CLIENT_ID environment variable is missing!');
+  process.exit(1);
+}
+
+if (!token) {
+  log('ERROR: BOT_TOKEN environment variable is missing!');
+  process.exit(1);
+}
+
 // Store command data
 const commands = [];
 
@@ -61,20 +75,6 @@ function findCommandFiles(dir) {
 
 // Function to deploy commands to a specific guild
 async function deployGuildCommands() {
-  // Check env variables
-  const clientId = process.env.CLIENT_ID;
-  const token = process.env.BOT_TOKEN;
-  
-  if (!clientId) {
-    log('ERROR: CLIENT_ID environment variable is missing!');
-    return;
-  }
-  
-  if (!token) {
-    log('ERROR: BOT_TOKEN environment variable is missing!');
-    return;
-  }
-  
   log(`Starting guild command deployment to Guild ID: ${guildId}`);
   log(`Using Client ID: ${clientId.substring(0, 5)}...`);
   
@@ -130,8 +130,10 @@ log('---------------------------------------------');
 deployGuildCommands()
   .then(() => {
     log('Deployment process completed');
+    process.exit(0);
   })
   .catch(error => {
     log(`Unhandled error in deployment process: ${error.message}`);
     log(error.stack);
+    process.exit(1);
   });

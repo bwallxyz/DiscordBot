@@ -165,7 +165,7 @@ class ReminderService {
       // Send the reminder
       await channel.send({ 
         embeds: [embed],
-        content: `<@${room.ownerId}> Room Owner Info:`
+      //  content: `<@${room.ownerId}> Room Owner Info:`
       });
       
       logger.info(`Sent ${randomType} reminder to room ${room.name} (${channel.id})`);
