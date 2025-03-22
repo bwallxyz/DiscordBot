@@ -1,5 +1,5 @@
 // commands/leveling/level.js
-const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionFlagsBits } = require('discord.js');
 const logger = require('../../utils/logger');
 const LevelingService = require('../../services/LevelingService');
 
