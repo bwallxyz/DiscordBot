@@ -109,7 +109,8 @@ class PermissionService {
   async banUser(channel, userId) {
     try {
       await channel.permissionOverwrites.edit(userId, {
-        Connect: false
+        Connect: false,
+        ViewChannel: false
       });
       
       logger.info(`Banned ${userId} from ${channel.name}`);
@@ -141,7 +142,8 @@ class PermissionService {
   async unbanUser(channel, userId) {
     try {
       await channel.permissionOverwrites.edit(userId, {
-        Connect: null
+        Connect: null,
+        ViewChannel: null
       });
       
       logger.info(`Unbanned ${userId} from ${channel.name}`);
