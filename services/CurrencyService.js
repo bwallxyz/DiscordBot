@@ -17,14 +17,26 @@ class CurrencyService {
   }
   
   /**
+   * Add currency to a user
+   * @param {Object} options - Options
+   * @returns {Promise<Object>} Updated user currency
+   */
+  async addCurrency(options) {
+    try {
+      return await addCurrency(options);
+    } catch (error) {
+      logger.error(`Error in CurrencyService.addCurrency:`, error);
+      throw error;
+    }
+  }
+  
+  /**
    * Award currency for voice activity
    * @param {Object} options - Voice activity options
    * @returns {Promise<Object>} Updated user currency data
    */
   async awardVoiceCurrency(options) {
     try {
-    console.log(`Attempting to award message currency to ${options.userId}`);
-
       const { 
         guildId, 
         userId, 
@@ -52,7 +64,7 @@ class CurrencyService {
       }
       
       // Award the currency
-      const result = await addCurrency({
+      const result = await this.addCurrency({
         guildId,
         userId,
         amount: currencyGain,
@@ -113,7 +125,7 @@ class CurrencyService {
       // Award the currency
       const currencyGain = guildSettings.rewardRates.messageReward;
       
-      const result = await addCurrency({
+      const result = await this.addCurrency({
         guildId,
         userId,
         amount: currencyGain,
@@ -168,7 +180,7 @@ class CurrencyService {
       }
       
       // Award the currency
-      const result = await addCurrency({
+      const result = await this.addCurrency({
         guildId,
         userId,
         amount: currencyGain,
@@ -231,7 +243,7 @@ class CurrencyService {
       const currencyGain = guildSettings.rewardRates.dailyBonus;
       
       // Award the currency
-      const result = await addCurrency({
+      const result = await this.addCurrency({
         guildId,
         userId,
         amount: currencyGain,

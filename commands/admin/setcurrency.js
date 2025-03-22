@@ -1,7 +1,7 @@
 // commands/admin/setcurrency.js
 const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionFlagsBits } = require('discord.js');
 const logger = require('../../utils/logger');
-const { UserCurrency, getGuildCurrencySettings, updateGuildCurrencySettings, addCurrency } = require('../../models/UserCurrency');
+const { getGuildCurrencySettings, updateGuildCurrencySettings } = require('../../models/UserCurrency');
 const CurrencyService = require('../../services/CurrencyService');
 
 module.exports = {
@@ -185,7 +185,7 @@ module.exports = {
             });
           }
           
-          // Add the currency using the imported function
+          // Add the currency using the currencyService
           const result = await currencyService.addCurrency({
             guildId: interaction.guild.id,
             userId: targetUser.id,
