@@ -1,12 +1,210 @@
-// dashboard/services/RoomService.js
-/**
- * Service for managing Discord voice rooms
- */
-class RoomService {
-  constructor(discordClient) {
-    this.client = discordClient;
-  }
+// Enhanced Room service with room creation and management
+const { ChannelType, PermissionFlagsBits } = require('discord.js');
+const logger = require('../utils/logger');
+const Room = require('../models/Room');
+const PermissionService = require('./PermissionService');
+const AuditLogService = require('./AuditLogService');
 
+class RoomService {
+  constructor(client) {
+    this.client = client;
+    this.permissionService = new PermissionService();
+    this.auditLogService = new AuditLogService(client);
+  }
+  
+  /**
+   * Check if a user is the owner of a room
+   * @param {String} channelId - Channel ID to check
+   * @param {String} userId - User ID to check
+   * @returns {Promise<Boolean>} Whether the user is the room owner
+   */
+  async isRoomOwner(channelId, userId) {
+    const room = await Room.findOne({ channelId });
+    return room && room.ownerId === userId;
+  }
+  
+  /**
+   * Get rooms owned by a user
+   * @param {String} guildId - Guild ID
+   * @param {String} userId - User ID
+   * @returns {Promise<Array>} Room documents
+   */
+  async getRoomsByOwner(guildId, userId) {
+    return await Room.find({ guildId, ownerId: userId });
+  }
+  
+  /**
+   * Create a room for a user immediately and move them to it
+   * @param {Object} member - Discord guild member
+   * @param {Object} guildConfig - Guild configuration
+   * @returns {Promise<Object>} Result of room creation
+   */
+  async createRoomForUserImmediate(member, guildConfig) {
+    try {
+      // Check if member has exceeded room limit
+      const userRooms = await this.getRoomsByOwner(member.guild.id, member.id);
+      
+      if (userRooms.length >= guildConfig.maxRoomsPerUser) {
+        // Try to move them to their existing room instead
+        if (userRooms.length > 0) {
+          const existingRoom = userRooms[0];
+          const channel = member.guild.channels.cache.get(existingRoom.channelId);
+          
+          if (channel) {
+            await member.voice.setChannel(channel);
+            return {
+              success: true,
+              moved: true,
+              room: existingRoom,
+              message: 'Moved to existing room'
+            };
+          }
+        }
+        
+        return {
+          success: false,
+          error: 'Room limit reached'
+        };
+      }
+      
+      // Get the room category
+      const category = member.guild.channels.cache.get(guildConfig.roomCategoryId);
+      
+      if (!category) {
+        return {
+          success: false,
+          error: 'Room category not found'
+        };
+      }
+      
+      // Create a room name
+      const prefix = guildConfig.roomPrefix || '';
+      const roomName = `${prefix}${member.displayName}'s Room`;
+      
+      // Create the channel
+      const channel = await member.guild.channels.create({
+        name: roomName,
+        type: ChannelType.GuildVoice,
+        parent: category,
+        permissionOverwrites: this.permissionService.getRoomCreationPermissions(member.guild, member)
+      });
+      
+      // Create room in database
+      const room = new Room({
+        guildId: member.guild.id,
+        channelId: channel.id,
+        ownerId: member.id,
+        name: roomName
+      });
+      
+      await room.save();
+      
+      // Move the user to the new room
+      await member.voice.setChannel(channel);
+      
+      // Log the room creation
+      await this.auditLogService.logRoomCreation(member.guild, member, {
+        id: channel.id,
+        name: roomName,
+        channelId: channel.id
+      });
+      
+      logger.info(`Created room ${roomName} for ${member.user.tag}`);
+      
+      return {
+        success: true,
+        room,
+        channel
+      };
+    } catch (error) {
+      logger.error(`Error creating room for user:`, error);
+      return {
+        success: false,
+        error: error.message
+      };
+    }
+  }
+  
+  /**
+   * Handle potential room creation (when a user joins the creation channel)
+   * @param {Object} oldState - Previous voice state
+   * @param {Object} newState - Current voice state
+   */
+  async handlePotentialRoomCreation(oldState, newState) {
+    try {
+      const member = newState.member;
+      
+      // Skip if not a guild member or a bot
+      if (!member || member.user.bot) return;
+      
+      // Get guild config
+      const guildConfig = await require('../database/schemas/guildConfig').getGuildConfig(newState.guild.id);
+      
+      // Check if user joined the creation channel
+      if (guildConfig && 
+          guildConfig.creationChannelId &&
+          newState.channelId === guildConfig.creationChannelId &&
+          oldState.channelId !== guildConfig.creationChannelId) {
+        
+        // Create a room for the user
+        await this.createRoomForUserImmediate(member, guildConfig);
+      }
+    } catch (error) {
+      logger.error(`Error handling potential room creation:`, error);
+    }
+  }
+  
+  /**
+   * Handle potential room deletion (when a room becomes empty)
+   * @param {Object} oldState - Previous voice state
+   * @param {Object} newState - Current voice state
+   */
+  async handlePotentialRoomDeletion(oldState, newState) {
+    try {
+      const channel = oldState.channel;
+      
+      // Skip if no channel
+      if (!channel) return;
+      
+      // Check if this is a user-created room
+      const room = await Room.findOne({ channelId: channel.id });
+      
+      if (!room) return;
+      
+      // Get guild config
+      const guildConfig = await require('../database/schemas/guildConfig').getGuildConfig(oldState.guild.id);
+      
+      // Check if auto-delete is enabled
+      if (guildConfig && guildConfig.autoDeleteEmptyRooms) {
+        // Check if the room is empty
+        if (channel.members.size === 0) {
+          // Don't delete permanent rooms
+          if (room.isPermanent) {
+            logger.info(`Room ${room.name} is empty but permanent, not deleting`);
+            return;
+          }
+          
+          try {
+            // Log the deletion
+            await this.auditLogService.logRoomDeletion(oldState.guild, room);
+            
+            // Delete the room from the database
+            await room.deleteOne();
+            
+            // Delete the channel
+            await channel.delete(`Auto-deleted empty room`);
+            
+            logger.info(`Deleted empty room ${room.name}`);
+          } catch (deleteError) {
+            logger.error(`Error deleting empty room:`, deleteError);
+          }
+        }
+      }
+    } catch (error) {
+      logger.error(`Error handling potential room deletion:`, error);
+    }
+  }
+  
   /**
    * Delete a room
    * @param {Object} room - Room document from database
@@ -27,14 +225,14 @@ class RoomService {
             await channel.delete('Room deleted via admin dashboard');
           }
         } catch (discordErr) {
-          console.error('Error deleting Discord channel:', discordErr);
+          logger.error('Error deleting Discord channel:', discordErr);
           // We still consider it a success if the DB entry was deleted
         }
       }
       
       return true;
     } catch (err) {
-      console.error('Error in RoomService.deleteRoom:', err);
+      logger.error('Error in RoomService.deleteRoom:', err);
       throw err;
     }
   }
