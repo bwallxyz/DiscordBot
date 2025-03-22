@@ -1,4 +1,4 @@
-// commands/room/votemute.js - Fixed multiple voting and proper thresholds
+// commands/room/votemute.js - Duration controls mute length, not vote time
 const { SlashCommandBuilder, EmbedBuilder, Colors, ComponentType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
@@ -9,6 +9,12 @@ const { isInVoiceChannel } = require('../../utils/validators');
 
 // Store votes by unique ID
 const activeVotes = new Map();
+
+// Fixed vote duration (always 60 seconds)
+const VOTE_DURATION = 60;
+
+// Store active mute timers
+const activeMuteTimers = new Map();
 
 module.exports = {
   // Command definition
@@ -27,9 +33,9 @@ module.exports = {
     )
     .addIntegerOption(option =>
       option.setName('duration')
-        .setDescription('Maximum vote duration in seconds (default: 60)')
-        .setMinValue(15)
-        .setMaxValue(300)
+        .setDescription('Duration of the mute in minutes (default: 5)')
+        .setMinValue(1)
+        .setMaxValue(60)
         .setRequired(false)
     ),
   
@@ -40,7 +46,7 @@ module.exports = {
       const targetUser = interaction.options.getUser('user');
       const targetMember = await interaction.guild.members.fetch(targetUser.id).catch(() => null);
       const reason = interaction.options.getString('reason') || 'No reason provided';
-      const voteDuration = interaction.options.getInteger('duration') || 60;
+      const muteDuration = (interaction.options.getInteger('duration') || 5) * 60 * 1000; // Convert to milliseconds
       
       // Check if the command user is in a voice channel
       if (!isInVoiceChannel(interaction.member)) {
@@ -107,36 +113,36 @@ module.exports = {
       // Generate a unique vote ID
       const voteId = `vote_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
       
-            // Count eligible voters (excluding the target)
-        const eligibleVoters = voiceChannel.members.filter(m => m.id !== targetUser.id);
-        const totalVoters = eligibleVoters.size;
-
-        // Calculate threshold - 
-        // For 3+ people (excluding target), at least 2 yes votes required
-        // Specifically force 2 for rooms with 3 people total (2 voters excluding target)
-        let voteThreshold;
-        if (totalVoters >= 3 || (voiceChannel.members.size >= 3 && totalVoters >= 2)) {
+      // Count eligible voters (excluding the target)
+      const eligibleVoters = voiceChannel.members.filter(m => m.id !== targetUser.id);
+      const totalVoters = eligibleVoters.size;
+      
+      // Calculate threshold - fixed for rooms with 3+ people
+      let voteThreshold;
+      if (totalVoters >= 3 || (voiceChannel.members.size >= 3 && totalVoters >= 2)) {
         voteThreshold = Math.max(2, Math.ceil(totalVoters / 2));
-        } else {
+      } else {
         // For smaller rooms, at least 50% must vote yes
         voteThreshold = Math.max(1, Math.ceil(totalVoters / 2));
-        }
-
-logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} eligible voters (${voiceChannel.members.size} total members in room)`);
+      }
+      
+      // Format duration for display
+      const minutes = Math.floor(muteDuration / (60 * 1000));
+      const durationText = minutes === 1 ? '1 minute' : `${minutes} minutes`;
       
       // Create the vote embed
       const voteEmbed = new EmbedBuilder()
         .setColor(Colors.Orange)
         .setTitle(`📊 Vote to Mute ${targetUser.username}`)
-        .setDescription(`A vote has been started to mute ${targetUser} in this voice channel.`)
+        .setDescription(`A vote has been started to mute ${targetUser} for ${durationText}.`)
         .addFields(
           { name: 'Reason', value: reason },
           { name: 'Started by', value: `${interaction.user}` },
-          { name: 'Duration', value: `This vote will last for up to ${voteDuration} seconds, or until enough votes are cast.` },
+          { name: 'Vote Duration', value: `This vote will last for up to ${VOTE_DURATION} seconds, or until enough votes are cast.` },
           { name: 'How to Vote', value: 'Click the buttons below to cast your vote! You can change your vote at any time.' },
           { name: 'Current Votes', value: '👍 Yes: 0\n👎 No: 0\n\nRequired: At least ' + voteThreshold + ' yes vote(s) to pass.' }
         )
-        .setFooter({ text: `Vote ID: ${voteId.slice(0, 10)} • Ends in ${voteDuration}s` })
+        .setFooter({ text: `Vote ID: ${voteId.slice(0, 10)} • Mute duration: ${durationText}` })
         .setTimestamp();
       
       // Add buttons for voting
@@ -173,7 +179,8 @@ logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} e
         isOwnerInitiated: isOwner,
         messageId: voteMessage.id,
         guildId: interaction.guild.id,
-        threshold: voteThreshold
+        threshold: voteThreshold,
+        muteDuration: muteDuration
       };
       
       // Store in activeVotes using the vote ID
@@ -207,7 +214,7 @@ logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} e
       
       const collector = interaction.channel.createMessageComponentCollector({
         filter,
-        time: voteDuration * 1000
+        time: VOTE_DURATION * 1000
       });
       
       // Function to check if vote has passed
@@ -323,7 +330,7 @@ logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} e
           voteEmbed.addFields(
             { name: 'Final Votes', value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}\n(Threshold was ${voteThreshold})` },
             { name: 'Result', value: passed 
-              ? `✅ The vote has passed! ${targetUser} has been muted.` 
+              ? `✅ The vote has passed! ${targetUser} has been muted for ${durationText}.` 
               : `❌ The vote has failed. ${targetUser} will not be muted.` 
             }
           );
@@ -337,7 +344,7 @@ logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} e
                 userId: targetUser.id,
                 roomId: voiceChannel.id,
                 appliedBy: interaction.user.id,
-                reason: `Vote mute: ${reason}`
+                reason: `Vote mute (${durationText}): ${reason}`
               });
               
               // Apply permission changes
@@ -358,11 +365,76 @@ logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} e
                   name: voiceChannel.name,
                   channelId: voiceChannel.id
                 },
-                `Vote mute (${yesCount} yes, ${noCount} no): ${reason}`
+                `Vote mute (${durationText}) (${yesCount} yes, ${noCount} no): ${reason}`
               );
               
+              // Set timer to unmute after the specified duration
+              const timerKey = `${interaction.guild.id}_${targetUser.id}_${voiceChannel.id}`;
+              
+              // Clear any existing timer
+              if (activeMuteTimers.has(timerKey)) {
+                clearTimeout(activeMuteTimers.get(timerKey));
+              }
+              
+              // Set new timer
+              const timer = setTimeout(async () => {
+                try {
+                  // Check if still muted
+                  const stillMuted = await stateTracker.hasUserState({
+                    guildId: interaction.guild.id,
+                    userId: targetUser.id,
+                    roomId: voiceChannel.id,
+                    state: 'MUTED'
+                  });
+                  
+                  if (stillMuted) {
+                    // Unmute the user
+                    await permissionService.unmuteUser(voiceChannel, targetUser.id);
+                    
+                    // Remove muted state
+                    await stateTracker.removeUserState({
+                      guildId: interaction.guild.id,
+                      userId: targetUser.id,
+                      roomId: voiceChannel.id,
+                      state: 'MUTED'
+                    });
+                    
+                    // Get current member and unmute if in channel
+                    const currentMember = await interaction.guild.members.fetch(targetUser.id).catch(() => null);
+                    if (currentMember?.voice?.channelId === voiceChannel.id && currentMember.voice.serverMute) {
+                      await currentMember.voice.setMute(false, `Vote mute duration expired`);
+                    }
+                    
+                    // Log the auto-unmute
+                    await auditLogService.logUserUnmute(
+                      interaction.guild,
+                      { id: client.user.id, tag: client.user.tag },
+                      { id: targetUser.id, user: targetUser },
+                      {
+                        id: voiceChannel.id,
+                        name: voiceChannel.name,
+                        channelId: voiceChannel.id
+                      },
+                      `Vote mute duration (${durationText}) expired`
+                    );
+                    
+                    // Send notification to channel
+                    voiceChannel.send(`${targetUser} has been automatically unmuted (mute duration of ${durationText} expired).`)
+                      .catch(() => logger.warn(`Could not send unmute notification to channel`));
+                  }
+                  
+                  // Remove from active timers
+                  activeMuteTimers.delete(timerKey);
+                } catch (error) {
+                  logger.error(`Error in auto-unmute timer: ${error.message}`);
+                }
+              }, muteDuration);
+              
+              // Store the timer
+              activeMuteTimers.set(timerKey, timer);
+              
               // Notify user
-              targetUser.send(`You have been muted in **${voiceChannel.name}** through a vote (${yesCount} yes, ${noCount} no). Reason: ${reason}`)
+              targetUser.send(`You have been muted in **${voiceChannel.name}** for ${durationText} through a vote (${yesCount} yes, ${noCount} no). Reason: ${reason}`)
                 .catch(() => logger.warn(`Could not DM muted user ${targetUser.tag}`));
             } catch (muteError) {
               logger.error(`Error applying vote mute: ${muteError.message}`);
