@@ -41,6 +41,12 @@ const roomSchema = new mongoose.Schema({
     default: 0 // 0 means no limit
   },
   
+  // Sub-moderators (users who can use mute/unmute)
+  submoderators: {
+    type: [String],
+    default: []
+  },
+  
   // Activity tracking
   createdAt: {
     type: Date,

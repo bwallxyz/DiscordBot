@@ -1,11 +1,12 @@
-// Room unmute command
+// Room unmute command with submod support
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
 const PermissionService = require('../../services/PermissionService');
 const AuditLogService = require('../../services/AuditLogService');
-const { UserStateTrackerService } = require('../../services/UserStateTrackerService'); // Fixed import path
+const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
 const { isInVoiceChannel } = require('../../utils/validators');
+const Room = require('../../models/Room');
 
 module.exports = {
   // Command definition
@@ -39,14 +40,25 @@ module.exports = {
         });
       }
       
-      // Check if the user is the room owner
+      // Get the voice channel and room
       const roomService = new RoomService(client);
       const voiceChannel = interaction.member.voice.channel;
-      const isOwner = await roomService.isRoomOwner(voiceChannel.id, interaction.user.id);
+      const room = await Room.findOne({ channelId: voiceChannel.id });
       
-      if (!isOwner) {
+      if (!room) {
         return interaction.reply({ 
-          content: 'You can only use this command in rooms you own.',
+          content: 'This command can only be used in user-created rooms.',
+          ephemeral: true 
+        });
+      }
+      
+      // Check permissions - either owner or submod
+      const isOwner = room.ownerId === interaction.user.id;
+      const isSubMod = room.submoderators && room.submoderators.includes(interaction.user.id);
+      
+      if (!isOwner && !isSubMod) {
+        return interaction.reply({ 
+          content: 'You must be the room owner or a sub-moderator to use this command.',
           ephemeral: true 
         });
       }

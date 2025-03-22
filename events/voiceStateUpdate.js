@@ -156,7 +156,7 @@ module.exports = {
       logger.error('Error handling voice state update:', error);
     }
 
-    // Handle server mute/unmute actions from Discord's UI
+// Handle server mute/unmute actions from Discord's UI
 if (oldState.channelId && newState.channelId && 
     oldState.channelId === newState.channelId && 
     oldState.serverMute !== newState.serverMute) {
@@ -182,17 +182,48 @@ if (oldState.channelId && newState.channelId &&
         // Get the moderator who performed the action
         const moderator = await newState.guild.members.fetch(auditEntry.executor.id);
         
-        // Check if the moderator is the room owner
+        // Check if the moderator is the room owner or a sub-moderator
         const isRoomOwner = moderator.id === room.ownerId;
+        const isSubMod = room.submoderators && room.submoderators.includes(moderator.id);
         
-        // Only sync state if the room owner did the muting
-        if (isRoomOwner) {
+        // Only sync state if the room owner or a sub-mod did the muting
+        if (isRoomOwner || isSubMod) {
           const stateTracker = new UserStateTrackerService();
           const auditLogService = new AuditLogService(client);
           
           if (newState.serverMute) {
             // User was muted via Discord UI
-            logger.info(`User ${newState.member.user.tag} was server-muted in room ${room.name} by room owner ${moderator.user.tag}`);
+            logger.info(`User ${newState.member.user.tag} was server-muted in room ${room.name} by ${isRoomOwner ? 'room owner' : 'sub-mod'} ${moderator.user.tag}`);
+            
+            // Make sure target is not the owner if a sub-mod is doing the muting
+            if (isSubMod && !isRoomOwner && newState.member.id === room.ownerId) {
+              // Sub-mod tried to mute the owner, undo the mute
+              await newState.member.voice.setMute(false, 'Prevented sub-mod from muting room owner');
+              logger.warn(`Prevented sub-mod ${moderator.user.tag} from muting room owner in ${room.name}`);
+              
+              // Try to notify the sub-mod
+              try {
+                await moderator.send(`You cannot mute the room owner in room "${room.name}". The mute has been automatically removed.`);
+              } catch (dmError) {
+                logger.warn(`Could not send DM to sub-mod ${moderator.user.tag}`);
+              }
+              return;
+            }
+            
+            // Sub-mod tried to mute another sub-mod
+            if (isSubMod && !isRoomOwner && room.submoderators.includes(newState.member.id)) {
+              // Undo the mute
+              await newState.member.voice.setMute(false, 'Prevented sub-mod from muting another sub-mod');
+              logger.warn(`Prevented sub-mod ${moderator.user.tag} from muting another sub-mod in ${room.name}`);
+              
+              // Try to notify the sub-mod
+              try {
+                await moderator.send(`You cannot mute other sub-moderators in room "${room.name}". The mute has been automatically removed.`);
+              } catch (dmError) {
+                logger.warn(`Could not send DM to sub-mod ${moderator.user.tag}`);
+              }
+              return;
+            }
             
             // Track the muted state
             await stateTracker.trackMutedUser({
@@ -217,7 +248,7 @@ if (oldState.channelId && newState.channelId &&
             );
           } else {
             // User was unmuted via Discord UI
-            logger.info(`User ${newState.member.user.tag} was server-unmuted in room ${room.name} by room owner ${moderator.user.tag}`);
+            logger.info(`User ${newState.member.user.tag} was server-unmuted in room ${room.name} by ${isRoomOwner ? 'room owner' : 'sub-mod'} ${moderator.user.tag}`);
             
             // Check if user was previously tracked as muted
             const isMuted = await stateTracker.hasUserState({
@@ -257,8 +288,5 @@ if (oldState.channelId && newState.channelId &&
     logger.error(`Error handling Discord server mute/unmute:`, error);
   }
 }
-
-
-
   }
 };

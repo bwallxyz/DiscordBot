@@ -168,6 +168,14 @@ class AuditLogService {
         embed.setColor(Colors.Blue)
           .setTitle('👥 Room Ownership Transferred');
         break;
+      case 'ROOM_ADD_SUBMOD':
+        embed.setColor(Colors.Green)
+          .setTitle('👮 Sub-Moderator Added');
+        break;
+      case 'ROOM_REMOVE_SUBMOD':
+        embed.setColor(Colors.Orange)
+          .setTitle('👮 Sub-Moderator Removed');
+        break;
       default:
         embed.setColor(Colors.Grey)
           .setTitle('📝 Room Action');
