@@ -4,7 +4,7 @@
  */
 
 const { Room, UserLevel, AuditLog } = require('../models');
-const RoomService = require('../../services/RoomService');
+const RoomService = require('../../../services/RoomService');
 
 // Get all rooms with pagination and search
 exports.getRooms = async (req, res) => {
@@ -174,7 +174,7 @@ exports.getRoomStates = async (req, res) => {
     }
     
     // Get state tracker and client
-    const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
+    const { UserStateTrackerService } = require('../../../services/UserStateTrackerService');
     const stateTracker = new UserStateTrackerService();
     
     // Get states for this room

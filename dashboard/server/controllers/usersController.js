@@ -5,8 +5,8 @@
 
 const moment = require('moment');
 const { UserLevel, UserActivity } = require('../models');
-const { formatDuration } = require('../../utils/formatters');
-const LevelingService = require('../../services/LevelingService');
+const { formatDuration } = require('../../../utils/formatters');
+const LevelingService = require('../../../services/LevelingService');
 
 // Get all users with pagination and search
 exports.getUsers = async (req, res) => {

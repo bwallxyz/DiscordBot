@@ -7,7 +7,7 @@ const { UserLevel, GuildLevelSettings } = require('../models');
 const { 
   getGuildLevelSettings,
   updateGuildLevelSettings
-} = require('../../database/schemas/userLevel');
+} = require('../../../database/schemas/userLevel');
 
 // Get level settings
 exports.getSettings = async (req, res) => {
