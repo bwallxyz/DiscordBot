@@ -1,4 +1,4 @@
-// Room votemute command - allows room members to vote on muting a user
+// Room votemute command - allows room members to vote on muting a user with early completion
 const { SlashCommandBuilder, EmbedBuilder, Colors, ComponentType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
@@ -27,7 +27,7 @@ module.exports = {
     )
     .addIntegerOption(option =>
       option.setName('duration')
-        .setDescription('Vote duration in seconds (default: 60)')
+        .setDescription('Maximum vote duration in seconds (default: 60)')
         .setMinValue(15)
         .setMaxValue(300)
         .setRequired(false)
@@ -108,11 +108,11 @@ module.exports = {
         .addFields(
           { name: 'Reason', value: reason },
           { name: 'Started by', value: `${interaction.user}` },
-          { name: 'Duration', value: `This vote will last for ${voteDuration} seconds.` },
+          { name: 'Duration', value: `This vote will last for up to ${voteDuration} seconds, or until enough votes are cast.` },
           { name: 'How to Vote', value: 'Click the buttons below to cast your vote!' },
           { name: 'Current Votes', value: '👍 Yes: 0\n👎 No: 0\n\nRequired: At least 50% of channel members must vote yes.' }
         )
-        .setFooter({ text: `Vote ends in ${voteDuration} seconds` })
+        .setFooter({ text: `Vote ends in ${voteDuration} seconds or when threshold is reached` })
         .setTimestamp();
       
       // Add buttons for voting
@@ -159,6 +159,38 @@ module.exports = {
         time: voteDuration * 1000 
       });
       
+      // Function to check if vote threshold is reached
+      const checkVoteCompletion = async () => {
+        const yesCount = votes.yes.size;
+        const noCount = votes.no.size;
+        const totalVoters = voiceChannel.members.size - 1; // Exclude the target
+        const votingThreshold = Math.ceil(totalVoters / 2); // At least 50% must vote yes
+        
+        // Check if enough YES votes to pass
+        if (yesCount >= votingThreshold) {
+          collector.stop('threshold_reached_yes');
+          return true;
+        }
+        
+        // Check if enough NO votes to fail (impossible to reach threshold)
+        const remainingPotentialVoters = totalVoters - yesCount - noCount;
+        if (yesCount + remainingPotentialVoters < votingThreshold) {
+          collector.stop('threshold_reached_no');
+          return true;
+        }
+        
+        // Check if all members have voted
+        if (yesCount + noCount >= totalVoters) {
+          collector.stop('all_voted');
+          return true;
+        }
+        
+        return false;
+      };
+      
+      // Check initial vote (the initiator's vote)
+      await checkVoteCompletion();
+      
       // Handle votes
       collector.on('collect', async (i) => {
         // Only accept votes from users in the same voice channel
@@ -195,10 +227,13 @@ module.exports = {
           content: `Your vote has been recorded!`, 
           ephemeral: true 
         });
+        
+        // Check if vote is complete after this vote
+        await checkVoteCompletion();
       });
       
       // Handle vote end
-      collector.on('end', async () => {
+      collector.on('end', async (collected, reason) => {
         // Remove from active votes
         activeVotes.delete(voiceChannel.id);
         
@@ -212,12 +247,22 @@ module.exports = {
         logger.info(`VoteMute results in ${voiceChannel.name} for ${targetUser.tag}:
   Yes Voters (${yesCount}): ${Array.from(votes.yes).join(', ')}
   No Voters (${noCount}): ${Array.from(votes.no).join(', ')}
-  Threshold to pass: ${votingThreshold}`);
+  Threshold to pass: ${votingThreshold}
+  End reason: ${reason}`);
         
         // Update the embed one last time
         voteEmbed.setColor(Colors.Grey);
         voteEmbed.setTitle('📊 Vote to Mute User - Ended');
-        voteEmbed.setFooter({ text: `Vote has ended` });
+        
+        if (reason === 'threshold_reached_yes') {
+          voteEmbed.setFooter({ text: `Vote completed early: Enough YES votes received` });
+        } else if (reason === 'threshold_reached_no') {
+          voteEmbed.setFooter({ text: `Vote completed early: Not enough YES votes possible` });
+        } else if (reason === 'all_voted') {
+          voteEmbed.setFooter({ text: `Vote completed early: All members voted` });
+        } else {
+          voteEmbed.setFooter({ text: `Vote has ended` });
+        }
         
         // Remove the fields we'll update
         voteEmbed.spliceFields(3, 2); 

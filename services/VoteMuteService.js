@@ -1,4 +1,4 @@
-// services/VoteMuteService.js - New service for handling vote mute functionality
+// services/VoteMuteService.js - Updated service with early vote completion
 const { EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../utils/logger');
 const PermissionService = require('./PermissionService');
@@ -85,7 +85,7 @@ class VoteMuteService {
    * @param {String} channelId - Channel ID
    * @param {String} userId - User ID
    * @param {Boolean} voteYes - True for yes vote, false for no
-   * @returns {Object} Updated vote status
+   * @returns {Object} Updated vote status and completion status
    */
   recordVote(channelId, userId, voteYes) {
     const voteSession = this.activeVotes.get(channelId);
@@ -108,18 +108,24 @@ class VoteMuteService {
       voteSession.yes.delete(userId); // Remove from yes if changed
     }
     
+    // Check if vote should complete early
+    const completionResult = this.checkVoteCompletion(channelId);
+    
     return {
       yesCount: voteSession.yes.size,
-      noCount: voteSession.no.size
+      noCount: voteSession.no.size,
+      shouldComplete: completionResult.shouldComplete,
+      completionReason: completionResult.completionReason
     };
   }
   
   /**
    * End a vote and process the result
    * @param {String} channelId - Channel ID
+   * @param {String} reason - Reason for ending the vote
    * @returns {Promise<Object>} Vote result
    */
-  async endVoteSession(channelId) {
+  async endVoteSession(channelId, reason = 'time_expired') {
     const voteSession = this.activeVotes.get(channelId);
     
     if (!voteSession) {
@@ -129,10 +135,13 @@ class VoteMuteService {
     // Remove from active votes
     this.activeVotes.delete(channelId);
     
+    // Get the channel to get current member count
+    const channel = this.client.channels.cache.get(channelId);
+    const totalVoters = channel ? channel.members.size - 1 : voteSession.totalMembers - 1;
+    
     // Get vote counts
     const yesCount = voteSession.yes.size;
     const noCount = voteSession.no.size;
-    const totalVoters = voteSession.totalMembers - 1; // Exclude target
     const votingThreshold = Math.ceil(totalVoters / 2); // At least 50% must vote yes
     
     // Determine if vote passed
@@ -144,7 +153,8 @@ class VoteMuteService {
       yesCount,
       noCount,
       votingThreshold,
-      session: voteSession
+      session: voteSession,
+      reason // Reason for ending the vote (threshold_reached, all_voted, time_expired)
     };
   }
   
@@ -160,7 +170,9 @@ class VoteMuteService {
   Result: ${options.voteResult?.passed ? 'PASSED' : 'FAILED'}
   Yes Votes (${options.voteResult?.yesCount || 0}): ${Array.from(options.voteResult?.session?.yes || []).join(', ')}
   No Votes (${options.voteResult?.noCount || 0}): ${Array.from(options.voteResult?.session?.no || []).join(', ')}
-  Required Threshold: ${options.voteResult?.votingThreshold || 0}`);
+  Required Threshold: ${options.voteResult?.votingThreshold || 0}
+  End Reason: ${options.voteResult?.reason || 'unknown'}`);
+  
     const {
       guild,
       channel,
@@ -197,8 +209,15 @@ class VoteMuteService {
       }
       
       // Prepare detailed voting information for the log
-      const votersYes = Array.from(session.yes).join(', ');
-      const votersNo = Array.from(session.no).join(', ');
+      const voterDetails = {
+        voteDetails: {
+          total: voteResult.yesCount + voteResult.noCount,
+          threshold: voteResult.votingThreshold,
+          votersYes: Array.from(session.yes),
+          votersNo: Array.from(session.no),
+          endReason: voteResult.reason
+        }
+      };
       
       // Log the action with detailed voter information
       await this.auditLogService.logUserMute(
@@ -211,14 +230,7 @@ class VoteMuteService {
           channelId: channel.id
         },
         `Vote mute (${voteResult.yesCount} yes, ${voteResult.noCount} no): ${session.reason}`,
-        {
-          voteDetails: {
-            total: voteResult.yesCount + voteResult.noCount,
-            threshold: voteResult.votingThreshold,
-            votersYes: Array.from(session.yes),
-            votersNo: Array.from(session.no)
-          }
-        }
+        voterDetails
       );
       
       // Try to notify the user
@@ -265,11 +277,11 @@ class VoteMuteService {
       .addFields(
         { name: 'Reason', value: reason },
         { name: 'Started by', value: `${initiator}` },
-        { name: 'Duration', value: `This vote will last for ${voteDuration} seconds.` },
+        { name: 'Duration', value: `This vote will last for up to ${voteDuration} seconds or until enough votes are cast.` },
         { name: 'How to Vote', value: 'Click the buttons below to cast your vote!' },
         { name: 'Current Votes', value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}\n\nRequired: At least ${votingThreshold} yes votes to pass.` }
       )
-      .setFooter({ text: `Vote ends in ${voteDuration} seconds` })
+      .setFooter({ text: `Vote ends in ${voteDuration} seconds or when threshold is reached` })
       .setTimestamp();
   }
   
@@ -288,11 +300,22 @@ class VoteMuteService {
     const embed = new EmbedBuilder()
       .setColor(result.passed ? Colors.Green : Colors.Red)
       .setTitle('📊 Vote to Mute User - Ended')
-      .setTimestamp()
-      .setFooter({ text: 'Vote has ended' })
-      .addFields(
-        { name: 'Final Votes', value: `👍 Yes: ${result.yesCount}\n👎 No: ${result.noCount}` }
-      );
+      .setTimestamp();
+      
+    // Set footer based on completion reason
+    if (result.reason === 'threshold_reached_yes') {
+      embed.setFooter({ text: `Vote completed early: Enough YES votes received` });
+    } else if (result.reason === 'threshold_reached_no') {
+      embed.setFooter({ text: `Vote completed early: Not enough YES votes possible` });
+    } else if (result.reason === 'all_voted') {
+      embed.setFooter({ text: `Vote completed early: All members voted` });
+    } else {
+      embed.setFooter({ text: 'Vote has ended' });
+    }
+    
+    embed.addFields(
+      { name: 'Final Votes', value: `👍 Yes: ${result.yesCount}\n👎 No: ${result.noCount}` }
+    );
     
     if (result.passed) {
       embed.addFields({ 
@@ -314,6 +337,63 @@ class VoteMuteService {
     }
     
     return embed;
+  }
+  
+  /**
+   * Check if a vote should complete early based on current votes
+   * @param {String} channelId - Channel ID
+   * @returns {Object} Check result with completion status and reason
+   */
+  checkVoteCompletion(channelId) {
+    const voteSession = this.activeVotes.get(channelId);
+    
+    if (!voteSession) {
+      return { shouldComplete: false };
+    }
+    
+    // Get the channel to check member count
+    const channel = this.client.channels.cache.get(channelId);
+    if (!channel) {
+      return { shouldComplete: false };
+    }
+    
+    const yesCount = voteSession.yes.size;
+    const noCount = voteSession.no.size;
+    const totalVoters = channel.members.size - 1; // Exclude the target
+    
+    // Calculate voting threshold - at least 50% yes votes required
+    const votingThreshold = Math.ceil(totalVoters / 2);
+    
+    let shouldComplete = false;
+    let completionReason = null;
+    
+    // Check if enough YES votes to pass
+    if (yesCount >= votingThreshold) {
+      shouldComplete = true;
+      completionReason = 'threshold_reached_yes';
+    }
+    
+    // Check if enough NO votes make passage impossible
+    const remainingPotentialVoters = totalVoters - yesCount - noCount;
+    if (yesCount + remainingPotentialVoters < votingThreshold) {
+      shouldComplete = true;
+      completionReason = 'threshold_reached_no';
+    }
+    
+    // Check if all members have voted
+    if (yesCount + noCount >= totalVoters) {
+      shouldComplete = true;
+      completionReason = 'all_voted';
+    }
+    
+    return {
+      shouldComplete,
+      completionReason,
+      yesCount,
+      noCount,
+      totalVoters,
+      votingThreshold
+    };
   }
 }
 
