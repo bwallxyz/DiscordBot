@@ -25,3 +25,93 @@
 [2025-03-21 22:39:22] [ERROR]: Error loading event voiceStateUpdate.js: Unexpected token '<' {
   "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
 }
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\paidcommands.js: Cannot find module '../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\services\CurrencyService.js
+- C:\Users\user\Downloads\test\DiscordBot\services\PaidCommandService.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\admin\paidcommands.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\PaidCommandService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\paidcommands.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\PaidCommandService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\paidcommands.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js:12:5)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\currency\balance.js: Cannot find module '../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\services\CurrencyService.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\currency\balance.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\balance.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\balance.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js:12:5)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\currency\daily.js: Cannot find module '../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\services\CurrencyService.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\currency\daily.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\daily.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\daily.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js:12:5)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\currency\leaderboard.js: Cannot find module '../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\services\CurrencyService.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\currency\leaderboard.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\leaderboard.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\leaderboard.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js:12:5)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\currency\setcurrency.js: Cannot find module '../../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\commands\currency\setcurrency.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\setcurrency.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\setcurrency.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\setcurrency.js:4:81)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}
+[2025-03-22 12:18:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\currency\transfer.js: Cannot find module '../models/UserCurrency'
+Require stack:
+- C:\Users\user\Downloads\test\DiscordBot\services\CurrencyService.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\currency\transfer.js
+- C:\Users\user\Downloads\test\DiscordBot\commands\index.js
+- C:\Users\user\Downloads\test\DiscordBot\index.js {
+  "code": "MODULE_NOT_FOUND",
+  "requireStack": [
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\transfer.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js",
+    "C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js"
+  ],
+  "stack": "Error: Cannot find module '../models/UserCurrency'\nRequire stack:\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\currency\\transfer.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js\n- C:\\Users\\user\\Downloads\\test\\DiscordBot\\index.js\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1410:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)\n    at Function._load (node:internal/modules/cjs/loader:1215:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\CurrencyService.js:12:5)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)"
+}

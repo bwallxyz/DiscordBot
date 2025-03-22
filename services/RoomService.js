@@ -1,5 +1,5 @@
 // Enhanced Room service with room creation and management
-const { ChannelType, PermissionFlagsBits } = require('discord.js');
+const { ChannelType, PermissionFlagsBits, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../utils/logger');
 const Room = require('../models/Room');
 const PermissionService = require('./PermissionService');
