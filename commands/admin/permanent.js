@@ -8,7 +8,7 @@ module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
     .setName('permanent')
-    .setDescription('Make a room permanent so it is not deleted when empty (Admin only)')
+    .setDescription('Make a room permanent (allows owners to create unlimited rooms)')
     .addStringOption(option => 
       option.setName('room_id')
         .setDescription('ID of the room to make permanent (current room if not specified)')
@@ -105,8 +105,22 @@ module.exports = {
           { name: 'Owner', value: `<@${room.ownerId}>`, inline: true },
           { name: 'Channel', value: `<#${room.channelId}>`, inline: true },
           { name: 'Status', value: isPermanent ? 'Permanent' : 'Temporary', inline: true }
-        )
-        .setFooter({ text: `Modified by ${interaction.user.tag}` })
+        );
+
+      // Add a note about room limits when making a room permanent
+      if (isPermanent) {
+        embed.addFields({
+          name: 'Room Limits',
+          value: 'The room owner can now create another temporary room while keeping this permanent one. There is no limit to the number of permanent rooms a user can own.'
+        });
+      } else {
+        embed.addFields({
+          name: 'Room Limits', 
+          value: 'As a temporary room, this counts towards the owner\'s limit of 1 temporary room.'
+        });
+      }
+      
+      embed.setFooter({ text: `Modified by ${interaction.user.tag}` })
         .setTimestamp();
       
       // Reply to the interaction

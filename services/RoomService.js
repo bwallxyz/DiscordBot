@@ -32,6 +32,16 @@ class RoomService {
   async getRoomsByOwner(guildId, userId) {
     return await Room.find({ guildId, ownerId: userId });
   }
+
+  /**
+   * Get temporary rooms owned by a user
+   * @param {String} guildId - Guild ID
+   * @param {String} userId - User ID
+   * @returns {Promise<Array>} Temporary room documents
+   */
+  async getTemporaryRoomsByOwner(guildId, userId) {
+    return await Room.find({ guildId, ownerId: userId, isPermanent: false });
+  }
   
   /**
    * Create a room for a user immediately and move them to it
@@ -41,43 +51,36 @@ class RoomService {
    */
   async createRoomForUserImmediate(member, guildConfig) {
     try {
-      // Check if member has exceeded room limit
-      const userRooms = await this.getRoomsByOwner(member.guild.id, member.id);
+      // Check if member has any temporary rooms
+      const temporaryRooms = await this.getTemporaryRoomsByOwner(member.guild.id, member.id);
       
-      if (userRooms.length >= guildConfig.maxRoomsPerUser) {
-        // Try to move them to their existing room instead
-        if (userRooms.length > 0) {
-          const existingRoom = userRooms[0];
-          const channel = member.guild.channels.cache.get(existingRoom.channelId);
-          
-          if (channel) {
-            await member.voice.setChannel(channel);
-            
-            // Send a notification in the channel about being moved to existing room
-            const moveEmbed = new EmbedBuilder()
-              .setColor(Colors.Blue)
-              .setTitle('🔄 Moved to Existing Room')
-              .setDescription(`${member} has been moved to their existing room.`)
-              .addFields(
-                { name: 'Room Limit', value: `You can only have ${guildConfig.maxRoomsPerUser} room at a time.` }
-              )
-              .setTimestamp();
-              
-            await channel.send({ embeds: [moveEmbed] });
-            
-            return {
-              success: true,
-              moved: true,
-              room: existingRoom,
-              message: 'Moved to existing room'
-            };
-          }
-        }
+      if (temporaryRooms.length > 0) {
+        // Try to move them to their existing temporary room instead
+        const existingRoom = temporaryRooms[0];
+        const channel = member.guild.channels.cache.get(existingRoom.channelId);
         
-        return {
-          success: false,
-          error: 'Room limit reached'
-        };
+        if (channel) {
+          await member.voice.setChannel(channel);
+          
+          // Send a notification in the channel about being moved to existing room
+          const moveEmbed = new EmbedBuilder()
+            .setColor(Colors.Blue)
+            .setTitle('🔄 Moved to Existing Room')
+            .setDescription(`${member} has been moved to their existing room.`)
+            .addFields(
+              { name: 'Temporary Room Limit', value: `You can only have 1 temporary room at a time. Get an admin to make your room permanent to create more.` }
+            )
+            .setTimestamp();
+            
+          await channel.send({ embeds: [moveEmbed] });
+          
+          return {
+            success: true,
+            moved: true,
+            room: existingRoom,
+            message: 'Moved to existing temporary room'
+          };
+        }
       }
       
       // Get the room category
@@ -107,7 +110,8 @@ class RoomService {
         guildId: member.guild.id,
         channelId: channel.id,
         ownerId: member.id,
-        name: roomName
+        name: roomName,
+        isPermanent: false // Set as temporary by default
       });
       
       await room.save();
@@ -123,6 +127,7 @@ class RoomService {
         .addFields(
           { name: 'Room Name', value: roomName, inline: true },
           { name: 'Type', value: 'Temporary Room', inline: true },
+          { name: 'Room Limits', value: 'You can only have 1 temporary room at a time. Permanent rooms set by admins have no limit.', inline: false },
           { name: 'Available Commands', value: 
             '• `/rename` - Change the room name\n' +
             '• `/limit` - Set a user limit\n' +
