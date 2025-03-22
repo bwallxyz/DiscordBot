@@ -23,6 +23,8 @@ class CurrencyService {
    */
   async awardVoiceCurrency(options) {
     try {
+    console.log(`Attempting to award message currency to ${options.userId}`);
+
       const { 
         guildId, 
         userId, 

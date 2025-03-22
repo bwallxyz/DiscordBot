@@ -7,8 +7,9 @@ module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
     .setName('richest')
-    .setDescription('Show the richest users in the server'),
-  
+    .setDescription('Show the richest users in the server')
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+    
   // Command execution
   async execute(client, interaction) {
     try {
