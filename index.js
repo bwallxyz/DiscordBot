@@ -1,4 +1,4 @@
-// Improved main application entry point with better error handling
+// Improved main application entry point with better error handling and reminder service
 const { Client, GatewayIntentBits, Events } = require('discord.js');
 const dotenv = require('dotenv');
 const path = require('path');
@@ -8,6 +8,7 @@ const { connectDatabase, disconnectDatabase } = require('./database/db');
 const commandHandler = require('./commands');
 const eventHandler = require('./events');
 const LevelingService = require('./services/LevelingService');
+const ReminderService = require('./services/ReminderService');
 
 // Load environment variables
 dotenv.config();
@@ -45,6 +46,11 @@ async function gracefulShutdown(code = 0) {
   logger.info('Shutting down gracefully...');
   
   try {
+    // Stop reminder service if running
+    if (client.reminderService) {
+      client.reminderService.stop();
+    }
+    
     // Destroy the Discord client connection
     if (client && client.isReady()) {
       logger.info('Logging out of Discord...');
@@ -171,6 +177,11 @@ async function init() {
         logger.error('Error in voice XP update interval:', error);
       });
     }, 5 * 60 * 1000); // 5 minutes
+
+    // Initialize and start the reminder service
+    client.reminderService = new ReminderService(client);
+    client.reminderService.start();
+    logger.info('Room reminder service initialized and started');
 
     logger.info('Bot initialization complete, now listening for events');
   } catch (error) {
