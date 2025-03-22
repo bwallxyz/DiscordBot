@@ -155,38 +155,25 @@ module.exports = {
         .setFooter({ text: `Transferred by ${interaction.user.tag}` })
         .setTimestamp();
       
+      // Add available commands to the embed
+      transferEmbed.addFields({
+        name: 'Available Commands for New Owner',
+        value: 
+          '• `/mute` - Mute a user in your room\n' +
+          '• `/unmute` - Unmute a user in your room\n' +
+          '• `/kick` - Kick a user from your room\n' +
+          '• `/ban` - Ban a user from your room\n' +
+          '• `/unban` - Unban a user from your room\n' +
+          '• `/lock` - Lock your room to prevent new users from joining\n' +
+          '• `/unlock` - Unlock your room to allow users to join\n' +
+          '• `/rename` - Rename your room (temporary rooms only)\n' +
+          '• `/limit` - Set a user limit for your room (temporary rooms only)'
+      });
+      
       // Reply to the interaction
       await interaction.reply({ 
         embeds: [transferEmbed]
       });
-      
-      // Notify the new owner via DM
-      try {
-        const dmEmbed = new EmbedBuilder()
-          .setColor(Colors.Blue)
-          .setTitle('🔄 Room Ownership Received')
-          .setDescription(`You are now the owner of **${voiceChannel.name}**!`)
-          .addFields(
-            { name: 'Previous Owner', value: `<@${oldOwnerId}>`, inline: true },
-            { name: 'Server', value: `${interaction.guild.name}`, inline: true },
-            { name: 'Available Commands', value: 
-              '• `/mute` - Mute a user in your room\n' +
-              '• `/unmute` - Unmute a user in your room\n' +
-              '• `/kick` - Kick a user from your room\n' +
-              '• `/ban` - Ban a user from your room\n' +
-              '• `/unban` - Unban a user from your room\n' +
-              '• `/lock` - Lock your room to prevent new users from joining\n' +
-              '• `/unlock` - Unlock your room to allow users to join\n' +
-              '• `/rename` - Rename your room (temporary rooms only)\n' +
-              '• `/limit` - Set a user limit for your room (temporary rooms only)'
-            }
-          )
-          .setTimestamp();
-          
-        await targetUser.send({ embeds: [dmEmbed] });
-      } catch (error) {
-        logger.warn(`Could not send DM to new room owner ${targetUser.tag}`);
-      }
       
       logger.info(`Room ${voiceChannel.name} ownership transferred from ${interaction.user.tag} to ${targetUser.tag}`);
     } catch (error) {

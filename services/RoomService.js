@@ -52,6 +52,19 @@ class RoomService {
           
           if (channel) {
             await member.voice.setChannel(channel);
+            
+            // Send a notification in the channel about being moved to existing room
+            const moveEmbed = new EmbedBuilder()
+              .setColor(Colors.Blue)
+              .setTitle('🔄 Moved to Existing Room')
+              .setDescription(`${member} has been moved to their existing room.`)
+              .addFields(
+                { name: 'Room Limit', value: `You can only have ${guildConfig.maxRoomsPerUser} room at a time.` }
+              )
+              .setTimestamp();
+              
+            await channel.send({ embeds: [moveEmbed] });
+            
             return {
               success: true,
               moved: true,
@@ -101,6 +114,28 @@ class RoomService {
       
       // Move the user to the new room
       await member.voice.setChannel(channel);
+      
+      // Send a welcome message in the channel
+      const welcomeEmbed = new EmbedBuilder()
+        .setColor(Colors.Green)
+        .setTitle('🎉 Room Created')
+        .setDescription(`Welcome to your new voice room, ${member}!`)
+        .addFields(
+          { name: 'Room Name', value: roomName, inline: true },
+          { name: 'Type', value: 'Temporary Room', inline: true },
+          { name: 'Available Commands', value: 
+            '• `/rename` - Change the room name\n' +
+            '• `/limit` - Set a user limit\n' +
+            '• `/transfer` - Transfer ownership\n' +
+            '• `/mute`, `/unmute` - Manage user voice permissions\n' +
+            '• `/kick`, `/ban`, `/unban` - Manage access\n' +
+            '• `/lock`, `/unlock` - Control room access'
+          }
+        )
+        .setFooter({ text: `This room will be deleted when empty (unless made permanent by an admin)` })
+        .setTimestamp();
+      
+      await channel.send({ embeds: [welcomeEmbed] });
       
       // Log the room creation
       await this.auditLogService.logRoomCreation(member.guild, member, {
