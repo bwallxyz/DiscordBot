@@ -11,7 +11,7 @@ module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
     .setName('transfer')
-    .setDescription('Transfer ownership of your room to another user')
+    .setDescription('Transfer ownership of your room to another user (temporary rooms only)')
     .addUserOption(option => 
       option.setName('user')
         .setDescription('The user to transfer ownership to')
@@ -66,6 +66,14 @@ module.exports = {
       if (!room) {
         return interaction.reply({ 
           content: 'An error occurred: Room not found in database.',
+          ephemeral: true 
+        });
+      }
+      
+      // Check if the room is permanent (transfer only applies to temporary rooms)
+      if (room.isPermanent) {
+        return interaction.reply({ 
+          content: 'Permanent rooms cannot be transferred. Only temporary rooms can be transferred to other users.',
           ephemeral: true 
         });
       }
@@ -169,7 +177,8 @@ module.exports = {
               '• `/unban` - Unban a user from your room\n' +
               '• `/lock` - Lock your room to prevent new users from joining\n' +
               '• `/unlock` - Unlock your room to allow users to join\n' +
-              '• `/rename` - Rename your room'
+              '• `/rename` - Rename your room (temporary rooms only)\n' +
+              '• `/limit` - Set a user limit for your room (temporary rooms only)'
             }
           )
           .setTimestamp();

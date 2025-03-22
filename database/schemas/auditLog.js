@@ -22,6 +22,7 @@ const auditLogSchema = new mongoose.Schema({
       'ROOM_TRANSFER',
       'ROOM_SET_PERMANENT',
       'ROOM_SET_TEMPORARY',
+      'ROOM_LIMIT_CHANGE',  // New action type
       
       // Moderation actions
       'USER_MUTE',

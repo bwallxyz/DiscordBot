@@ -160,6 +160,14 @@ class AuditLogService {
         embed.setColor(Colors.Green)
           .setTitle('🔓 Room Unlocked');
         break;
+      case 'ROOM_LIMIT_CHANGE':
+        embed.setColor(Colors.Blue)
+          .setTitle('👥 Room User Limit Changed');
+        break;
+      case 'ROOM_TRANSFER':
+        embed.setColor(Colors.Blue)
+          .setTitle('👥 Room Ownership Transferred');
+        break;
       default:
         embed.setColor(Colors.Grey)
           .setTitle('📝 Room Action');
