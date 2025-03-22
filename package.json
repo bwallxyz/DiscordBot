@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A modular Discord bot that allows users to create and manage their own rooms",
   "main": "index.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",

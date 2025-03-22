@@ -27,3 +27,49 @@
 [2025-03-21 21:55:13] [INFO]: Ready! Logged in as dev-bot#6522 
 [2025-03-21 21:55:13] [INFO]: Registered 7 global commands after ready 
 [2025-03-21 21:55:23] [INFO]: Shutting down gracefully... 
+[2025-03-21 22:39:21] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-21 22:39:22] [INFO]: Connected to MongoDB Atlas 
+[2025-03-21 22:39:22] [INFO]: Database connected successfully 
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\ban.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\kick.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\mute.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\transfer.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unban.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unmute.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\votemute.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [INFO]: Commands loaded and ready for registration 
+[2025-03-21 22:39:22] [INFO]: Registered event: interactionCreate 
+[2025-03-21 22:39:22] [ERROR]: Error loading event messageCreate.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [INFO]: Registered event: ready 
+[2025-03-21 22:39:22] [ERROR]: Error loading event voiceStateUpdate.js: Unexpected token '<' {
+  "stack": "SyntaxError: Unexpected token '<'\n    at compileSourceTextModule (node:internal/modules/esm/utils:338:16)\n    at ModuleLoader.importSyncForRequire (node:internal/modules/esm/loader:328:18)\n    at loadESMFromCJS (node:internal/modules/cjs/loader:1570:24)\n    at Module._compile (node:internal/modules/cjs/loader:1722:5)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)"
+}
+[2025-03-21 22:39:22] [INFO]: Events registered successfully 
+[2025-03-21 22:39:22] [INFO]: Attempting to log in to Discord... 
+[2025-03-21 22:39:22] [INFO]: Logged in as dev-bot#6522 
+[2025-03-21 22:39:22] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-21 22:39:22] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-21 22:39:25] [INFO]: Shutting down gracefully... 
