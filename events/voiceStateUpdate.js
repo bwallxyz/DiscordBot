@@ -155,5 +155,110 @@ module.exports = {
     } catch (error) {
       logger.error('Error handling voice state update:', error);
     }
+
+    // Handle server mute/unmute actions from Discord's UI
+if (oldState.channelId && newState.channelId && 
+    oldState.channelId === newState.channelId && 
+    oldState.serverMute !== newState.serverMute) {
+  
+  try {
+    // Get the room to check if it's user-created and who the owner is
+    const room = await Room.findOne({ channelId: newState.channelId });
+    
+    if (room) {
+      // Get the guild audit logs to determine who performed the action
+      const auditLogs = await newState.guild.fetchAuditLogs({
+        limit: 1,
+        type: newState.serverMute ? 24 : 25 // 24: MEMBER_UPDATE, 25: MEMBER_ROLE_UPDATE
+      });
+      
+      const auditEntry = auditLogs.entries.first();
+      
+      // Only process if we can determine who did it and it happened recently (last 5 seconds)
+      if (auditEntry && 
+          (Date.now() - auditEntry.createdAt) < 5000 && 
+          auditEntry.target.id === newState.member.id) {
+        
+        // Get the moderator who performed the action
+        const moderator = await newState.guild.members.fetch(auditEntry.executor.id);
+        
+        // Check if the moderator is the room owner
+        const isRoomOwner = moderator.id === room.ownerId;
+        
+        // Only sync state if the room owner did the muting
+        if (isRoomOwner) {
+          const stateTracker = new UserStateTrackerService();
+          const auditLogService = new AuditLogService(client);
+          
+          if (newState.serverMute) {
+            // User was muted via Discord UI
+            logger.info(`User ${newState.member.user.tag} was server-muted in room ${room.name} by room owner ${moderator.user.tag}`);
+            
+            // Track the muted state
+            await stateTracker.trackMutedUser({
+              guildId: newState.guild.id,
+              userId: newState.member.id,
+              roomId: newState.channelId,
+              appliedBy: moderator.id,
+              reason: 'Muted via Discord context menu'
+            });
+            
+            // Add to audit logs
+            await auditLogService.logUserMute(
+              newState.guild,
+              moderator,
+              newState.member,
+              {
+                id: newState.channelId,
+                name: room.name,
+                channelId: newState.channelId
+              },
+              'Muted via Discord context menu'
+            );
+          } else {
+            // User was unmuted via Discord UI
+            logger.info(`User ${newState.member.user.tag} was server-unmuted in room ${room.name} by room owner ${moderator.user.tag}`);
+            
+            // Check if user was previously tracked as muted
+            const isMuted = await stateTracker.hasUserState({
+              guildId: newState.guild.id,
+              userId: newState.member.id,
+              roomId: newState.channelId,
+              state: 'MUTED'
+            });
+            
+            if (isMuted) {
+              // Remove the muted state
+              await stateTracker.removeUserState({
+                guildId: newState.guild.id,
+                userId: newState.member.id,
+                roomId: newState.channelId,
+                state: 'MUTED'
+              });
+              
+              // Add to audit logs
+              await auditLogService.logUserUnmute(
+                newState.guild,
+                moderator,
+                newState.member,
+                {
+                  id: newState.channelId,
+                  name: room.name,
+                  channelId: newState.channelId
+                },
+                'Unmuted via Discord context menu'
+              );
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    logger.error(`Error handling Discord server mute/unmute:`, error);
+  }
+}
+
+
+
   }
 };
