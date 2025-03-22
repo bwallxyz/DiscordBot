@@ -19,6 +19,9 @@ const auditLogSchema = new mongoose.Schema({
       'ROOM_CREATE',
       'ROOM_DELETE',
       'ROOM_RENAME',
+      'ROOM_TRANSFER',
+      'ROOM_SET_PERMANENT',
+      'ROOM_SET_TEMPORARY',
       
       // Moderation actions
       'USER_MUTE',

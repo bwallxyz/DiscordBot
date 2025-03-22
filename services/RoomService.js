@@ -15,56 +15,55 @@ class RoomService {
     this.stateTracker = new UserStateTrackerService();
   }
   
-  /**
-   * Handle potential room creation when a user joins a voice channel
+/**
+   * Handle potential room deletion when a voice channel becomes empty
    */
-  async handlePotentialRoomCreation(oldState, newState) {
-    const { guild, member, channelId } = newState;
+async handlePotentialRoomDeletion(oldState, newState) {
+  const { channel, channelId, guild } = oldState;
+  
+  try {
+    // Check if channel is empty and is a user-created room
+    if (!channelId || !channel) {
+      return;
+    }
     
+    // Using try-catch specifically around the findOne operation
+    let room;
     try {
-      // Get guild configuration
-      const guildConfig = await getGuildConfig(guild.id);
-      
-      // If no configuration or channelId isn't creation channel, ignore
-      if (!guildConfig || !guildConfig.creationChannelId || channelId !== guildConfig.creationChannelId) {
+      room = await Room.findOne({ channelId });
+    } catch (findError) {
+      logger.error(`Error finding room for channel ${channelId}:`, findError);
+      return;
+    }
+    
+    if (room && channel.members.size === 0) {
+      // Check if the room is marked as permanent
+      if (room.isPermanent) {
+        logger.info(`Room ${room.name} (${channelId}) is empty but marked as permanent, not deleting`);
         return;
       }
       
-      // Check if user already has a room
-      const existingRoom = await Room.findOne({ guildId: guild.id, ownerId: member.id });
+      // Get guild config to check auto-delete setting
+      const guildConfig = await getGuildConfig(guild.id).catch(() => null);
       
-      if (existingRoom) {
-        // User already has a room, check if the channel still exists
-        const existingChannel = guild.channels.cache.get(existingRoom.channelId);
-        if (existingChannel) {
-          // Move them to their existing room instead of creating a new one
-          logger.info(`User ${member.user.tag} already has a room. Moving them to existing room ${existingRoom.name}`);
-          await member.voice.setChannel(existingChannel);
-          return;
-        } else {
-          // Channel doesn't exist anymore, so delete the room entry
-          logger.info(`User ${member.user.tag} had a room in DB but channel doesn't exist. Removing old entry.`);
-          await Room.deleteOne({ _id: existingRoom._id });
-        }
+      // If auto-delete is disabled in guild config, don't delete
+      if (guildConfig && guildConfig.autoDeleteEmptyRooms === false) {
+        logger.info(`Auto-delete empty rooms is disabled for guild ${guild.id}, not deleting room ${room.name}`);
+        return;
       }
       
-      // This flow is now primarily used as a backup
-      const room = await this.createRoomForUser(member, guildConfig);
+      // Delete the room
+      logger.info(`Deleting empty room ${room.name} (${channelId})`);
       
-      // Move the user to their new room - this may be delayed due to Discord API
-      // and might require another event to trigger it
-      if (room && room.channelId) {
-        const channel = guild.channels.cache.get(room.channelId);
-        if (channel && member.voice.channelId === guildConfig.creationChannelId) {
-          await member.voice.setChannel(channel).catch(err => {
-            logger.error(`Error moving user to new room: ${err.message}`);
-          });
-        }
-      }
-    } catch (error) {
-      logger.error(`Error creating room for user ${member?.user?.tag}:`, error);
+      // Log the room deletion to audit log before deleting the room
+      await this.auditLogService.logRoomDeletion(guild, room);
+      
+      await this.deleteRoom(room, channel);
     }
+  } catch (error) {
+    logger.error(`Error handling potential room deletion for channel ${channelId}:`, error);
   }
+}
   
   /**
    * Create a room and immediately move the user - direct function that's executed immediately

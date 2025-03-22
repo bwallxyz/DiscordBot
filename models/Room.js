@@ -29,6 +29,11 @@ const roomSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  // New field for permanent rooms
+  isPermanent: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now
