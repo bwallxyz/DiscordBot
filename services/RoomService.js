@@ -4,7 +4,7 @@ const logger = require('../utils/logger');
 const Room = require('../models/Room');
 const PermissionService = require('./PermissionService');
 const AuditLogService = require('./AuditLogService');
-const { UserStateTrackerService } = require('../services/UserStateTrackerService'); // Fixed import path
+const { UserStateTrackerService } = require('./UserStateTrackerService'); // Fixed import path
 const { getGuildConfig } = require('../database/schemas/guildConfig');
 
 class RoomService {

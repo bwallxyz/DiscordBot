@@ -1,0 +1,29 @@
+[2025-03-21 21:55:11] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-21 21:55:12] [INFO]: Connected to MongoDB Atlas 
+[2025-03-21 21:55:12] [INFO]: Database connected successfully 
+[2025-03-21 21:55:12] [INFO]: Loaded command: ban 
+[2025-03-21 21:55:12] [INFO]: Loaded command: kick 
+[2025-03-21 21:55:12] [INFO]: Loaded command: mute 
+[2025-03-21 21:55:12] [INFO]: Loaded command: transfer 
+[2025-03-21 21:55:12] [INFO]: Loaded command: unban 
+[2025-03-21 21:55:12] [INFO]: Loaded command: unmute 
+[2025-03-21 21:55:12] [INFO]: Loaded command: votemute 
+[2025-03-21 21:55:12] [INFO]: Commands loaded and ready for registration 
+[2025-03-21 21:55:12] [INFO]: Registered event: interactionCreate 
+[2025-03-21 21:55:12] [INFO]: Registered event: messageCreate 
+[2025-03-21 21:55:12] [INFO]: Registered event: ready 
+[2025-03-21 21:55:12] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-21 21:55:12] [INFO]: Events registered successfully 
+[2025-03-21 21:55:12] [INFO]: Attempting to log in to Discord... 
+[2025-03-21 21:55:13] [INFO]: Logged in as dev-bot#6522 
+[2025-03-21 21:55:13] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-21 21:55:13] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-21 21:55:13] [INFO]: Registered 7 global commands after ready 
+[2025-03-21 21:55:23] [INFO]: Shutting down gracefully... 
