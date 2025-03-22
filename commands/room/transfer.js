@@ -118,7 +118,7 @@ module.exports = {
         MoveMembers: true
       });
       
-      // Log the transfer
+      // Log the transfer - FIXED TARGET USER INFO
       await auditLogService.logAction({
         guildId: interaction.guild.id,
         actionType: 'ROOM_TRANSFER',

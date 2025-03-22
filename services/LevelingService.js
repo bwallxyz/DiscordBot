@@ -163,7 +163,7 @@ class LevelingService {
       const guildSettings = await getGuildLevelSettings(guildId);
       
       // Check if channel is excluded
-      if (guildSettings.excludedChannels.includes(channelId)) {
+      if (guildSettings.excludedChannels && guildSettings.excludedChannels.includes(channelId)) {
         return { success: false, reason: 'excluded_channel' };
       }
       
@@ -199,16 +199,42 @@ class LevelingService {
       
       // Award 1 XP per message (or custom amount from settings)
       const xpGain = guildSettings.xpSettings.messageXpPerMessage;
+      const guild = this.client.guilds.cache.get(guildId);
+      
+      // Check for role multipliers
+      let xpMultiplier = 1.0;
+      if (guild) {
+        try {
+          const member = await guild.members.fetch(userId);
+          if (member) {
+            // Get the highest multiplier from the member's roles
+            const memberRoleIds = Array.from(member.roles.cache.keys());
+            const roleMultipliers = guildSettings.roleMultipliers.filter(
+              rm => memberRoleIds.includes(rm.roleId)
+            );
+            
+            if (roleMultipliers.length > 0) {
+              // Apply the highest multiplier only
+              xpMultiplier = Math.max(...roleMultipliers.map(rm => rm.multiplier));
+            }
+          }
+        } catch (error) {
+          logger.error(`Error fetching member for role multipliers: ${error}`);
+        }
+      }
+      
+      // Apply multiplier to XP gain
+      const totalXpGain = Math.floor(xpGain * xpMultiplier);
       
       // Record previous level
       const oldLevel = userLevel.level;
-  
+    
       // Update XP
-      userLevel.messageXp += xpGain;
-      userLevel.xp += xpGain;
+      userLevel.messageXp += totalXpGain;
+      userLevel.xp += totalXpGain;
       userLevel.lastUpdated = now;
       userLevel.lastMessageXpAwarded = now;
-  
+    
       // Calculate new level
       userLevel.level = calculateLevelFromXp(userLevel.xp, guildSettings);
       

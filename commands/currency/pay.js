@@ -1,4 +1,4 @@
-// commands/currency/transfer.js
+// commands/currency/pay.js
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const CurrencyService = require('../../services/CurrencyService');
@@ -6,7 +6,7 @@ const CurrencyService = require('../../services/CurrencyService');
 module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
-    .setName('transfer')
+    .setName('pay')
     .setDescription('Transfer currency to another user')
     .addUserOption(option => 
       option.setName('user')
@@ -73,7 +73,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setColor(Colors.Green)
           .setTitle(`💸 Currency Transfer`)
-          .setDescription(`You transferred **${balanceInfo.currencySymbol} ${amount}** to ${targetUser}`)
+          .setDescription(`You paid **${balanceInfo.currencySymbol} ${amount}** to ${targetUser}`)
           .addFields(
             { name: 'New Balance', value: `${balanceInfo.currencySymbol} ${result.fromUser.balance}`, inline: true },
             { name: 'Reason', value: reason, inline: true }
@@ -128,7 +128,7 @@ module.exports = {
         }
       }
     } catch (error) {
-      logger.error(`Error executing transfer command:`, error);
+      logger.error(`Error executing pay command:`, error);
       await interaction.reply({ 
         content: 'An error occurred while transferring currency.',
         ephemeral: true 

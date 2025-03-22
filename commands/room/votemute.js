@@ -1,4 +1,4 @@
-// Room votemute command - allows room members to vote on muting a user with early completion
+// commands/room/votemute.js - Fixed multiple voting and proper thresholds
 const { SlashCommandBuilder, EmbedBuilder, Colors, ComponentType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
@@ -7,7 +7,7 @@ const AuditLogService = require('../../services/AuditLogService');
 const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
 const { isInVoiceChannel } = require('../../utils/validators');
 
-// Active vote sessions
+// Store votes by unique ID
 const activeVotes = new Map();
 
 module.exports = {
@@ -52,10 +52,14 @@ module.exports = {
       
       const voiceChannel = interaction.member.voice.channel;
       
-      // Check if there's an active vote in this channel
-      if (activeVotes.has(voiceChannel.id)) {
+      // Check if this specific user is already being voted on in this channel
+      const existingVoteForUser = Array.from(activeVotes.values()).find(vote => 
+        vote.channelId === voiceChannel.id && vote.targetUserId === targetUser.id
+      );
+      
+      if (existingVoteForUser) {
         return interaction.reply({
-          content: 'There is already an active vote in this channel. Please wait for it to finish.',
+          content: `There's already an active vote to mute ${targetUser} in this channel.`,
           ephemeral: true
         });
       }
@@ -100,282 +104,294 @@ module.exports = {
       // Check if the initiator is the room owner
       const isOwner = await roomService.isRoomOwner(voiceChannel.id, interaction.user.id);
       
+      // Generate a unique vote ID
+      const voteId = `vote_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
+      
+            // Count eligible voters (excluding the target)
+        const eligibleVoters = voiceChannel.members.filter(m => m.id !== targetUser.id);
+        const totalVoters = eligibleVoters.size;
+
+        // Calculate threshold - 
+        // For 3+ people (excluding target), at least 2 yes votes required
+        // Specifically force 2 for rooms with 3 people total (2 voters excluding target)
+        let voteThreshold;
+        if (totalVoters >= 3 || (voiceChannel.members.size >= 3 && totalVoters >= 2)) {
+        voteThreshold = Math.max(2, Math.ceil(totalVoters / 2));
+        } else {
+        // For smaller rooms, at least 50% must vote yes
+        voteThreshold = Math.max(1, Math.ceil(totalVoters / 2));
+        }
+
+logger.info(`Vote threshold calculated: ${voteThreshold} out of ${totalVoters} eligible voters (${voiceChannel.members.size} total members in room)`);
+      
       // Create the vote embed
       const voteEmbed = new EmbedBuilder()
         .setColor(Colors.Orange)
-        .setTitle('📊 Vote to Mute User')
+        .setTitle(`📊 Vote to Mute ${targetUser.username}`)
         .setDescription(`A vote has been started to mute ${targetUser} in this voice channel.`)
         .addFields(
           { name: 'Reason', value: reason },
           { name: 'Started by', value: `${interaction.user}` },
           { name: 'Duration', value: `This vote will last for up to ${voteDuration} seconds, or until enough votes are cast.` },
-          { name: 'How to Vote', value: 'Click the buttons below to cast your vote!' },
-          { name: 'Current Votes', value: '👍 Yes: 0\n👎 No: 0\n\nRequired: At least 50% of channel members must vote yes.' }
+          { name: 'How to Vote', value: 'Click the buttons below to cast your vote! You can change your vote at any time.' },
+          { name: 'Current Votes', value: '👍 Yes: 0\n👎 No: 0\n\nRequired: At least ' + voteThreshold + ' yes vote(s) to pass.' }
         )
-        .setFooter({ text: `Vote ends in ${voteDuration} seconds or when threshold is reached` })
+        .setFooter({ text: `Vote ID: ${voteId.slice(0, 10)} • Ends in ${voteDuration}s` })
         .setTimestamp();
       
       // Add buttons for voting
       const voteRow = new ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
-            .setCustomId('vote_yes')
+            .setCustomId(`yes_${voteId}`)
             .setLabel('Yes, Mute Them')
             .setStyle(ButtonStyle.Danger)
             .setEmoji('👍'),
           new ButtonBuilder()
-            .setCustomId('vote_no')
+            .setCustomId(`no_${voteId}`)
             .setLabel('No, Don\'t Mute')
             .setStyle(ButtonStyle.Success)
             .setEmoji('👎')
         );
       
-      // Send the vote embed with components
-      const voteMessage = await interaction.reply({ 
+      // Send the vote message
+      await interaction.deferReply();
+      const voteMessage = await interaction.followUp({ 
         embeds: [voteEmbed],
-        components: [voteRow],
-        fetchReply: true
+        components: [voteRow]
       });
       
-      // Initialize vote tracking
+      // Initialize vote tracking - do NOT automatically count initiator's vote
       const votes = {
-        yes: new Set([interaction.user.id]), // Initiator automatically votes yes
+        voteId: voteId,
+        yes: new Set(), // No automatic votes
         no: new Set(),
         channelId: voiceChannel.id,
         targetUserId: targetUser.id,
         initiatorId: interaction.user.id,
         reason: reason,
-        isOwnerInitiated: isOwner
+        isOwnerInitiated: isOwner,
+        messageId: voteMessage.id,
+        guildId: interaction.guild.id,
+        threshold: voteThreshold
       };
       
-      activeVotes.set(voiceChannel.id, votes);
+      // Store in activeVotes using the vote ID
+      activeVotes.set(voteId, votes);
       
-      // Update the vote count in the embed
-      await updateVoteEmbed(voteMessage, voteEmbed, votes, voiceChannel);
+      // Function to update the vote embed
+      const updateVoteEmbed = async () => {
+        try {
+          const yesCount = votes.yes.size;
+          const noCount = votes.no.size;
+          
+          // Update the vote count field
+          voteEmbed.spliceFields(4, 1, {
+            name: 'Current Votes',
+            value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}\n\nRequired: At least ${voteThreshold} yes vote(s) to pass.`
+          });
+          
+          await voteMessage.edit({ embeds: [voteEmbed], components: [voteRow] });
+        } catch (err) {
+          logger.error(`Error updating vote embed: ${err.message}`);
+        }
+      };
       
-      // Create collector for the buttons
-      const collector = voteMessage.createMessageComponentCollector({ 
-        componentType: ComponentType.Button,
-        time: voteDuration * 1000 
+      // Update the vote count initially
+      await updateVoteEmbed();
+      
+      // Create a button interaction collector for this vote
+      const filter = i => 
+        (i.customId === `yes_${voteId}` || i.customId === `no_${voteId}`) && 
+        i.member.voice?.channelId === voiceChannel.id;
+      
+      const collector = interaction.channel.createMessageComponentCollector({
+        filter,
+        time: voteDuration * 1000
       });
       
-      // Function to check if vote threshold is reached
-      const checkVoteCompletion = async () => {
+      // Function to check if vote has passed
+      const checkVoteCompletion = () => {
         const yesCount = votes.yes.size;
         const noCount = votes.no.size;
-        const totalVoters = voiceChannel.members.size - 1; // Exclude the target
-        const votingThreshold = Math.ceil(totalVoters / 2); // At least 50% must vote yes
+        const remainingVoters = totalVoters - yesCount - noCount;
         
-        // Check if enough YES votes to pass
-        if (yesCount >= votingThreshold) {
-          collector.stop('threshold_reached_yes');
-          return true;
+        // Check if enough yes votes
+        if (yesCount >= voteThreshold) {
+          return { shouldComplete: true, reason: 'vote_passed' };
         }
         
-        // Check if enough NO votes to fail (impossible to reach threshold)
-        const remainingPotentialVoters = totalVoters - yesCount - noCount;
-        if (yesCount + remainingPotentialVoters < votingThreshold) {
-          collector.stop('threshold_reached_no');
-          return true;
+        // Check if impossible to reach threshold
+        if (yesCount + remainingVoters < voteThreshold) {
+          return { shouldComplete: true, reason: 'vote_failed' };
         }
         
-        // Check if all members have voted
+        // Check if all have voted
         if (yesCount + noCount >= totalVoters) {
-          collector.stop('all_voted');
-          return true;
+          return { shouldComplete: true, reason: yesCount >= voteThreshold ? 'vote_passed' : 'vote_failed' };
         }
         
-        return false;
+        return { shouldComplete: false };
       };
       
-      // Check initial vote (the initiator's vote)
-      await checkVoteCompletion();
-      
-      // Handle votes
-      collector.on('collect', async (i) => {
-        // Only accept votes from users in the same voice channel
-        if (!i.member.voice.channelId || i.member.voice.channelId !== voiceChannel.id) {
-          await i.reply({ 
-            content: 'You must be in the voice channel to vote!', 
-            ephemeral: true 
-          });
-          return;
+      // Handle vote interactions
+      collector.on('collect', async i => {
+        try {
+          // Don't let target vote
+          if (i.user.id === targetUser.id) {
+            await i.reply({
+              content: 'You cannot vote in a mute poll targeting yourself!',
+              ephemeral: true
+            });
+            return;
+          }
+          
+          // Record the vote
+          if (i.customId === `yes_${voteId}`) {
+            // If already voted yes, toggle to no vote
+            if (votes.yes.has(i.user.id)) {
+              votes.yes.delete(i.user.id);
+              // Let user know they removed their vote
+              await i.reply({ content: 'Your YES vote has been removed.', ephemeral: true });
+            } else {
+              // Add yes vote, remove no vote if exists
+              votes.yes.add(i.user.id);
+              votes.no.delete(i.user.id);
+              await i.reply({ content: 'You voted YES to mute.', ephemeral: true });
+            }
+          } else if (i.customId === `no_${voteId}`) {
+            // If already voted no, toggle to yes vote
+            if (votes.no.has(i.user.id)) {
+              votes.no.delete(i.user.id);
+              // Let user know they removed their vote
+              await i.reply({ content: 'Your NO vote has been removed.', ephemeral: true });
+            } else {
+              // Add no vote, remove yes vote if exists
+              votes.no.add(i.user.id);
+              votes.yes.delete(i.user.id);
+              await i.reply({ content: 'You voted NO to muting.', ephemeral: true });
+            }
+          }
+          
+          // Update the vote count
+          await updateVoteEmbed();
+          
+          // Check if vote should complete
+          const completion = checkVoteCompletion();
+          if (completion.shouldComplete) {
+            collector.stop(completion.reason);
+          }
+        } catch (err) {
+          logger.error(`Error handling vote interaction: ${err.message}`);
+          try {
+            if (!i.replied) {
+              await i.reply({ content: 'There was an error processing your vote.', ephemeral: true });
+            }
+          } catch (_) {}
         }
-        
-        // Don't let the target vote
-        if (i.user.id === targetUser.id) {
-          await i.reply({
-            content: 'You cannot vote in a mute poll targeting yourself!',
-            ephemeral: true
-          });
-          return;
-        }
-        
-        // Record the vote
-        if (i.customId === 'vote_yes') {
-          votes.yes.add(i.user.id);
-          votes.no.delete(i.user.id); // Remove from no if they changed their vote
-        } else if (i.customId === 'vote_no') {
-          votes.no.add(i.user.id);
-          votes.yes.delete(i.user.id); // Remove from yes if they changed their vote
-        }
-        
-        // Update the vote count in the embed
-        await updateVoteEmbed(voteMessage, voteEmbed, votes, voiceChannel);
-        
-        await i.reply({ 
-          content: `Your vote has been recorded!`, 
-          ephemeral: true 
-        });
-        
-        // Check if vote is complete after this vote
-        await checkVoteCompletion();
       });
       
-      // Handle vote end
+      // Handle vote completion
       collector.on('end', async (collected, reason) => {
-        // Remove from active votes
-        activeVotes.delete(voiceChannel.id);
-        
-        // Count votes
-        const yesCount = votes.yes.size;
-        const noCount = votes.no.size;
-        const totalVoters = voiceChannel.members.size - 1; // Exclude the target
-        const votingThreshold = Math.ceil(totalVoters / 2); // At least 50% must vote yes
-        
-        // Log the vote details (only in server logs, not in chat)
-        logger.info(`VoteMute results in ${voiceChannel.name} for ${targetUser.tag}:
-  Yes Voters (${yesCount}): ${Array.from(votes.yes).join(', ')}
-  No Voters (${noCount}): ${Array.from(votes.no).join(', ')}
-  Threshold to pass: ${votingThreshold}
-  End reason: ${reason}`);
-        
-        // Update the embed one last time
-        voteEmbed.setColor(Colors.Grey);
-        voteEmbed.setTitle('📊 Vote to Mute User - Ended');
-        
-        if (reason === 'threshold_reached_yes') {
-          voteEmbed.setFooter({ text: `Vote completed early: Enough YES votes received` });
-        } else if (reason === 'threshold_reached_no') {
-          voteEmbed.setFooter({ text: `Vote completed early: Not enough YES votes possible` });
-        } else if (reason === 'all_voted') {
-          voteEmbed.setFooter({ text: `Vote completed early: All members voted` });
-        } else {
-          voteEmbed.setFooter({ text: `Vote has ended` });
-        }
-        
-        // Remove the fields we'll update
-        voteEmbed.spliceFields(3, 2); 
-        
-        // Determine vote result
-        let result;
-        if (yesCount >= votingThreshold) {
-          result = 'PASSED';
+        try {
+          // Remove from active votes
+          activeVotes.delete(voteId);
+          
+          // Get vote counts
+          const yesCount = votes.yes.size;
+          const noCount = votes.no.size;
+          
+          // Create disabled buttons
+          const disabledRow = new ActionRowBuilder()
+            .addComponents(
+              ButtonBuilder.from(voteRow.components[0]).setDisabled(true),
+              ButtonBuilder.from(voteRow.components[1]).setDisabled(true)
+            );
+          
+          // Determine if vote passed based on threshold
+          const passed = yesCount >= voteThreshold;
+          
+          // Update embed with results
+          voteEmbed.setColor(passed ? Colors.Green : Colors.Red);
+          voteEmbed.setTitle(`📊 Vote to Mute ${targetUser.username} - ${passed ? 'Passed' : 'Failed'}`);
+          voteEmbed.setFooter({ text: `Vote ended: ${reason}` });
+          
+          // Remove instructions
+          voteEmbed.spliceFields(3, 2);
+          
+          // Add result fields
           voteEmbed.addFields(
-            { name: 'Final Votes', value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}` },
-            { name: 'Result', value: `✅ The vote has passed! ${targetUser} has been muted.` }
+            { name: 'Final Votes', value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}\n(Threshold was ${voteThreshold})` },
+            { name: 'Result', value: passed 
+              ? `✅ The vote has passed! ${targetUser} has been muted.` 
+              : `❌ The vote has failed. ${targetUser} will not be muted.` 
+            }
           );
           
-          // Apply the mute if vote passed
-          try {
-            // Track the muted state first
-            await stateTracker.trackMutedUser({
-              guildId: interaction.guild.id,
-              userId: targetUser.id,
-              roomId: voiceChannel.id,
-              appliedBy: interaction.user.id, // The vote initiator is recorded
-              reason: `Vote mute: ${reason}`
-            });
-            
-            // Then apply the permission changes
-            await permissionService.muteUser(voiceChannel, targetUser.id);
-            
-            // Also server mute if they're still in the channel
-            if (targetMember && targetMember.voice.channelId === voiceChannel.id) {
-              await targetMember.voice.setMute(true, `Vote mute: ${reason}`);
-            }
-            
-            // Prepare detailed voting information for logging
-            const voterDetails = {
-              voteDetails: {
-                total: yesCount + noCount,
-                threshold: votingThreshold,
-                votersYes: Array.from(votes.yes),
-                votersNo: Array.from(votes.no)
-              }
-            };
-            
-            // Log the mute action with vote details
-            await auditLogService.logUserMute(
-              interaction.guild,
-              { 
-                id: interaction.user.id, 
-                user: interaction.user,
-                tag: interaction.user.tag
-              }, // Recorded as the vote initiator
-              targetMember || { id: targetUser.id, user: targetUser },
-              {
-                id: voiceChannel.id,
-                name: voiceChannel.name,
-                channelId: voiceChannel.id
-              },
-              `Vote mute (${yesCount} yes, ${noCount} no): ${reason}`,
-              voterDetails
-            );
-            
-            // Try to notify the user
+          // Apply mute if passed
+          if (passed) {
             try {
-              await targetUser.send(`You have been muted in **${voiceChannel.name}** through a vote (${yesCount} yes, ${noCount} no). Reason: ${reason}`);
-            } catch (dmError) {
-              logger.warn(`Could not DM muted user ${targetUser.tag}`);
+              // Track muted state
+              await stateTracker.trackMutedUser({
+                guildId: interaction.guild.id,
+                userId: targetUser.id,
+                roomId: voiceChannel.id,
+                appliedBy: interaction.user.id,
+                reason: `Vote mute: ${reason}`
+              });
+              
+              // Apply permission changes
+              await permissionService.muteUser(voiceChannel, targetUser.id);
+              
+              // Server mute if in channel
+              if (targetMember?.voice?.channelId === voiceChannel.id) {
+                await targetMember.voice.setMute(true, `Vote mute: ${reason}`);
+              }
+              
+              // Log action
+              await auditLogService.logUserMute(
+                interaction.guild,
+                { id: interaction.user.id, tag: interaction.user.tag },
+                targetMember || { id: targetUser.id, user: targetUser },
+                {
+                  id: voiceChannel.id,
+                  name: voiceChannel.name,
+                  channelId: voiceChannel.id
+                },
+                `Vote mute (${yesCount} yes, ${noCount} no): ${reason}`
+              );
+              
+              // Notify user
+              targetUser.send(`You have been muted in **${voiceChannel.name}** through a vote (${yesCount} yes, ${noCount} no). Reason: ${reason}`)
+                .catch(() => logger.warn(`Could not DM muted user ${targetUser.tag}`));
+            } catch (muteError) {
+              logger.error(`Error applying vote mute: ${muteError.message}`);
+              voteEmbed.addFields({
+                name: 'Error',
+                value: 'There was an error applying the mute. Please try again or use /mute directly.'
+              });
             }
-          } catch (muteError) {
-            logger.error(`Error applying vote mute:`, muteError);
-            voteEmbed.addFields({
-              name: 'Error',
-              value: 'There was an error applying the mute. Please try again or use the regular /mute command.'
-            });
           }
-        } else {
-          result = 'FAILED';
-          voteEmbed.addFields(
-            { name: 'Final Votes', value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}` },
-            { name: 'Result', value: `❌ The vote has failed. ${targetUser} will not be muted.` }
-          );
+          
+          // Update message with final results
+          await voteMessage.edit({ 
+            embeds: [voteEmbed],
+            components: [disabledRow]
+          }).catch(err => logger.error(`Error updating final vote: ${err.message}`));
+          
+        } catch (error) {
+          logger.error(`Error handling vote end: ${error.message}`);
         }
-        
-        // Update the message with the final result
-        await voteMessage.edit({ 
-          embeds: [voteEmbed],
-          components: [] // Remove the buttons
-        }).catch(err => logger.error('Error updating final vote message:', err));
-        
-        logger.info(`Vote mute for ${targetUser.tag} ${result} with ${yesCount} yes votes and ${noCount} no votes`);
       });
-      
     } catch (error) {
-      logger.error(`Error executing votemute command:`, error);
-      await interaction.reply({ 
-        content: 'An error occurred while creating the vote.', 
-        ephemeral: true 
-      });
+      logger.error(`Error executing votemute command: ${error.message}`);
+      try {
+        if (interaction.deferred) {
+          await interaction.followUp({ content: 'An error occurred with the vote command.', ephemeral: true });
+        } else {
+          await interaction.reply({ content: 'An error occurred with the vote command.', ephemeral: true });
+        }
+      } catch (_) {}
     }
   }
 };
-
-// Helper function to update the vote embed
-async function updateVoteEmbed(message, embed, votes, voiceChannel) {
-  const yesCount = votes.yes.size;
-  const noCount = votes.no.size;
-  const totalVoters = voiceChannel.members.size - 1; // Exclude the target user
-  const votingThreshold = Math.ceil(totalVoters / 2); // At least 50% must vote yes
-  
-  // Update the vote count field (index 4)
-  embed.spliceFields(4, 1, {
-    name: 'Current Votes',
-    value: `👍 Yes: ${yesCount}\n👎 No: ${noCount}\n\nRequired: At least ${votingThreshold} yes votes to pass.`
-  });
-  
-  // Update the message
-  await message.edit({ embeds: [embed] }).catch(err => logger.error('Error updating vote embed:', err));
-}
