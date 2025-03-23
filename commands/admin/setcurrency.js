@@ -1,7 +1,7 @@
 // commands/admin/setcurrency.js
 const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionFlagsBits } = require('discord.js');
 const logger = require('../../utils/logger');
-const { getGuildCurrencySettings, updateGuildCurrencySettings } = require('../../models/UserCurrency');
+const { getGuildCurrencySettings, updateGuildCurrencySettings } = require('../../database/schemas/userCurrency');
 const CurrencyService = require('../../services/CurrencyService');
 
 module.exports = {

@@ -3,12 +3,12 @@ const { EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../utils/logger');
 const { 
   UserLevel, 
-  GuildLevelSettings, 
-  getGuildLevelSettings,
+  getUserLevel,
   getXpRequiredForLevel,
   calculateLevelFromXp,
   getTotalXpForLevel
 } = require('../database/schemas/userLevel');
+const { GuildLevelSettings, getGuildLevelSettings } = require('../database/schemas/guildLevelSettings');
 
 // Add import for getUserActivity
 const { 
@@ -50,7 +50,7 @@ class LevelingService {
       );
       
       // Get user's current level data
-      let userLevel = await UserLevel.findOne({ guildId, userId });
+      let userLevel = await getUserLevel(guildId, userId);
       
       // If no user level data exists, create it
       if (!userLevel) {
@@ -168,7 +168,7 @@ class LevelingService {
       }
       
       // Get user's current level data
-      let userLevel = await UserLevel.findOne({ guildId, userId });
+      let userLevel = await getUserLevel(guildId, userId);
       
       // If no user level data exists, create it
       if (!userLevel) {
@@ -396,7 +396,7 @@ class LevelingService {
       const guildSettings = await getGuildLevelSettings(guildId);
       
       // Get user level
-      const userLevel = await UserLevel.findOne({ guildId, userId });
+      const userLevel = await getUserLevel(guildId, userId);
       
       if (!userLevel) {
         // For new users with no data
@@ -543,7 +543,7 @@ class LevelingService {
       const guildSettings = await getGuildLevelSettings(guildId);
       
       // Get user level
-      const userLevel = await UserLevel.findOne({ guildId, userId });
+      const userLevel = await getUserLevel(guildId, userId);
       
       if (!userLevel) {
         return { success: false, reason: 'user_not_found' };

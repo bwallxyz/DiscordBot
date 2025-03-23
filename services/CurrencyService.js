@@ -9,7 +9,7 @@ const {
   getCurrencyLeaderboard,
   canAffordCommand,
   chargeForCommand
-} = require('../models/UserCurrency');
+} = require('../database/schemas/userCurrency');
 
 class CurrencyService {
   constructor(client) {
