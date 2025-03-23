@@ -116,12 +116,12 @@ module.exports = {
       // Reply to the interaction
       await interaction.reply({ embeds: [embed] });
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         await targetUser.send(`You have been removed as a sub-moderator from room "${voiceChannel.name}" by ${interaction.user.tag}.`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} removed as sub-moderator from room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {

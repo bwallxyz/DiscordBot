@@ -133,12 +133,12 @@ module.exports = {
         embeds: [unmuteEmbed]
       });
       
-      // Try to notify the user via DM
+      /* Try to notify the user via DM
       try {
         await targetUser.send(`You have been unmuted in room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} unmuted in room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {

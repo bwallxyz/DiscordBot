@@ -111,12 +111,12 @@ module.exports = {
         embeds: [unbanEmbed]
       });
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         await targetUser.send(`You have been unbanned from room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} unbanned from room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {

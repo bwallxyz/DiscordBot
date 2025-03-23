@@ -71,12 +71,12 @@ module.exports = {
       // Get the AFK channel or disconnect the user if there's no AFK channel
       const afkChannel = interaction.guild.afkChannel;
       
-      // Try to notify the user before kicking
+      /* Try to notify the user before kicking
       try {
         await targetUser.send(`You have been kicked from room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       // Kick the user (move to AFK or disconnect)
       if (afkChannel) {

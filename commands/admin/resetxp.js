@@ -101,7 +101,7 @@ module.exports = {
           
           await interaction.reply({ embeds: [embed] });
           
-          // Try to notify the user
+          /* Try to notify the user
           try {
             const dmEmbed = new EmbedBuilder()
               .setColor(Colors.Red)
@@ -113,7 +113,7 @@ module.exports = {
             await targetUser.send({ embeds: [dmEmbed] }).catch(() => {});
           } catch (error) {
             logger.warn(`Could not DM XP reset notification to ${targetUser.tag}: ${error.message}`);
-          }
+          }*/
           
           logger.info(`User ${interaction.user.tag} reset XP for ${targetUser.tag}`);
           break;

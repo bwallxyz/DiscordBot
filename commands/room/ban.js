@@ -130,12 +130,12 @@ module.exports = {
         embeds: [banEmbed]
       });
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         await targetUser.send(`You have been banned from room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} banned from room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {

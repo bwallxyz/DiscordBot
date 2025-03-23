@@ -138,12 +138,12 @@ module.exports = {
       // Reply to the interaction
       await interaction.reply({ embeds: [embed] });
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         await targetUser.send(`You have been added as a sub-moderator in room "${voiceChannel.name}" by ${interaction.user.tag}. You can now use mute and unmute commands.`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} added as sub-moderator in room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {

@@ -84,7 +84,7 @@ module.exports = {
         // Reply with success
         await interaction.reply({ embeds: [embed] });
         
-        // Try to notify the receiver
+        /* Try to notify the receiver
         try {
           const targetMember = await interaction.guild.members.fetch(targetUser.id);
           const dmEmbed = new EmbedBuilder()
@@ -101,7 +101,7 @@ module.exports = {
           await targetUser.send({ embeds: [dmEmbed] }).catch(() => {});
         } catch (dmError) {
           logger.warn(`Could not send DM to transfer recipient: ${dmError.message}`);
-        }
+        }*/
         
         logger.info(`User ${interaction.user.tag} transferred ${amount} ${balanceInfo.currencyName} to ${targetUser.tag}`);
       } else {

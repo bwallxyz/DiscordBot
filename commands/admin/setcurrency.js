@@ -211,7 +211,7 @@ module.exports = {
           // Reply
           await interaction.reply({ embeds: [embed] });
           
-          // Try to notify the user
+          /* Try to notify the user
           try {
             const dmEmbed = new EmbedBuilder()
               .setColor(Colors.Green)
@@ -227,7 +227,7 @@ module.exports = {
             await targetUser.send({ embeds: [dmEmbed] }).catch(() => {});
           } catch (dmError) {
             logger.warn(`Could not send DM to currency recipient: ${dmError.message}`);
-          }
+          }*/
           
           logger.info(`User ${interaction.user.tag} gave ${amount} ${guildSettings.currencyName} to ${targetUser.tag}`);
           break;

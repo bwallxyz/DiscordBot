@@ -160,12 +160,12 @@ module.exports = {
         embeds: [muteEmbed]
       });
       
-      // Try to notify the user via DM
+      /* Try to notify the user via DM
       try {
         await targetUser.send(`You have been muted in room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}\n\nThis mute will persist even if you leave and rejoin the channel.`);
       } catch (error) {
         logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }
+      }*/
       
       logger.info(`User ${targetUser.tag} muted in room ${voiceChannel.name} by ${interaction.user.tag} with persistence`);
     } catch (error) {

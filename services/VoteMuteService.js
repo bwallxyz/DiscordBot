@@ -233,7 +233,7 @@ class VoteMuteService {
         voterDetails
       );
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         await targetUser.send(
           `You have been muted in **${channel.name}** through a vote ` +
@@ -241,7 +241,7 @@ class VoteMuteService {
         );
       } catch (error) {
         logger.warn(`Could not DM muted user ${targetUser.tag}`);
-      }
+      }*/
       
       return true;
     } catch (error) {

@@ -140,7 +140,7 @@ module.exports = {
       
       await interaction.reply({ embeds: [embed] });
       
-      // Try to notify the user
+      /* Try to notify the user
       try {
         const dmEmbed = new EmbedBuilder()
           .setColor(amount >= 0 ? Colors.Green : Colors.Red)
@@ -156,7 +156,7 @@ module.exports = {
         await targetUser.send({ embeds: [dmEmbed] }).catch(() => {});
       } catch (error) {
         logger.warn(`Could not DM XP notification to ${targetUser.tag}: ${error.message}`);
-      }
+      }*/
       
       logger.info(`User ${interaction.user.tag} ${amount >= 0 ? 'gave' : 'removed'} ${Math.abs(amount)} XP ${amount >= 0 ? 'to' : 'from'} ${targetUser.tag}`);
     } catch (error) {
