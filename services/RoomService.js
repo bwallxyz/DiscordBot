@@ -127,7 +127,7 @@ class RoomService {
         .addFields(
           { name: 'Room Name', value: roomName, inline: true },
           { name: 'Type', value: 'Temporary Room', inline: true },
-          { name: 'Room Limits', value: 'You can only have 1 temporary room at a time. Permanent rooms set by admins have no limit.', inline: false },
+          { name: 'Room Limits', value: 'You can only have 1 temporary room at a time.', inline: false },
           { name: 'Available Commands', value: 
             '• `/rename` - Change the room name\n' +
             '• `/limit` - Set a user limit\n' +
@@ -137,7 +137,7 @@ class RoomService {
             '• `/lock`, `/unlock` - Control room access'
           }
         )
-        .setFooter({ text: `This room will be deleted when empty (unless made permanent by an admin)` })
+        .setFooter({ text: `This room will be deleted when empty` })
         .setTimestamp();
       
       await channel.send({ embeds: [welcomeEmbed] });

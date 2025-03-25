@@ -11,6 +11,7 @@ class ReminderService {
     this.reminderMessages = this.getReminderMessages();
     this.minInterval = 20 * 60 * 1000; // 20 minutes
     this.maxInterval = 60 * 60 * 1000; // 60 minutes
+    this.lastMessageIds = new Map(); // Map to store the last message ID sent to each channel
   }
 
   /**
@@ -138,37 +139,98 @@ class ReminderService {
    */
   async sendRandomReminder(channel, room) {
     try {
-      // Choose a random reminder type
-      const reminderTypes = Object.keys(this.reminderMessages);
-      const randomType = reminderTypes[Math.floor(Math.random() * reminderTypes.length)];
-      
-      // Get reminder content
-      const reminderContent = this.reminderMessages[randomType];
-      
-      // Create embed
-      const embed = new EmbedBuilder()
-        .setColor(reminderContent.color)
-        .setTitle(reminderContent.title)
-        .setDescription(reminderContent.description)
-        .setFooter({ 
-          text: `💡 Tip: Room owners have special moderation powers` 
-        })
-        .setTimestamp();
-      
-      // Add fields if any
-      if (reminderContent.fields) {
-        for (const field of reminderContent.fields) {
-          embed.addFields(field);
+      // Delete the previous message if it exists
+      const previousMessageId = this.lastMessageIds.get(channel.id);
+      if (previousMessageId) {
+        try {
+          // Try to fetch and delete the previous message
+          const previousMessage = await channel.messages.fetch(previousMessageId);
+          if (previousMessage) {
+            await previousMessage.delete();
+            logger.info(`Deleted previous reminder message in ${room.name} (${channel.id})`);
+          }
+        } catch (error) {
+          // Message might not exist anymore, just log and continue
+          logger.warn(`Could not delete previous message in ${room.name}: ${error.message}`);
         }
       }
+
+      // Randomly decide whether to show the owner information or a regular reminder
+      const showOwnerInfo = Math.random() < 0.25; // 25% chance to show owner info
       
-      // Send the reminder
-      await channel.send({ 
-        embeds: [embed],
-      //  content: `<@${room.ownerId}> Room Owner Info:`
-      });
-      
-      logger.info(`Sent ${randomType} reminder to room ${room.name} (${channel.id})`);
+      if (showOwnerInfo) {
+        // Check if the room has an owner
+        const hasOwner = !!room.ownerId;
+        const channelId = channel.id;
+        const guild = channel.guild;
+        
+        // Create the embed
+        const reminderEmbed = new EmbedBuilder()
+          .setTitle("📢 Channel Information")
+          .setColor(hasOwner ? '#00AAFF' : '#FFA500')
+          .setTimestamp();
+        
+        if (hasOwner) {
+          // Get the owner's ID and try to fetch their username
+          const ownerId = room.ownerId;
+          let ownerName = 'Unknown User';
+          
+          try {
+            const owner = await guild.members.fetch(ownerId);
+            ownerName = owner.user.username;
+            
+            // Add owner's avatar if available
+            if (owner.user.displayAvatarURL()) {
+              reminderEmbed.setThumbnail(owner.user.displayAvatarURL());
+            }
+          } catch (error) {
+            logger.error(`Could not fetch owner ${ownerId} for channel ${channelId}`, error);
+          }
+          
+          reminderEmbed
+            .setDescription(`This voice channel is owned by <@${ownerId}> (${ownerName})`)
+            .addFields(
+              { name: 'Owner Permissions', value: 'The channel owner can use commands like `/kick`, `/ban`, and `/mute` to moderate this channel.' },
+              { name: 'Owner Commands', value: 'Additional commands include `/rename`, `/limit`, `/submod`, and more.' }
+            );
+        }
+        
+        // Send the reminder and store the message ID
+        const sentMessage = await channel.send({ embeds: [reminderEmbed] });
+        this.lastMessageIds.set(channel.id, sentMessage.id);
+        
+        logger.info(`Sent owner info reminder to room ${room.name} (${channelId})`);
+      } else {
+        // Choose a random reminder type from the reminder messages
+        const reminderTypes = Object.keys(this.reminderMessages);
+        const randomType = reminderTypes[Math.floor(Math.random() * reminderTypes.length)];
+        
+        // Get reminder content
+        const reminderContent = this.reminderMessages[randomType];
+        
+        // Create embed
+        const embed = new EmbedBuilder()
+          .setColor(reminderContent.color)
+          .setTitle(reminderContent.title)
+          .setDescription(reminderContent.description)
+          .setFooter({ 
+            text: `💡 Tip: Room owners have special moderation powers` 
+          })
+          .setTimestamp();
+        
+        // Add fields if any
+        if (reminderContent.fields) {
+          for (const field of reminderContent.fields) {
+            embed.addFields(field);
+          }
+        }
+        
+        // Send the reminder and store the message ID
+        const sentMessage = await channel.send({ embeds: [embed] });
+        this.lastMessageIds.set(channel.id, sentMessage.id);
+        
+        logger.info(`Sent ${randomType} reminder to room ${room.name} (${channelId})`);
+      }
     } catch (error) {
       logger.error(`Error sending reminder: ${error}`);
     }
@@ -188,81 +250,39 @@ class ReminderService {
    */
   getReminderMessages() {
     return {
-      commands: {
-        title: '📋 Available Room Commands',
-        description: 'As the room owner, you have access to these commands:',
-        color: Colors.Blue,
-        fields: [
-          { 
-            name: 'Moderation Commands', 
-            value: '• `/mute` - Mute a user in your room\n• `/unmute` - Unmute a user\n• `/kick` - Remove a user from your room\n• `/ban` - Ban a user from your room\n• `/unban` - Allow a banned user to join again', 
-            inline: false 
-          },
-          { 
-            name: 'Room Management', 
-            value: '• `/lock` - Prevent new users from joining\n• `/unlock` - Allow users to join again\n• `/rename` - Change your room name\n• `/limit` - Set a user limit for your room\n• `/transfer` - Transfer room ownership', 
-            inline: false 
-          }
-        ]
-      },
-      moderation: {
-        title: '🛡️ Room Moderation Powers',
-        description: 'The room owner can moderate their voice channel:',
+      votemuteReminder: {
+        title: '🔇 Votemute Reminder',
+        description: 'Keep the conversation enjoyable for everyone!',
         color: Colors.Red,
         fields: [
-          { 
-            name: 'Voice Permissions', 
-            value: 'You can mute disruptive users with `/mute` - they will remain muted even if they leave and rejoin.', 
-            inline: false 
-          },
-          { 
-            name: 'Access Control', 
-            value: 'Use `/ban` to prevent specific users from joining your room, or `/lock` to temporarily prevent new users from entering.', 
-            inline: false 
-          },
-          { 
-            name: 'Community Moderation', 
-            value: 'If you\'re not the owner, you can still start a vote to mute someone using `/votemute`.', 
-            inline: false 
+          {
+            name: 'Using /votemute',
+            value: 'Any user can run `/votemute` on a disruptive user at any time to start a community vote.',
+            inline: false
           }
         ]
       },
-      roomTips: {
-        title: '💡 Room Management Tips',
-        description: 'Make the most of your custom voice room:',
+      inviteReminder: {
+        title: '👋 Invite Your Friends!',
+        description: 'The Brainiac community thrives with more like-minded individuals.',
         color: Colors.Green,
         fields: [
-          { 
-            name: 'Customize Your Space', 
-            value: 'Use `/rename` to give your room a unique name that reflects the activity or theme.', 
-            inline: false 
-          },
-          { 
-            name: 'Control Room Size', 
-            value: 'Use `/limit` to set a maximum number of users for your room (set to 0 for unlimited).', 
-            inline: false 
-          },
-          { 
-            name: 'Transfer Ownership', 
-            value: 'If you need to leave but want the room to continue, use `/transfer` to make someone else the owner.', 
-            inline: false 
+          {
+            name: 'Spread the Word',
+            value: 'Invite your friends to join and help keep the community strong!',
+            inline: false
           }
         ]
       },
-      voiceActivities: {
-        title: '🎮 Voice Activities',
-        description: 'Make your voice chat more fun with these tips:',
-        color: Colors.Purple,
+      createRoomReminder: {
+        title: '🏠 Create Your Own Room!',
+        description: 'Want your own space? You can create a room at any time.',
+        color: Colors.Blue,
         fields: [
-          { 
-            name: 'Room Management', 
-            value: 'Room owners can rename their room to match the current activity using `/rename`.', 
-            inline: false 
-          },
-          { 
-            name: 'Moderation Controls', 
-            value: 'If someone is being disruptive, the room owner can use `/mute` or community members can start a vote with `/votemute`.', 
-            inline: false 
+          {
+            name: 'How to Create',
+            value: 'Join `+CREATE` to create your own room where you can moderate it how you see fit.',
+            inline: false
           }
         ]
       }
