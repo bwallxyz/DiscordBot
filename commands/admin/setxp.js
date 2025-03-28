@@ -1,4 +1,4 @@
-// commands/admin/givexp.js
+// commands/admin/setxp.js
 const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionsBitField } = require('discord.js');
 const logger = require('../../utils/logger');
 const { UserLevel, calculateLevelFromXp, getXpRequiredForLevel } = require('../../database/schemas/userLevel');
@@ -8,21 +8,22 @@ const LevelingService = require('../../services/LevelingService');
 module.exports = {
   // Command definition
   data: new SlashCommandBuilder()
-    .setName('givexp')
-    .setDescription('Give XP to a user (Admin only)')
+    .setName('setxp')
+    .setDescription('Set a user\'s XP to a specific value (Admin only)')
     .addUserOption(option =>
       option.setName('user')
-        .setDescription('The user to give XP to')
+        .setDescription('The user to set XP for')
         .setRequired(true)
     )
     .addIntegerOption(option =>
       option.setName('amount')
-        .setDescription('The amount of XP to give (use negative numbers to remove XP)')
+        .setDescription('The amount of XP to set')
+        .setMinValue(0)
         .setRequired(true)
     )
     .addStringOption(option =>
       option.setName('reason')
-        .setDescription('Reason for giving XP')
+        .setDescription('Reason for setting XP')
         .setRequired(false)
     ),
   
@@ -46,7 +47,7 @@ module.exports = {
       // Skip if it's a bot
       if (targetUser.bot) {
         return interaction.reply({ 
-          content: 'You cannot give XP to bots.',
+          content: 'You cannot set XP for bots.',
           ephemeral: true 
         });
       }
@@ -78,13 +79,8 @@ module.exports = {
       const oldLevel = userLevel.level;
       const oldXp = userLevel.xp;
       
-      // Update XP
-      userLevel.xp += amount;
-      
-      // Ensure XP doesn't go negative
-      if (userLevel.xp < 0) {
-        userLevel.xp = 0;
-      }
+      // Update XP to the specified amount
+      userLevel.xp = amount;
       
       // Recalculate level based on new XP
       userLevel.level = calculateLevelFromXp(userLevel.xp, guildSettings);
@@ -99,18 +95,15 @@ module.exports = {
       // Check for level change and handle it
       if (userLevel.level !== oldLevel) {
         // Level changed, check if user needs level roles
-        if (userLevel.level > oldLevel) {
-          // Level up
-          try {
-            await levelingService.checkAndAwardLevelRoles(
-              interaction.guild,
-              targetUser.id,
-              userLevel.level,
-              guildSettings
-            );
-          } catch (error) {
-            logger.error(`Error awarding level roles: ${error}`);
-          }
+        try {
+          await levelingService.checkAndAwardLevelRoles(
+            interaction.guild,
+            targetUser.id,
+            userLevel.level,
+            guildSettings
+          );
+        } catch (error) {
+          logger.error(`Error awarding level roles: ${error}`);
         }
       }
       
@@ -119,17 +112,17 @@ module.exports = {
       
       // Create response embed
       const embed = new EmbedBuilder()
-        .setColor(amount >= 0 ? Colors.Green : Colors.Red)
-        .setTitle(`${amount >= 0 ? '📈 XP Added' : '📉 XP Removed'}`)
-        .setDescription(`${amount >= 0 ? 'Added' : 'Removed'} **${Math.abs(amount)} XP** ${amount >= 0 ? 'to' : 'from'} ${targetUser}`)
+        .setColor(Colors.Blue)
+        .setTitle(`XP Set`)
+        .setDescription(`Set ${targetUser}'s XP to **${amount} XP**`)
         .addFields(
           { name: 'Previous XP', value: `${oldXp} XP (Level ${oldLevel})`, inline: true },
           { name: 'New XP', value: `${userLevel.xp} XP (Level ${userLevel.level})`, inline: true },
-          { name: 'Change', value: `${amount >= 0 ? '+' : ''}${amount} XP`, inline: true },
+          { name: 'Change', value: `${amount > oldXp ? '+' : ''}${amount - oldXp} XP`, inline: true },
           { name: 'Next Level', value: `${nextLevelXp} XP needed for Level ${userLevel.level + 1}`, inline: false },
           { name: 'Reason', value: reason, inline: false }
         )
-        .setFooter({ text: `Adjusted by ${interaction.user.tag}` })
+        .setFooter({ text: `Set by ${interaction.user.tag}` })
         .setTimestamp();
       
       // Add thumbnail if user has avatar
@@ -139,11 +132,11 @@ module.exports = {
       
       await interaction.reply({ embeds: [embed] });
       
-      logger.info(`User ${interaction.user.tag} ${amount >= 0 ? 'gave' : 'removed'} ${Math.abs(amount)} XP ${amount >= 0 ? 'to' : 'from'} ${targetUser.tag}`);
+      logger.info(`User ${interaction.user.tag} set ${targetUser.tag}'s XP to ${amount} (previous: ${oldXp})`);
     } catch (error) {
-      logger.error(`Error executing givexp command:`, error);
+      logger.error(`Error executing setxp command:`, error);
       await interaction.reply({ 
-        content: 'An error occurred while giving XP.',
+        content: 'An error occurred while setting XP.',
         ephemeral: true 
       });
     }

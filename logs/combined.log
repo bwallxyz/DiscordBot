@@ -899,3 +899,101 @@ Require stack:
 [2025-03-28 07:06:34] [INFO]: Loaded command for deployment: unsubmod 
 [2025-03-28 07:06:34] [INFO]: Loaded command for deployment: votemute 
 [2025-03-28 07:06:34] [INFO]: Started refreshing application (/) commands. 
+[2025-03-28 07:07:15] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:07:16] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 07:07:16] [INFO]: Database connected successfully 
+[2025-03-28 07:07:16] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:07:16] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:07:16] [INFO]: Loaded command: paidcommands 
+[2025-03-28 07:07:16] [INFO]: Loaded command: permanent 
+[2025-03-28 07:07:16] [INFO]: Loaded command: reminders 
+[2025-03-28 07:07:16] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:07:16] [INFO]: Loaded command: setcurrency 
+[2025-03-28 07:07:16] [INFO]: Loaded command: setup 
+[2025-03-28 07:07:16] [INFO]: Loaded command: testreminder 
+[2025-03-28 07:07:16] [INFO]: Loaded command: xpboost 
+[2025-03-28 07:07:16] [INFO]: Loaded command: xpconfig 
+[2025-03-28 07:07:16] [INFO]: Loaded command: balance 
+[2025-03-28 07:07:16] [INFO]: Loaded command: daily 
+[2025-03-28 07:07:16] [INFO]: Loaded command: pay 
+[2025-03-28 07:07:16] [INFO]: Loaded command: level 
+[2025-03-28 07:07:16] [INFO]: Loaded command: levelboard 
+[2025-03-28 07:07:16] [INFO]: Loaded command: rank 
+[2025-03-28 07:07:16] [INFO]: Loaded command: ban 
+[2025-03-28 07:07:16] [INFO]: Loaded command: kick 
+[2025-03-28 07:07:16] [INFO]: Loaded command: limit 
+[2025-03-28 07:07:16] [INFO]: Loaded command: listban 
+[2025-03-28 07:07:16] [INFO]: Loaded command: listmute 
+[2025-03-28 07:07:16] [INFO]: Loaded command: listsubmod 
+[2025-03-28 07:07:16] [INFO]: Loaded command: mute 
+[2025-03-28 07:07:16] [INFO]: Loaded command: rename 
+[2025-03-28 07:07:16] [INFO]: Loaded command: submod 
+[2025-03-28 07:07:16] [INFO]: Loaded command: transfer 
+[2025-03-28 07:07:16] [INFO]: Loaded command: unban 
+[2025-03-28 07:07:16] [INFO]: Loaded command: unmute 
+[2025-03-28 07:07:16] [INFO]: Loaded command: unsubmod 
+[2025-03-28 07:07:16] [INFO]: Loaded command: votemute 
+[2025-03-28 07:07:16] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 07:07:16] [INFO]: Registered event: interactionCreate 
+[2025-03-28 07:07:16] [INFO]: Registered event: messageCreate 
+[2025-03-28 07:07:16] [INFO]: Registered event: ready 
+[2025-03-28 07:07:16] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 07:07:16] [INFO]: Events registered successfully 
+[2025-03-28 07:07:16] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 07:07:17] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 07:07:17] [INFO]: Starting room reminder service 
+[2025-03-28 07:07:17] [INFO]: Stopping room reminder service 
+[2025-03-28 07:07:17] [INFO]: Room reminder service initialized and started 
+[2025-03-28 07:07:17] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 07:07:17] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 07:07:17] [INFO]: Registered 28 global commands after ready 
+[2025-03-28 07:07:30] [INFO]: User 1333017107444797450 muted in room 1354000864851005480 by 1303511083809636423 
+[2025-03-28 07:07:30] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:31] [INFO]: Applied server mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:31] [INFO]: Server muted bwall1063 in bwall's Room 
+[2025-03-28 07:07:31] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:31] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:07:31] [INFO]: User bwall1063 muted in room bwall's Room by bwall1062 with persistence 
+[2025-03-28 07:07:31] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:31] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:07:43] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 07:07:45] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 07:07:48] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:07:48] [INFO]: Reset server mute for bwall1063 after leaving room bwall's Room, but kept mute state 
+[2025-03-28 07:07:51] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:07:54] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:07:54] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Applied server mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:07:55] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:07:57] [ERROR]: Failed to temporarily unmute user bwall1063 when leaving room: Target user is not connected to voice. 
+[2025-03-28 07:07:58] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:07:59] [INFO]: Removed mute from bwall1063 when joining non-tracked room bwall's Room 
+[2025-03-28 07:08:01] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:08:02] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:08:02] [INFO]: Applied server mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:08:02] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:08:02] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:08:02] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:09:09] [INFO]: User bwall1062 checked their own balance and level 
+[2025-03-28 07:12:17] [INFO]: User bwall1063 (1333017107444797450) leveled up to 1 in guild 1352484741995171891 
+[2025-03-28 07:16:10] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:16:10] [INFO]: Stopping room reminder service 
+[2025-03-28 07:16:10] [INFO]: Logging out of Discord... 
+[2025-03-28 07:16:10] [INFO]: Closing database connection... 

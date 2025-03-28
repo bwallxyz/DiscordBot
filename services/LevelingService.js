@@ -279,47 +279,61 @@ class LevelingService {
     }
   }
   
-  /**
-   * Check and award level roles to a user
-   * @param {Object} guild - Discord guild
-   * @param {String} userId - User ID
-   * @param {Number} currentLevel - User's current level
-   * @param {Object} guildSettings - Guild level settings
-   */
-  async checkAndAwardLevelRoles(guild, userId, currentLevel, guildSettings) {
-    try {
-      // Get the member
-      const member = await guild.members.fetch(userId);
-      if (!member) return;
-      
-      // Roles eligible for this level
-      const eligibleRoles = [];
-      
-      // Check which level roles the user qualifies for
-      for (const [levelStr, roleId] of guildSettings.levelRoles.entries()) {
-        const level = parseInt(levelStr, 10);
-        
-        if (currentLevel >= level) {
-          eligibleRoles.push(roleId);
-        }
-      }
-      
-      // Get roles the member doesn't have yet
-      const newRoles = eligibleRoles.filter(roleId => !member.roles.cache.has(roleId));
-      
-      // Award new roles
-      for (const roleId of newRoles) {
-        const role = guild.roles.cache.get(roleId);
-        if (role) {
-          await member.roles.add(role, `Level ${currentLevel} reward`);
-          logger.info(`Awarded level role ${role.name} to ${member.user.tag} for reaching level ${currentLevel}`);
-        }
-      }
-    } catch (error) {
-      logger.error(`Error in checkAndAwardLevelRoles:`, error);
-      throw error;
+ /**
+ * Check and award level roles to a user - updated to assign only the highest level role
+ * @param {Object} guild - Discord guild
+ * @param {String} userId - User ID
+ * @param {Number} currentLevel - User's current level
+ * @param {Object} guildSettings - Guild level settings
+ */
+async checkAndAwardLevelRoles(guild, userId, currentLevel, guildSettings) {
+  try {
+    // Get the member
+    const member = await guild.members.fetch(userId);
+    if (!member) return;
+    
+    // Get level roles from settings
+    const levelRoles = Array.from(guildSettings.levelRoles.entries())
+      .map(([levelStr, roleId]) => ({
+        level: parseInt(levelStr, 10),
+        roleId
+      }))
+      .sort((a, b) => b.level - a.level); // Sort by level in descending order
+    
+    if (levelRoles.length === 0) return; // No level roles configured
+    
+    // Get the highest level role the user qualifies for
+    const highestQualifyingRole = levelRoles.find(role => currentLevel >= role.level);
+    
+    if (!highestQualifyingRole) return; // User doesn't qualify for any level role
+    
+    // Get all level role IDs to handle removal
+    const allLevelRoleIds = levelRoles.map(role => role.roleId);
+    
+    // Get current level roles the member has
+    const currentLevelRoles = member.roles.cache.filter(role => 
+      allLevelRoleIds.includes(role.id) && role.id !== highestQualifyingRole.roleId
+    );
+    
+    // Remove all current level roles that aren't the highest qualifying role
+    for (const [id, role] of currentLevelRoles) {
+      await member.roles.remove(role, `Level role update - maintaining only highest level role`);
+      logger.info(`Removed lower level role ${role.name} from ${member.user.tag} because they now qualify for a higher level role`);
     }
+    
+    // Add the highest qualifying role if they don't already have it
+    if (!member.roles.cache.has(highestQualifyingRole.roleId)) {
+      const role = guild.roles.cache.get(highestQualifyingRole.roleId);
+      if (role) {
+        await member.roles.add(role, `Level ${currentLevel} reward (highest qualifying role)`);
+        logger.info(`Awarded highest level role ${role.name} to ${member.user.tag} for level ${currentLevel}`);
+      }
+    }
+  } catch (error) {
+    logger.error(`Error in checkAndAwardLevelRoles:`, error);
+    throw error;
   }
+}
   
   /**
    * Send a level up notification
