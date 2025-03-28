@@ -1,4 +1,4 @@
-// Room unmute command with submod support
+// Enhanced Room unmute command with submod support
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');

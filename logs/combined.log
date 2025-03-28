@@ -203,3 +203,417 @@ Require stack:
 [2025-03-22 12:18:14] [INFO]: Ready! Logged in as dev-bot#6522 
 [2025-03-22 12:18:15] [INFO]: Registered 15 global commands after ready 
 [2025-03-22 12:18:20] [INFO]: Shutting down gracefully... 
+[2025-03-25 00:54:17] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-25 00:54:17] [INFO]: Connected to MongoDB Atlas 
+[2025-03-25 00:54:17] [INFO]: Database connected successfully 
+[2025-03-25 00:54:17] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:54:17] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:54:17] [INFO]: Loaded command: paidcommands 
+[2025-03-25 00:54:17] [INFO]: Loaded command: permanent 
+[2025-03-25 00:54:17] [INFO]: Loaded command: reminders 
+[2025-03-25 00:54:17] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:54:17] [INFO]: Loaded command: setcurrency 
+[2025-03-25 00:54:17] [INFO]: Loaded command: setup 
+[2025-03-25 00:54:17] [INFO]: Loaded command: testreminder 
+[2025-03-25 00:54:17] [INFO]: Loaded command: xpboost 
+[2025-03-25 00:54:17] [INFO]: Loaded command: xpconfig 
+[2025-03-25 00:54:17] [INFO]: Loaded command: balance 
+[2025-03-25 00:54:17] [INFO]: Loaded command: daily 
+[2025-03-25 00:54:17] [INFO]: Loaded command: pay 
+[2025-03-25 00:54:17] [INFO]: Loaded command: level 
+[2025-03-25 00:54:17] [INFO]: Loaded command: levelboard 
+[2025-03-25 00:54:17] [INFO]: Loaded command: rank 
+[2025-03-25 00:54:17] [INFO]: Loaded command: ban 
+[2025-03-25 00:54:17] [INFO]: Loaded command: kick 
+[2025-03-25 00:54:17] [INFO]: Loaded command: limit 
+[2025-03-25 00:54:17] [INFO]: Loaded command: mute 
+[2025-03-25 00:54:17] [INFO]: Loaded command: rename 
+[2025-03-25 00:54:17] [INFO]: Loaded command: submod 
+[2025-03-25 00:54:17] [INFO]: Loaded command: transfer 
+[2025-03-25 00:54:17] [INFO]: Loaded command: unban 
+[2025-03-25 00:54:17] [INFO]: Loaded command: unmute 
+[2025-03-25 00:54:17] [INFO]: Loaded command: unsubmod 
+[2025-03-25 00:54:17] [INFO]: Loaded command: votemute 
+[2025-03-25 00:54:17] [INFO]: Commands loaded and ready for registration 
+[2025-03-25 00:54:17] [INFO]: Registered event: interactionCreate 
+[2025-03-25 00:54:17] [INFO]: Registered event: messageCreate 
+[2025-03-25 00:54:17] [INFO]: Registered event: ready 
+[2025-03-25 00:54:17] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-25 00:54:17] [INFO]: Events registered successfully 
+[2025-03-25 00:54:17] [INFO]: Attempting to log in to Discord... 
+[2025-03-25 00:54:18] [INFO]: Logged in as dev-bot#6522 
+[2025-03-25 00:54:18] [INFO]: Starting room reminder service 
+[2025-03-25 00:54:18] [INFO]: Stopping room reminder service 
+[2025-03-25 00:54:18] [INFO]: Room reminder service initialized and started 
+[2025-03-25 00:54:18] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-25 00:54:18] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-25 00:54:18] [INFO]: Registered 25 global commands after ready 
+[2025-03-25 00:54:41] [INFO]: Shutting down gracefully... 
+[2025-03-25 00:54:41] [INFO]: Stopping room reminder service 
+[2025-03-25 00:54:41] [INFO]: Logging out of Discord... 
+[2025-03-25 00:54:41] [INFO]: Closing database connection... 
+[2025-03-25 00:55:18] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-25 00:55:19] [INFO]: Connected to MongoDB Atlas 
+[2025-03-25 00:55:19] [INFO]: Database connected successfully 
+[2025-03-25 00:55:19] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:55:19] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:55:19] [INFO]: Loaded command: paidcommands 
+[2025-03-25 00:55:19] [INFO]: Loaded command: permanent 
+[2025-03-25 00:55:19] [INFO]: Loaded command: reminders 
+[2025-03-25 00:55:19] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 00:55:19] [INFO]: Loaded command: setcurrency 
+[2025-03-25 00:55:19] [INFO]: Loaded command: setup 
+[2025-03-25 00:55:19] [INFO]: Loaded command: testreminder 
+[2025-03-25 00:55:19] [INFO]: Loaded command: xpboost 
+[2025-03-25 00:55:19] [INFO]: Loaded command: xpconfig 
+[2025-03-25 00:55:19] [INFO]: Loaded command: balance 
+[2025-03-25 00:55:19] [INFO]: Loaded command: daily 
+[2025-03-25 00:55:19] [INFO]: Loaded command: pay 
+[2025-03-25 00:55:19] [INFO]: Loaded command: level 
+[2025-03-25 00:55:19] [INFO]: Loaded command: levelboard 
+[2025-03-25 00:55:19] [INFO]: Loaded command: rank 
+[2025-03-25 00:55:19] [INFO]: Loaded command: ban 
+[2025-03-25 00:55:19] [INFO]: Loaded command: kick 
+[2025-03-25 00:55:19] [INFO]: Loaded command: limit 
+[2025-03-25 00:55:19] [INFO]: Loaded command: mute 
+[2025-03-25 00:55:19] [INFO]: Loaded command: rename 
+[2025-03-25 00:55:19] [INFO]: Loaded command: submod 
+[2025-03-25 00:55:19] [INFO]: Loaded command: transfer 
+[2025-03-25 00:55:19] [INFO]: Loaded command: unban 
+[2025-03-25 00:55:19] [INFO]: Loaded command: unmute 
+[2025-03-25 00:55:19] [INFO]: Loaded command: unsubmod 
+[2025-03-25 00:55:19] [INFO]: Loaded command: votemute 
+[2025-03-25 00:55:19] [INFO]: Commands loaded and ready for registration 
+[2025-03-25 00:55:19] [INFO]: Registered event: interactionCreate 
+[2025-03-25 00:55:19] [INFO]: Registered event: messageCreate 
+[2025-03-25 00:55:19] [INFO]: Registered event: ready 
+[2025-03-25 00:55:19] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-25 00:55:19] [INFO]: Events registered successfully 
+[2025-03-25 00:55:19] [INFO]: Attempting to log in to Discord... 
+[2025-03-25 00:55:20] [INFO]: Logged in as dev-bot#6522 
+[2025-03-25 00:55:20] [INFO]: Starting room reminder service 
+[2025-03-25 00:55:20] [INFO]: Stopping room reminder service 
+[2025-03-25 00:55:20] [INFO]: Room reminder service initialized and started 
+[2025-03-25 00:55:20] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-25 00:55:20] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-25 00:55:20] [INFO]: Registered 25 global commands after ready 
+[2025-03-25 00:55:34] [INFO]: Started tracking user bwall1062 in channel CREATE 
+[2025-03-25 00:55:38] [INFO]: Started tracking user bwall1062 in channel General 
+[2025-03-25 00:55:40] [INFO]: Started tracking user bwall1062 in channel CREATE 
+[2025-03-25 00:55:48] [INFO]: Room creation system set up in guild 1352484741995171891 by bwall1062 
+[2025-03-25 00:56:00] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-25 00:56:02] [INFO]: Started tracking user bwall1062 in channel CREATE 
+[2025-03-25 00:56:02] [INFO]: User bwall1062 joined creation channel, creating a room 
+[2025-03-25 00:56:02] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-25 00:56:03] [INFO]: Created room bwall's Room for bwall1062 
+[2025-03-25 00:56:03] [INFO]: Successfully created room and moved user bwall1062 
+[2025-03-25 00:56:26] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:42] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:46] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:48] [INFO]: Test createRoomReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:50] [INFO]: Test votemuteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:53] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:56:57] [INFO]: Test votemuteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-25 00:58:37] [INFO]: Starting room reminder service 
+[2025-03-25 00:58:37] [INFO]: Stopping room reminder service 
+[2025-03-25 00:58:37] [INFO]: Room reminder service enabled 
+[2025-03-25 00:58:37] [INFO]: Stopping room reminder service 
+[2025-03-25 00:58:37] [INFO]: Starting room reminder service 
+[2025-03-25 00:58:37] [INFO]: Stopping room reminder service 
+[2025-03-25 00:58:38] [INFO]: Room reminders enabled by bwall1062 
+[2025-03-25 00:59:09] [INFO]: User bwall1062 set role big brain to be awarded at level 30 
+[2025-03-25 01:02:15] [INFO]: User bwall1062 checked their own level 
+[2025-03-25 01:03:36] [INFO]: User bwall1062 enabled level-up notifications 
+[2025-03-25 01:03:48] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:03:58] [INFO]: User bwall1062 listed XP multipliers 
+[2025-03-25 01:04:21] [INFO]: User bwall1062 set XP multiplier 5x for role @everyone 
+[2025-03-25 01:04:25] [INFO]: User bwall1062 (1303511083809636423) leveled up to 1 in guild 1352484741995171891 
+[2025-03-25 01:04:25] [ERROR]: Error sending level up notification: require(...).getGuildLevelSettings is not a function 
+[2025-03-25 01:04:32] [INFO]: User bwall1062 checked their own level 
+[2025-03-25 01:05:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 2 in guild 1352484741995171891 
+[2025-03-25 01:05:38] [INFO]: User bwall1062 updated XP rates 
+[2025-03-25 01:07:49] [INFO]: User bwall1062 viewed XP configuration 
+[2025-03-25 01:08:25] [INFO]: User bwall1062 checked their own level 
+[2025-03-25 01:08:38] [INFO]: User bwall1062 checked bwall4157's level 
+[2025-03-25 01:10:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 4 in guild 1352484741995171891 
+[2025-03-25 01:10:49] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:10:49] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:15:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 5 in guild 1352484741995171891 
+[2025-03-25 01:16:42] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:16:42] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:20:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 6 in guild 1352484741995171891 
+[2025-03-25 01:25:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 7 in guild 1352484741995171891 
+[2025-03-25 01:26:10] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:26:10] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:30:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 8 in guild 1352484741995171891 
+[2025-03-25 01:34:54] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:34:54] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:35:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 9 in guild 1352484741995171891 
+[2025-03-25 01:38:21] [INFO]: User bwall1062 enabled level-up notifications 
+[2025-03-25 01:40:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 10 in guild 1352484741995171891 
+[2025-03-25 01:41:15] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:41:15] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:45:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 11 in guild 1352484741995171891 
+[2025-03-25 01:48:34] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:48:34] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 01:55:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 12 in guild 1352484741995171891 
+[2025-03-25 01:55:48] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 01:55:48] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:00:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 13 in guild 1352484741995171891 
+[2025-03-25 02:01:03] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:01:03] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:05:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 14 in guild 1352484741995171891 
+[2025-03-25 02:08:00] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:08:01] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:10:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 15 in guild 1352484741995171891 
+[2025-03-25 02:13:46] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:13:46] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:20:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 16 in guild 1352484741995171891 
+[2025-03-25 02:23:28] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:23:28] [INFO]: Sent owner info reminder to room bwall's Room (1354000864851005480) 
+[2025-03-25 02:25:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 17 in guild 1352484741995171891 
+[2025-03-25 02:29:41] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:29:41] [INFO]: Sent owner info reminder to room bwall's Room (1354000864851005480) 
+[2025-03-25 02:30:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 18 in guild 1352484741995171891 
+[2025-03-25 02:35:35] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:35:35] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:40:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 19 in guild 1352484741995171891 
+[2025-03-25 02:45:19] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:45:19] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:45:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 20 in guild 1352484741995171891 
+[2025-03-25 02:53:47] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 02:53:47] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 02:55:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 21 in guild 1352484741995171891 
+[2025-03-25 03:00:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 22 in guild 1352484741995171891 
+[2025-03-25 03:01:16] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:01:17] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:06:18] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:06:19] [INFO]: Sent owner info reminder to room bwall's Room (1354000864851005480) 
+[2025-03-25 03:10:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 23 in guild 1352484741995171891 
+[2025-03-25 03:15:17] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:15:17] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:15:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 24 in guild 1352484741995171891 
+[2025-03-25 03:21:05] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:21:05] [INFO]: Sent owner info reminder to room bwall's Room (1354000864851005480) 
+[2025-03-25 03:25:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 25 in guild 1352484741995171891 
+[2025-03-25 03:30:11] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:30:12] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:30:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 26 in guild 1352484741995171891 
+[2025-03-25 03:38:17] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:38:17] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:40:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 27 in guild 1352484741995171891 
+[2025-03-25 03:45:24] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:45:25] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:50:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 28 in guild 1352484741995171891 
+[2025-03-25 03:53:58] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 03:53:59] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 03:55:20] [INFO]: User bwall1062 (1303511083809636423) leveled up to 29 in guild 1352484741995171891 
+[2025-03-25 04:00:29] [INFO]: Deleted previous reminder message in bwall's Room (1354000864851005480) 
+[2025-03-25 04:00:29] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-25 04:02:05] [INFO]: Shutting down gracefully... 
+[2025-03-25 04:02:05] [INFO]: Stopping room reminder service 
+[2025-03-25 04:02:05] [INFO]: Logging out of Discord... 
+[2025-03-25 04:02:06] [INFO]: Closing database connection... 
+[2025-03-25 05:30:09] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-25 05:30:10] [INFO]: Connected to MongoDB Atlas 
+[2025-03-25 05:30:10] [INFO]: Database connected successfully 
+[2025-03-25 05:30:10] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 05:30:10] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 05:30:10] [INFO]: Loaded command: paidcommands 
+[2025-03-25 05:30:10] [INFO]: Loaded command: permanent 
+[2025-03-25 05:30:10] [INFO]: Loaded command: reminders 
+[2025-03-25 05:30:10] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-25 05:30:10] [INFO]: Loaded command: setcurrency 
+[2025-03-25 05:30:10] [INFO]: Loaded command: setup 
+[2025-03-25 05:30:10] [INFO]: Loaded command: testreminder 
+[2025-03-25 05:30:10] [INFO]: Loaded command: xpboost 
+[2025-03-25 05:30:10] [INFO]: Loaded command: xpconfig 
+[2025-03-25 05:30:10] [INFO]: Loaded command: balance 
+[2025-03-25 05:30:10] [INFO]: Loaded command: daily 
+[2025-03-25 05:30:10] [INFO]: Loaded command: pay 
+[2025-03-25 05:30:10] [INFO]: Loaded command: level 
+[2025-03-25 05:30:10] [INFO]: Loaded command: levelboard 
+[2025-03-25 05:30:10] [INFO]: Loaded command: rank 
+[2025-03-25 05:30:10] [INFO]: Loaded command: ban 
+[2025-03-25 05:30:10] [INFO]: Loaded command: kick 
+[2025-03-25 05:30:10] [INFO]: Loaded command: limit 
+[2025-03-25 05:30:10] [INFO]: Loaded command: mute 
+[2025-03-25 05:30:10] [INFO]: Loaded command: rename 
+[2025-03-25 05:30:10] [INFO]: Loaded command: submod 
+[2025-03-25 05:30:10] [INFO]: Loaded command: transfer 
+[2025-03-25 05:30:10] [INFO]: Loaded command: unban 
+[2025-03-25 05:30:10] [INFO]: Loaded command: unmute 
+[2025-03-25 05:30:10] [INFO]: Loaded command: unsubmod 
+[2025-03-25 05:30:10] [INFO]: Loaded command: votemute 
+[2025-03-25 05:30:10] [INFO]: Commands loaded and ready for registration 
+[2025-03-25 05:30:10] [INFO]: Registered event: interactionCreate 
+[2025-03-25 05:30:10] [INFO]: Registered event: messageCreate 
+[2025-03-25 05:30:10] [INFO]: Registered event: ready 
+[2025-03-25 05:30:10] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-25 05:30:10] [INFO]: Events registered successfully 
+[2025-03-25 05:30:10] [INFO]: Attempting to log in to Discord... 
+[2025-03-25 05:30:11] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-25 05:30:11] [INFO]: Logged in as dev-bot#6522 
+[2025-03-25 05:30:11] [INFO]: Starting room reminder service 
+[2025-03-25 05:30:11] [INFO]: Stopping room reminder service 
+[2025-03-25 05:30:11] [INFO]: Room reminder service initialized and started 
+[2025-03-25 05:30:11] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-25 05:30:11] [INFO]: Registered 25 global commands after ready 
+[2025-03-25 05:30:12] [INFO]: Shutting down gracefully... 
+[2025-03-26 12:33:28] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-26 12:33:29] [INFO]: Connected to MongoDB Atlas 
+[2025-03-26 12:33:29] [INFO]: Database connected successfully 
+[2025-03-26 12:33:29] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:33:29] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:33:29] [INFO]: Loaded command: paidcommands 
+[2025-03-26 12:33:29] [INFO]: Loaded command: permanent 
+[2025-03-26 12:33:29] [INFO]: Loaded command: reminders 
+[2025-03-26 12:33:29] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:33:29] [INFO]: Loaded command: setcurrency 
+[2025-03-26 12:33:29] [INFO]: Loaded command: setup 
+[2025-03-26 12:33:29] [INFO]: Loaded command: testreminder 
+[2025-03-26 12:33:29] [INFO]: Loaded command: xpboost 
+[2025-03-26 12:33:29] [INFO]: Loaded command: xpconfig 
+[2025-03-26 12:33:29] [INFO]: Loaded command: balance 
+[2025-03-26 12:33:29] [INFO]: Loaded command: daily 
+[2025-03-26 12:33:29] [INFO]: Loaded command: pay 
+[2025-03-26 12:33:29] [INFO]: Loaded command: level 
+[2025-03-26 12:33:29] [INFO]: Loaded command: levelboard 
+[2025-03-26 12:33:29] [INFO]: Loaded command: rank 
+[2025-03-26 12:33:29] [INFO]: Loaded command: ban 
+[2025-03-26 12:33:29] [INFO]: Loaded command: kick 
+[2025-03-26 12:33:29] [INFO]: Loaded command: limit 
+[2025-03-26 12:33:29] [INFO]: Loaded command: mute 
+[2025-03-26 12:33:29] [INFO]: Loaded command: rename 
+[2025-03-26 12:33:29] [INFO]: Loaded command: submod 
+[2025-03-26 12:33:29] [INFO]: Loaded command: transfer 
+[2025-03-26 12:33:29] [INFO]: Loaded command: unban 
+[2025-03-26 12:33:29] [INFO]: Loaded command: unmute 
+[2025-03-26 12:33:29] [INFO]: Loaded command: unsubmod 
+[2025-03-26 12:33:29] [INFO]: Loaded command: votemute 
+[2025-03-26 12:33:29] [INFO]: Commands loaded and ready for registration 
+[2025-03-26 12:33:29] [INFO]: Registered event: interactionCreate 
+[2025-03-26 12:33:29] [INFO]: Registered event: messageCreate 
+[2025-03-26 12:33:29] [INFO]: Registered event: ready 
+[2025-03-26 12:33:29] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-26 12:33:29] [INFO]: Events registered successfully 
+[2025-03-26 12:33:29] [INFO]: Attempting to log in to Discord... 
+[2025-03-26 12:33:30] [INFO]: Logged in as dev-bot#6522 
+[2025-03-26 12:33:30] [INFO]: Starting room reminder service 
+[2025-03-26 12:33:30] [INFO]: Stopping room reminder service 
+[2025-03-26 12:33:30] [INFO]: Room reminder service initialized and started 
+[2025-03-26 12:33:30] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-26 12:33:30] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-26 12:33:30] [INFO]: Registered 25 global commands after ready 
+[2025-03-26 12:33:38] [INFO]: Shutting down gracefully... 
+[2025-03-26 12:34:00] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-26 12:34:01] [INFO]: Connected to MongoDB Atlas 
+[2025-03-26 12:34:01] [INFO]: Database connected successfully 
+[2025-03-26 12:34:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:34:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:34:01] [INFO]: Loaded command: paidcommands 
+[2025-03-26 12:34:01] [INFO]: Loaded command: permanent 
+[2025-03-26 12:34:01] [INFO]: Loaded command: reminders 
+[2025-03-26 12:34:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-26 12:34:01] [INFO]: Loaded command: setcurrency 
+[2025-03-26 12:34:01] [INFO]: Loaded command: setup 
+[2025-03-26 12:34:01] [INFO]: Loaded command: testreminder 
+[2025-03-26 12:34:01] [INFO]: Loaded command: xpboost 
+[2025-03-26 12:34:01] [INFO]: Loaded command: xpconfig 
+[2025-03-26 12:34:01] [INFO]: Loaded command: balance 
+[2025-03-26 12:34:01] [INFO]: Loaded command: daily 
+[2025-03-26 12:34:01] [INFO]: Loaded command: pay 
+[2025-03-26 12:34:01] [INFO]: Loaded command: level 
+[2025-03-26 12:34:01] [INFO]: Loaded command: levelboard 
+[2025-03-26 12:34:01] [INFO]: Loaded command: rank 
+[2025-03-26 12:34:01] [INFO]: Loaded command: ban 
+[2025-03-26 12:34:01] [INFO]: Loaded command: kick 
+[2025-03-26 12:34:01] [INFO]: Loaded command: limit 
+[2025-03-26 12:34:01] [INFO]: Loaded command: mute 
+[2025-03-26 12:34:01] [INFO]: Loaded command: rename 
+[2025-03-26 12:34:01] [INFO]: Loaded command: submod 
+[2025-03-26 12:34:01] [INFO]: Loaded command: transfer 
+[2025-03-26 12:34:01] [INFO]: Loaded command: unban 
+[2025-03-26 12:34:01] [INFO]: Loaded command: unmute 
+[2025-03-26 12:34:01] [INFO]: Loaded command: unsubmod 
+[2025-03-26 12:34:01] [INFO]: Loaded command: votemute 
+[2025-03-26 12:34:01] [INFO]: Commands loaded and ready for registration 
+[2025-03-26 12:34:01] [INFO]: Registered event: interactionCreate 
+[2025-03-26 12:34:01] [INFO]: Registered event: messageCreate 
+[2025-03-26 12:34:01] [INFO]: Registered event: ready 
+[2025-03-26 12:34:01] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-26 12:34:01] [INFO]: Events registered successfully 
+[2025-03-26 12:34:01] [INFO]: Attempting to log in to Discord... 
+[2025-03-26 12:34:01] [INFO]: Logged in as dev-bot#6522 
+[2025-03-26 12:34:01] [INFO]: Starting room reminder service 
+[2025-03-26 12:34:01] [INFO]: Stopping room reminder service 
+[2025-03-26 12:34:01] [INFO]: Room reminder service initialized and started 
+[2025-03-26 12:34:01] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-26 12:34:01] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-26 12:34:02] [INFO]: Registered 25 global commands after ready 
+[2025-03-26 12:34:03] [INFO]: Shutting down gracefully... 

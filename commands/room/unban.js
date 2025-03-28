@@ -1,10 +1,10 @@
-// Room unban command
+// Enhanced Room unban command
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
 const PermissionService = require('../../services/PermissionService');
 const AuditLogService = require('../../services/AuditLogService');
-const { UserStateTrackerService } = require('../../services/UserStateTrackerService'); // Fixed import path
+const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
 const { isInVoiceChannel } = require('../../utils/validators');
 
 module.exports = {

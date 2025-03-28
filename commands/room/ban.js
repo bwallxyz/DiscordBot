@@ -1,10 +1,10 @@
-// Room ban command
+// Updated Room ban command with enhanced tracking
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
 const PermissionService = require('../../services/PermissionService');
 const AuditLogService = require('../../services/AuditLogService');
-const { UserStateTrackerService } = require('../../services/UserStateTrackerService'); // Fixed import path
+const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
 const { isInVoiceChannel } = require('../../utils/validators');
 
 module.exports = {
@@ -98,7 +98,8 @@ module.exports = {
         userId: targetUser.id,
         roomId: voiceChannel.id,
         appliedBy: interaction.user.id,
-        reason
+        reason,
+        username: targetUser.tag // Add username for better record-keeping
       });
       
       // Log the ban action

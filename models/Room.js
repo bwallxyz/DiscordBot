@@ -1,4 +1,4 @@
-// MongoDB model for room data
+// Updated MongoDB model for room data with banned and muted users tracking
 const mongoose = require('mongoose');
 
 // Room schema
@@ -46,6 +46,36 @@ const roomSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
+  
+  // Banned users tracking
+  bannedUsers: [{
+    userId: {
+      type: String,
+      required: true
+    },
+    username: String,
+    reason: String,
+    bannedAt: {
+      type: Date,
+      default: Date.now
+    },
+    bannedBy: String
+  }],
+  
+  // Muted users tracking
+  mutedUsers: [{
+    userId: {
+      type: String,
+      required: true
+    },
+    username: String,
+    reason: String,
+    mutedAt: {
+      type: Date,
+      default: Date.now
+    },
+    mutedBy: String
+  }],
   
   // Activity tracking
   createdAt: {

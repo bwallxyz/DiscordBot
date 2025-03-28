@@ -1,3 +1,4 @@
+// Updated Levels.js with fixed data loading and error handling
 import React, { useState, useEffect } from 'react';
 import {
   Box,
@@ -23,14 +24,16 @@ import {
   DialogContent,
   DialogActions,
   Tooltip,
-  Alert
+  Alert,
+  Snackbar
 } from '@mui/material';
 import {
   Add as AddIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
   Save as SaveIcon,
-  Cancel as CancelIcon
+  Cancel as CancelIcon,
+  Refresh as RefreshIcon
 } from '@mui/icons-material';
 import axios from 'axios';
 
@@ -43,21 +46,45 @@ const Levels = () => {
   const [editedSettings, setEditedSettings] = useState({});
   const [openRoleDialog, setOpenRoleDialog] = useState(false);
   const [newRole, setNewRole] = useState({ level: '', roleId: '', roleName: '' });
-  const [serverRoles, setServerRoles] = useState([]);
+  const [serverRoles, setServerRoles] = useState({ roles: [], channels: [] });
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
-  // Fetch level settings
-  const fetchLevelSettings = async () => {
+  // Fetch level settings with error handling and retries
+  const fetchLevelSettings = async (retryCount = 0) => {
     try {
       setLoading(true);
-      const res = await axios.get('/api/levels/settings', { withCredentials: true });
-      setSettings(res.data.settings);
-      setLevelRoles(res.data.levelRoles);
-      setServerRoles(res.data.serverRoles);
       setError(null);
+      
+      const res = await axios.get('/api/levels/settings', { 
+        withCredentials: true,
+        timeout: 10000 // 10 second timeout
+      });
+      
+      if (res.data && res.data.settings) {
+        console.log('Level settings loaded:', res.data);
+        setSettings(res.data.settings);
+        setLevelRoles(res.data.levelRoles || []);
+        setServerRoles({
+          roles: res.data.serverRoles?.roles || [],
+          channels: res.data.serverRoles?.channels || []
+        });
+      } else {
+        throw new Error('Invalid response format from server');
+      }
     } catch (err) {
       console.error('Error fetching level settings:', err);
-      setError('Failed to load level settings. Please try again later.');
+      
+      // Retry logic (max 3 retries)
+      if (retryCount < 3) {
+        console.log(`Retrying fetch (attempt ${retryCount + 1})...`);
+        setTimeout(() => fetchLevelSettings(retryCount + 1), 1000);
+        return;
+      }
+      
+      setError(err.response?.data?.message || err.message || 'Failed to load level settings');
     } finally {
       setLoading(false);
     }
@@ -67,15 +94,27 @@ const Levels = () => {
     fetchLevelSettings();
   }, []);
 
+  const showSnackbar = (message, severity = 'success') => {
+    setSnackbarMessage(message);
+    setSnackbarSeverity(severity);
+    setSnackbarOpen(true);
+  };
+
   // Start editing settings
   const handleEditSettings = () => {
+    // Ensure settings exist before starting edit
+    if (!settings || !settings.xpSettings) {
+      showSnackbar('Cannot edit settings: data not loaded correctly', 'error');
+      return;
+    }
+    
     setEditedSettings({
       voiceXpPerMinute: settings.xpSettings.voiceXpPerMinute,
       messageXpPerMessage: settings.xpSettings.messageXpPerMessage,
       messageXpCooldown: settings.xpSettings.messageXpCooldown,
-      notificationChannelId: settings.notifications.channelId || '',
-      dmNotifications: settings.notifications.dmUser,
-      channelNotifications: settings.notifications.announceInChannel
+      notificationChannelId: settings.notifications?.channelId || '',
+      dmNotifications: settings.notifications?.dmUser,
+      channelNotifications: settings.notifications?.announceInChannel
     });
     setEditingSettings(true);
   };
@@ -84,14 +123,28 @@ const Levels = () => {
   const handleSaveSettings = async () => {
     try {
       setLoading(true);
-      await axios.put('/api/levels/settings', editedSettings, { withCredentials: true });
-      fetchLevelSettings();
-      setEditingSettings(false);
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 3000);
+      
+      // Validate settings before sending
+      if (editedSettings.voiceXpPerMinute <= 0 || editedSettings.messageXpPerMessage <= 0) {
+        showSnackbar('XP values must be greater than 0', 'error');
+        setLoading(false);
+        return;
+      }
+      
+      const res = await axios.put('/api/levels/settings', editedSettings, { 
+        withCredentials: true 
+      });
+      
+      if (res.data && res.data.success) {
+        await fetchLevelSettings();
+        setEditingSettings(false);
+        showSnackbar('Settings saved successfully');
+      } else {
+        throw new Error(res.data?.message || 'Failed to save settings');
+      }
     } catch (err) {
       console.error('Error saving settings:', err);
-      setError('Failed to save settings. Please try again later.');
+      showSnackbar('Failed to save settings: ' + (err.response?.data?.message || err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -112,6 +165,12 @@ const Levels = () => {
 
   // Open add role dialog
   const handleAddRole = () => {
+    // Ensure server roles are loaded
+    if (!serverRoles.roles || serverRoles.roles.length === 0) {
+      showSnackbar('Server roles not loaded correctly', 'error');
+      return;
+    }
+    
     setNewRole({ level: '', roleId: '', roleName: '' });
     setOpenRoleDialog(true);
   };
@@ -124,23 +183,27 @@ const Levels = () => {
   // Save new role
   const handleSaveRole = async () => {
     if (!newRole.level || !newRole.roleId) {
-      setError('Level and role are required');
+      showSnackbar('Level and role are required', 'error');
       return;
     }
 
     try {
       setLoading(true);
-      await axios.post('/api/levels/roles', {
+      const res = await axios.post('/api/levels/roles', {
         level: newRole.level,
         roleId: newRole.roleId
       }, { withCredentials: true });
-      fetchLevelSettings();
-      setOpenRoleDialog(false);
-      setSaveSuccess(true);
-      setTimeout(() => setSaveSuccess(false), 3000);
+
+      if (res.data && res.data.success) {
+        await fetchLevelSettings();
+        setOpenRoleDialog(false);
+        showSnackbar('Level role added successfully');
+      } else {
+        throw new Error(res.data?.message || 'Failed to add level role');
+      }
     } catch (err) {
       console.error('Error adding level role:', err);
-      setError('Failed to add level role. Please try again later.');
+      showSnackbar('Failed to add level role: ' + (err.response?.data?.message || err.message), 'error');
     } finally {
       setLoading(false);
     }
@@ -151,17 +214,29 @@ const Levels = () => {
     if (window.confirm(`Are you sure you want to remove the role for level ${level}?`)) {
       try {
         setLoading(true);
-        await axios.delete(`/api/levels/roles/${level}`, { withCredentials: true });
-        fetchLevelSettings();
-        setSaveSuccess(true);
-        setTimeout(() => setSaveSuccess(false), 3000);
+        const res = await axios.delete(`/api/levels/roles/${level}`, { 
+          withCredentials: true 
+        });
+
+        if (res.data && res.data.success) {
+          await fetchLevelSettings();
+          showSnackbar('Level role removed successfully');
+        } else {
+          throw new Error(res.data?.message || 'Failed to delete level role');
+        }
       } catch (err) {
         console.error('Error deleting level role:', err);
-        setError('Failed to delete level role. Please try again later.');
+        showSnackbar('Failed to delete level role: ' + (err.response?.data?.message || err.message), 'error');
       } finally {
         setLoading(false);
       }
     }
+  };
+
+  // Manual refresh handler
+  const handleRefresh = () => {
+    fetchLevelSettings();
+    showSnackbar('Refreshing level data...');
   };
 
   if (loading && !settings) {
@@ -174,23 +249,31 @@ const Levels = () => {
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>
-        Level System Settings
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+        <Typography variant="h4" gutterBottom>
+          Level System Settings
+        </Typography>
+        <Tooltip title="Refresh Data">
+          <IconButton onClick={handleRefresh} disabled={loading}>
+            <RefreshIcon />
+          </IconButton>
+        </Tooltip>
+      </Box>
 
       {error && (
         <Alert severity="error" sx={{ mb: 3 }}>
           {error}
+          <Button 
+            size="small" 
+            sx={{ ml: 2 }} 
+            onClick={() => fetchLevelSettings()}
+          >
+            Try Again
+          </Button>
         </Alert>
       )}
 
-      {saveSuccess && (
-        <Alert severity="success" sx={{ mb: 3 }}>
-          Changes saved successfully!
-        </Alert>
-      )}
-
-      {settings && (
+      {settings ? (
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 3, mb: 3 }}>
@@ -201,15 +284,16 @@ const Levels = () => {
                     variant="outlined"
                     startIcon={<EditIcon />}
                     onClick={handleEditSettings}
+                    disabled={loading}
                   >
                     Edit
                   </Button>
                 ) : (
                   <Box>
-                    <IconButton color="primary" onClick={handleSaveSettings}>
+                    <IconButton color="primary" onClick={handleSaveSettings} disabled={loading}>
                       <SaveIcon />
                     </IconButton>
-                    <IconButton color="error" onClick={handleCancelEdit}>
+                    <IconButton color="error" onClick={handleCancelEdit} disabled={loading}>
                       <CancelIcon />
                     </IconButton>
                   </Box>
@@ -258,13 +342,13 @@ const Levels = () => {
                       label="Notification Channel"
                       fullWidth
                       variant="outlined"
-                      value={editedSettings.notificationChannelId}
+                      value={editedSettings.notificationChannelId || ''}
                       onChange={(e) => handleSettingChange('notificationChannelId', e.target.value)}
                     >
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      {(serverRoles.channels || []).map((channel) => (
+                      {serverRoles.channels.map((channel) => (
                         <MenuItem key={channel.id} value={channel.id}>
                           {channel.name}
                         </MenuItem>
@@ -300,21 +384,27 @@ const Levels = () => {
                 </Grid>
               ) : (
                 <Box>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Voice XP:</strong> {settings.xpSettings.voiceXpPerMinute} XP per minute
-                  </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Message XP:</strong> {settings.xpSettings.messageXpPerMessage} XP per message
-                  </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Message Cooldown:</strong> {settings.xpSettings.messageXpCooldown} seconds
-                  </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Base XP for Level 1:</strong> {settings.xpSettings.baseMultiplier} XP
-                  </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>XP Scaling Factor:</strong> {settings.xpSettings.scalingMultiplier}x
-                  </Typography>
+                  {settings.xpSettings ? (
+                    <>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Voice XP:</strong> {settings.xpSettings.voiceXpPerMinute} XP per minute
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Message XP:</strong> {settings.xpSettings.messageXpPerMessage} XP per message
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Message Cooldown:</strong> {settings.xpSettings.messageXpCooldown} seconds
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Base XP for Level 1:</strong> {settings.xpSettings.baseMultiplier} XP
+                      </Typography>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>XP Scaling Factor:</strong> {settings.xpSettings.scalingMultiplier}x
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography color="error">XP settings not loaded correctly</Typography>
+                  )}
                   
                   <Divider sx={{ my: 2 }} />
                   
@@ -322,23 +412,29 @@ const Levels = () => {
                     Notification Settings
                   </Typography>
                   
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Notifications:</strong> {settings.notifications.enabled ? 'Enabled' : 'Disabled'}
-                  </Typography>
-                  
-                  {settings.notifications.channelId && (
-                    <Typography variant="body1" gutterBottom>
-                      <strong>Notification Channel:</strong> {settings.notificationChannelName || settings.notifications.channelId}
-                    </Typography>
+                  {settings.notifications ? (
+                    <>
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Notifications:</strong> {settings.notifications.enabled ? 'Enabled' : 'Disabled'}
+                      </Typography>
+                      
+                      {settings.notifications.channelId && (
+                        <Typography variant="body1" gutterBottom>
+                          <strong>Notification Channel:</strong> {settings.notificationChannelName || settings.notifications.channelId}
+                        </Typography>
+                      )}
+                      
+                      <Typography variant="body1" gutterBottom>
+                        <strong>DM Notifications:</strong> {settings.notifications.dmUser ? 'Enabled' : 'Disabled'}
+                      </Typography>
+                      
+                      <Typography variant="body1" gutterBottom>
+                        <strong>Channel Announcements:</strong> {settings.notifications.announceInChannel ? 'Enabled' : 'Disabled'}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography color="error">Notification settings not loaded correctly</Typography>
                   )}
-                  
-                  <Typography variant="body1" gutterBottom>
-                    <strong>DM Notifications:</strong> {settings.notifications.dmUser ? 'Enabled' : 'Disabled'}
-                  </Typography>
-                  
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Channel Announcements:</strong> {settings.notifications.announceInChannel ? 'Enabled' : 'Disabled'}
-                  </Typography>
                 </Box>
               )}
             </Paper>
@@ -352,6 +448,7 @@ const Levels = () => {
                   variant="outlined"
                   startIcon={<AddIcon />}
                   onClick={handleAddRole}
+                  disabled={loading || !(serverRoles.roles && serverRoles.roles.length > 0)}
                 >
                   Add Role
                 </Button>
@@ -385,6 +482,7 @@ const Levels = () => {
                                 size="small"
                                 color="error"
                                 onClick={() => handleDeleteRole(role.level)}
+                                disabled={loading}
                               >
                                 <DeleteIcon />
                               </IconButton>
@@ -399,6 +497,10 @@ const Levels = () => {
             </Paper>
           </Grid>
         </Grid>
+      ) : (
+        <Alert severity="warning" sx={{ mt: 2 }}>
+          Level system data could not be loaded. Please refresh the page.
+        </Alert>
       )}
 
       {/* Add Role Dialog */}
@@ -431,7 +533,7 @@ const Levels = () => {
                   });
                 }}
               >
-                {(serverRoles.roles || []).map((role) => (
+                {serverRoles.roles.map((role) => (
                   <MenuItem key={role.id} value={role.id}>
                     {role.name}
                   </MenuItem>
@@ -442,11 +544,31 @@ const Levels = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseRoleDialog}>Cancel</Button>
-          <Button onClick={handleSaveRole} variant="contained" color="primary">
+          <Button 
+            onClick={handleSaveRole} 
+            variant="contained" 
+            color="primary" 
+            disabled={loading}
+          >
             Add Role
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <Alert 
+          onClose={() => setSnackbarOpen(false)} 
+          severity={snackbarSeverity}
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

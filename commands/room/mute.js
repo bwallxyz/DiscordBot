@@ -114,7 +114,8 @@ module.exports = {
         userId: targetUser.id,
         roomId: voiceChannel.id,
         appliedBy: interaction.user.id,
-        reason
+        reason,
+        username: targetUser.tag // Add username for better record-keeping
       });
       
       // Apply the mute - both permission overwrites and server mute
