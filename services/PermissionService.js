@@ -17,18 +17,15 @@ class PermissionService {
         ]
       },
       {
-        // Owner permissions
+        // Owner permissions - MODIFIED: Removed DeafenMembers, MoveMembers, and PrioritySpeaker
         id: owner.id,
         allow: [
           PermissionFlagsBits.ViewChannel,
           PermissionFlagsBits.Connect,
           PermissionFlagsBits.Speak,
           PermissionFlagsBits.Stream,
-          PermissionFlagsBits.PrioritySpeaker,
           PermissionFlagsBits.UseEmbeddedActivities,
-          PermissionFlagsBits.MuteMembers,
-          PermissionFlagsBits.DeafenMembers,
-          PermissionFlagsBits.MoveMembers
+          PermissionFlagsBits.MuteMembers // Only kept MuteMembers permission
         ]
       }
     ];
