@@ -33,32 +33,19 @@ module.exports = {
           const room = await Room.findOne({ channelId: oldState.channelId });
           
           if (room) {
-            // IMPORTANT: We no longer automatically clear mute states when leaving
-            // This allows the mute to persist when they rejoin
+            // IMPORTANT: When leaving, we need to:
+            // 1. Reset server mute (but not permission overwrites)
+            // 2. Keep the state in the database for when they rejoin
             
-            // Only unmute them from the voice channel itself (server mute)
+            // Only remove the server mute when leaving the channel
             // but keep the permission overwrite and state tracking
             if (oldState.member.voice.serverMute) {
               try {
+                // This doesn't remove the state from tracking or database
                 await oldState.member.voice.setMute(false, 'Temporary unmute (user left room)');
                 logger.info(`Reset server mute for ${oldState.member.user.tag} after leaving room ${oldState.channel.name}, but kept mute state`);
               } catch (err) {
                 logger.error(`Failed to temporarily unmute user ${oldState.member.user.tag} when leaving room: ${err.message}`);
-              }
-            }
-            
-            // Only handle BAN states when leaving (we want to keep MUTE states)
-            const userStates = await stateTracker.getUserStatesInRoom(
-              oldState.guild.id,
-              oldState.member.id,
-              oldState.channelId
-            );
-            
-            // Process ban states to clean up
-            for (const state of userStates) {
-              if (state.state === 'BANNED') {
-                // We'll keep the ban state for now too
-                logger.info(`Keeping ban state for user ${oldState.member.user.tag} in room ${oldChannel.name}`);
               }
             }
           }
@@ -86,9 +73,10 @@ module.exports = {
           await roomService.handlePotentialRoomCreation(oldState, newState);
         }
         
-        // Check if the user is joining a room they're banned from
-        // Or if they need to be muted based on previous state
+        // This is the important section to fix:
+        // When a user joins a room, check if they should be muted based on room-specific settings
         if (newState.channel) {
+          // Check if this is a user-created room
           const room = await Room.findOne({ channelId: newState.channelId });
           
           if (room) {
@@ -121,7 +109,7 @@ module.exports = {
               return; // Stop processing after handling ban
             }
             
-            // Check for mute state to reapply it
+            // Check for mute state SPECIFICALLY in this room
             const isMuted = await stateTracker.hasUserState({
               guildId: newState.guild.id,
               userId: newState.member.id,
@@ -129,7 +117,12 @@ module.exports = {
               state: 'MUTED'
             });
             
-            if (isMuted) {
+            // New approach: Check if user is in the mutedUsers array for this specific room
+            const isInMutedArray = room.mutedUsers && 
+                                 room.mutedUsers.some(mutedUser => mutedUser.userId === newState.member.id);
+            
+            // If tracked state and room mutedUsers array agree that the user should be muted
+            if (isMuted || isInMutedArray) {
               try {
                 // Apply both permission overwrites and server mute
                 await permissionService.muteUser(newState.channel, newState.member.id);
@@ -139,9 +132,43 @@ module.exports = {
                   await newState.member.voice.setMute(true, 'Reapplying mute state from database');
                 }
                 
-                logger.info(`Reapplied mute to ${newState.member.user.tag} when rejoining room ${newState.channel.name}`);
+                logger.info(`Reapplied mute to ${newState.member.user.tag} when joining room ${newState.channel.name}`);
               } catch (error) {
                 logger.error(`Error reapplying mute to user when joining:`, error);
+              }
+            } else {
+              // If not muted in this room, ensure they are not server muted (fix for persistent mutes)
+              if (newState.member.voice.serverMute) {
+                try {
+                  await newState.member.voice.setMute(false, 'Removing incorrect mute state');
+                  logger.info(`Removed incorrect mute from ${newState.member.user.tag} when joining room ${newState.channel.name}`);
+                } catch (error) {
+                  logger.error(`Error removing incorrect mute state: ${error.message}`);
+                }
+              }
+              
+              // Also clear any Speak permission overwrites if they exist but shouldn't
+              try {
+                const currentOverwrites = newState.channel.permissionOverwrites.cache.get(newState.member.id);
+                if (currentOverwrites && currentOverwrites.deny.has('Speak')) {
+                  await newState.channel.permissionOverwrites.edit(newState.member.id, {
+                    Speak: null
+                  });
+                  logger.info(`Removed incorrect Speak permission overwrite from ${newState.member.user.tag}`);
+                }
+              } catch (overwriteError) {
+                logger.error(`Error removing incorrect permission overwrite: ${overwriteError.message}`);
+              }
+            }
+          } else {
+            // Not a user-created room, ensure no incorrect mutes are applied
+            if (newState.member.voice.serverMute) {
+              try {
+                // This is not a tracked room, so remove any server mutes
+                await newState.member.voice.setMute(false, 'Removing mute in non-tracked room');
+                logger.info(`Removed mute from ${newState.member.user.tag} when joining non-tracked room ${newState.channel.name}`);
+              } catch (error) {
+                logger.error(`Error removing mute in non-tracked room: ${error.message}`);
               }
             }
           }

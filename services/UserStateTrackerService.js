@@ -37,7 +37,7 @@ const userStateSchema = new mongoose.Schema({
 });
 
 // Create compound index for faster lookups
-userStateSchema.index({ guildId: 1, roomId: 1, userId: 1 }, { unique: true });
+userStateSchema.index({ guildId: 1, roomId: 1, userId: 1, state: 1 }, { unique: true });
 
 // Create the model
 const UserState = mongoose.model('UserState', userStateSchema);
@@ -261,6 +261,7 @@ class UserStateTrackerService {
     try {
       const { guildId, userId, roomId, state } = options;
       
+      // First check the UserState collection
       const exists = await UserState.findOne({
         guildId,
         userId,
@@ -268,7 +269,19 @@ class UserStateTrackerService {
         state
       });
       
-      return !!exists;
+      if (exists) return true;
+      
+      // If not found in UserState, also check the Room document as a fallback
+      const room = await Room.findOne({ channelId: roomId });
+      if (!room) return false;
+      
+      if (state === 'MUTED' && room.mutedUsers) {
+        return room.mutedUsers.some(user => user.userId === userId);
+      } else if (state === 'BANNED' && room.bannedUsers) {
+        return room.bannedUsers.some(user => user.userId === userId);
+      }
+      
+      return false;
     } catch (error) {
       logger.error(`Error checking user state:`, error);
       throw error;
@@ -304,13 +317,34 @@ class UserStateTrackerService {
    */
   async getUsersWithStateInRoom(guildId, roomId, state) {
     try {
+      // Get states from the UserState collection
       const states = await UserState.find({
         guildId,
         roomId,
         state
       });
       
-      return states.map(s => s.userId);
+      const userIds = states.map(s => s.userId);
+      
+      // Also check the Room document for additional users with this state
+      const room = await Room.findOne({ channelId: roomId });
+      if (room) {
+        if (state === 'MUTED' && room.mutedUsers) {
+          room.mutedUsers.forEach(user => {
+            if (!userIds.includes(user.userId)) {
+              userIds.push(user.userId);
+            }
+          });
+        } else if (state === 'BANNED' && room.bannedUsers) {
+          room.bannedUsers.forEach(user => {
+            if (!userIds.includes(user.userId)) {
+              userIds.push(user.userId);
+            }
+          });
+        }
+      }
+      
+      return userIds;
     } catch (error) {
       logger.error(`Error getting users with state:`, error);
       throw error;
@@ -384,6 +418,7 @@ class UserStateTrackerService {
   
   /**
    * Synchronize states between UserState collection and Room document
+   * This ensures both data sources have the same information
    * @param {String} guildId - Guild ID
    * @param {String} roomId - Room ID
    * @returns {Promise<Object>} Sync results
@@ -448,4 +483,29 @@ class UserStateTrackerService {
       throw error;
     }
   }
+  
+  /**
+   * Get all rooms where a user has a specific state
+   * @param {String} guildId - Guild ID
+   * @param {String} userId - User ID
+   * @param {String} state - State to check (MUTED or BANNED)
+   * @returns {Promise<Array>} Array of room IDs
+   */
+  async getRoomsWithUserState(guildId, userId, state) {
+    try {
+      // Get states from UserState collection
+      const states = await UserState.find({
+        guildId,
+        userId,
+        state
+      });
+      
+      return states.map(s => s.roomId);
+    } catch (error) {
+      logger.error(`Error getting rooms with user state:`, error);
+      throw error;
+    }
+  }
 }
+
+module.exports = { UserStateTrackerService, UserState };

@@ -617,3 +617,285 @@ Require stack:
 [2025-03-26 12:34:01] [INFO]: Ready! Logged in as dev-bot#6522 
 [2025-03-26 12:34:02] [INFO]: Registered 25 global commands after ready 
 [2025-03-26 12:34:03] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:02:06] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:02:07] [ERROR]: MongoDB connection error: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:07] [ERROR]: Database connection attempt 1/5 failed: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:07] [INFO]: Retrying database connection in 2000ms... 
+[2025-03-28 07:02:09] [ERROR]: MongoDB connection error: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:09] [ERROR]: Database connection attempt 2/5 failed: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:09] [INFO]: Retrying database connection in 4000ms... 
+[2025-03-28 07:02:13] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:02:13] [INFO]: Closing database connection... 
+[2025-03-28 07:02:13] [INFO]: Disconnected from MongoDB 
+[2025-03-28 07:03:02] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:03:03] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 07:03:03] [INFO]: Database connected successfully 
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:03:03] [INFO]: Loaded command: paidcommands 
+[2025-03-28 07:03:03] [INFO]: Loaded command: permanent 
+[2025-03-28 07:03:03] [INFO]: Loaded command: reminders 
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:03:03] [INFO]: Loaded command: setcurrency 
+[2025-03-28 07:03:03] [INFO]: Loaded command: setup 
+[2025-03-28 07:03:03] [INFO]: Loaded command: testreminder 
+[2025-03-28 07:03:03] [INFO]: Loaded command: xpboost 
+[2025-03-28 07:03:03] [INFO]: Loaded command: xpconfig 
+[2025-03-28 07:03:03] [INFO]: Loaded command: balance 
+[2025-03-28 07:03:03] [INFO]: Loaded command: daily 
+[2025-03-28 07:03:03] [INFO]: Loaded command: pay 
+[2025-03-28 07:03:03] [INFO]: Loaded command: level 
+[2025-03-28 07:03:03] [INFO]: Loaded command: levelboard 
+[2025-03-28 07:03:03] [INFO]: Loaded command: rank 
+[2025-03-28 07:03:03] [INFO]: Loaded command: ban 
+[2025-03-28 07:03:03] [INFO]: Loaded command: kick 
+[2025-03-28 07:03:03] [INFO]: Loaded command: limit 
+[2025-03-28 07:03:03] [INFO]: Loaded command: listban 
+[2025-03-28 07:03:03] [INFO]: Loaded command: listmute 
+[2025-03-28 07:03:03] [INFO]: Loaded command: listsubmod 
+[2025-03-28 07:03:03] [INFO]: Loaded command: mute 
+[2025-03-28 07:03:03] [INFO]: Loaded command: rename 
+[2025-03-28 07:03:03] [INFO]: Loaded command: submod 
+[2025-03-28 07:03:03] [INFO]: Loaded command: transfer 
+[2025-03-28 07:03:03] [INFO]: Loaded command: unban 
+[2025-03-28 07:03:03] [INFO]: Loaded command: unmute 
+[2025-03-28 07:03:03] [INFO]: Loaded command: unsubmod 
+[2025-03-28 07:03:03] [INFO]: Loaded command: votemute 
+[2025-03-28 07:03:03] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 07:03:03] [INFO]: Registered event: interactionCreate 
+[2025-03-28 07:03:03] [INFO]: Registered event: messageCreate 
+[2025-03-28 07:03:03] [INFO]: Registered event: ready 
+[2025-03-28 07:03:03] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 07:03:03] [INFO]: Events registered successfully 
+[2025-03-28 07:03:03] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 07:03:03] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 07:03:03] [INFO]: Starting room reminder service 
+[2025-03-28 07:03:03] [INFO]: Stopping room reminder service 
+[2025-03-28 07:03:03] [INFO]: Room reminder service initialized and started 
+[2025-03-28 07:03:03] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 07:03:03] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 07:03:04] [INFO]: Registered 28 global commands after ready 
+[2025-03-28 07:03:13] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 07:03:15] [INFO]: Started tracking user bwall1062 in channel CREATE 
+[2025-03-28 07:03:15] [INFO]: User bwall1062 joined creation channel, creating a room 
+[2025-03-28 07:03:16] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 07:03:16] [INFO]: Successfully created room and moved user bwall1062 
+[2025-03-28 07:05:19] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:06:01] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:06:01] [INFO]: Stopping room reminder service 
+[2025-03-28 07:06:01] [INFO]: Logging out of Discord... 
+[2025-03-28 07:06:01] [INFO]: Closing database connection... 
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: paidcommands 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: permanent 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: reminders 
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: setcurrency 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: setup 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: testreminder 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: xpboost 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: xpconfig 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: balance 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: daily 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: pay 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: level 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: levelboard 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: rank 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: ban 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: kick 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: limit 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: listban 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: listmute 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: listsubmod 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: mute 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: rename 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: submod 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: transfer 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: unban 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: unmute 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: unsubmod 
+[2025-03-28 07:06:06] [INFO]: Loaded command for deployment: votemute 
+[2025-03-28 07:06:06] [INFO]: Started refreshing application (/) commands. 
+[2025-03-28 07:06:06] [INFO]: Successfully reloaded 28 application (/) commands. 
+[2025-03-28 07:06:13] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:06:14] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 07:06:14] [INFO]: Database connected successfully 
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:14] [INFO]: Loaded command: paidcommands 
+[2025-03-28 07:06:14] [INFO]: Loaded command: permanent 
+[2025-03-28 07:06:14] [INFO]: Loaded command: reminders 
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:14] [INFO]: Loaded command: setcurrency 
+[2025-03-28 07:06:14] [INFO]: Loaded command: setup 
+[2025-03-28 07:06:14] [INFO]: Loaded command: testreminder 
+[2025-03-28 07:06:14] [INFO]: Loaded command: xpboost 
+[2025-03-28 07:06:14] [INFO]: Loaded command: xpconfig 
+[2025-03-28 07:06:14] [INFO]: Loaded command: balance 
+[2025-03-28 07:06:14] [INFO]: Loaded command: daily 
+[2025-03-28 07:06:14] [INFO]: Loaded command: pay 
+[2025-03-28 07:06:14] [INFO]: Loaded command: level 
+[2025-03-28 07:06:14] [INFO]: Loaded command: levelboard 
+[2025-03-28 07:06:14] [INFO]: Loaded command: rank 
+[2025-03-28 07:06:14] [INFO]: Loaded command: ban 
+[2025-03-28 07:06:14] [INFO]: Loaded command: kick 
+[2025-03-28 07:06:14] [INFO]: Loaded command: limit 
+[2025-03-28 07:06:14] [INFO]: Loaded command: listban 
+[2025-03-28 07:06:14] [INFO]: Loaded command: listmute 
+[2025-03-28 07:06:14] [INFO]: Loaded command: listsubmod 
+[2025-03-28 07:06:14] [INFO]: Loaded command: mute 
+[2025-03-28 07:06:14] [INFO]: Loaded command: rename 
+[2025-03-28 07:06:14] [INFO]: Loaded command: submod 
+[2025-03-28 07:06:14] [INFO]: Loaded command: transfer 
+[2025-03-28 07:06:14] [INFO]: Loaded command: unban 
+[2025-03-28 07:06:14] [INFO]: Loaded command: unmute 
+[2025-03-28 07:06:14] [INFO]: Loaded command: unsubmod 
+[2025-03-28 07:06:14] [INFO]: Loaded command: votemute 
+[2025-03-28 07:06:14] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 07:06:14] [INFO]: Registered event: interactionCreate 
+[2025-03-28 07:06:14] [INFO]: Registered event: messageCreate 
+[2025-03-28 07:06:14] [INFO]: Registered event: ready 
+[2025-03-28 07:06:14] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 07:06:14] [INFO]: Events registered successfully 
+[2025-03-28 07:06:14] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 07:06:15] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 07:06:15] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 07:06:15] [INFO]: Starting room reminder service 
+[2025-03-28 07:06:15] [INFO]: Stopping room reminder service 
+[2025-03-28 07:06:15] [INFO]: Room reminder service initialized and started 
+[2025-03-28 07:06:15] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 07:06:15] [INFO]: Registered 28 global commands after ready 
+[2025-03-28 07:06:25] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:06:25] [INFO]: Stopping room reminder service 
+[2025-03-28 07:06:25] [INFO]: Logging out of Discord... 
+[2025-03-28 07:06:25] [INFO]: Closing database connection... 
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: paidcommands 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: permanent 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: reminders 
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: setcurrency 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: setup 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: testreminder 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: xpboost 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: xpconfig 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: balance 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: daily 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: pay 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: level 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: levelboard 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: rank 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: ban 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: kick 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: limit 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: listban 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: listmute 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: listsubmod 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: mute 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: rename 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: submod 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: transfer 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: unban 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: unmute 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: unsubmod 
+[2025-03-28 07:06:34] [INFO]: Loaded command for deployment: votemute 
+[2025-03-28 07:06:34] [INFO]: Started refreshing application (/) commands. 

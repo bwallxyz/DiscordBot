@@ -182,3 +182,95 @@ Require stack:
 [2025-03-26 12:34:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
   "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
 }
+[2025-03-28 07:02:07] [ERROR]: MongoDB connection error: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:07] [ERROR]: Database connection attempt 1/5 failed: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:09] [ERROR]: MongoDB connection error: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:02:09] [ERROR]: Database connection attempt 2/5 failed: bad auth : authentication failed {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "bad auth : authentication failed",
+    "code": 8000,
+    "codeName": "AtlasError"
+  },
+  "ok": 0,
+  "code": 8000,
+  "codeName": "AtlasError",
+  "connectionGeneration": 0,
+  "stack": "MongoServerError: bad auth : authentication failed\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async continueScramConversation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:131:15)\n    at async executeScram (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:80:5)\n    at async ScramSHA1.auth (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\auth\\scram.js:39:16)\n    at async performInitialHandshake (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:104:13)\n    at async connect (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connect.js:24:9)"
+}
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:03:03] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:06] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:14] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\givexp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\givexp.js:28:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
+[2025-03-28 07:06:34] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\deploy-commands.js:29:25)"
+}
