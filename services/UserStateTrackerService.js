@@ -44,120 +44,98 @@ const UserState = mongoose.model('UserState', userStateSchema);
 
 class UserStateTrackerService {
   /**
-   * Track when a user is muted in a room
+   * Track when a user is banned from a room - with robust error handling
    * @param {Object} options - State tracking options
-   * @returns {Promise<Object>} Created state entry
-   */
-  async trackMutedUser(options) {
-    try {
-      const { guildId, userId, roomId, appliedBy, reason, username } = options;
-      
-      // Check if user already has a muted state in this room
-      const existingState = await UserState.findOne({
-        guildId,
-        userId,
-        roomId,
-        state: 'MUTED'
-      });
-      
-      if (existingState) {
-        // Update the existing state
-        existingState.appliedBy = appliedBy;
-        existingState.appliedAt = new Date();
-        existingState.reason = reason || 'No reason provided';
-        await existingState.save();
-        
-        // Also update the Room document
-        const room = await Room.findOne({ channelId: roomId });
-        if (room) {
-          // Remove the user from mutedUsers if they're already there
-          room.mutedUsers = room.mutedUsers.filter(user => user.userId !== userId);
-          
-          // Add updated mute info
-          room.mutedUsers.push({
-            userId,
-            username: username || 'Unknown User',
-            reason: reason || 'No reason provided',
-            mutedAt: new Date(),
-            mutedBy: appliedBy
-          });
-          
-          await room.save();
-        }
-        
-        return existingState;
-      }
-      
-      // Create new state entry
-      const state = new UserState({
-        guildId,
-        userId,
-        roomId,
-        state: 'MUTED',
-        appliedBy,
-        reason: reason || 'No reason provided'
-      });
-      
-      await state.save();
-      logger.info(`User ${userId} muted in room ${roomId} by ${appliedBy}`);
-      
-      // Also update the Room document
-      const room = await Room.findOne({ channelId: roomId });
-      if (room) {
-        if (!room.mutedUsers) {
-          room.mutedUsers = [];
-        }
-        
-        // Add to mutedUsers array
-        room.mutedUsers.push({
-          userId,
-          username: username || 'Unknown User',
-          reason: reason || 'No reason provided',
-          mutedAt: new Date(),
-          mutedBy: appliedBy
-        });
-        
-        await room.save();
-      }
-      
-      return state;
-    } catch (error) {
-      logger.error(`Error tracking muted user:`, error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Track when a user is banned from a room
-   * @param {Object} options - State tracking options
-   * @returns {Promise<Object>} Created state entry
+   * @returns {Promise<Object>} Updated or created state entry
    */
   async trackBannedUser(options) {
     try {
       const { guildId, userId, roomId, appliedBy, reason, username } = options;
       
-      // Check if user already has a banned state in this room
-      const existingState = await UserState.findOne({
+      // First try to find an existing state
+      let state = await UserState.findOne({
         guildId,
         userId,
         roomId,
         state: 'BANNED'
       });
       
-      if (existingState) {
-        // Update the existing state
-        existingState.appliedBy = appliedBy;
-        existingState.appliedAt = new Date();
-        existingState.reason = reason || 'No reason provided';
-        await existingState.save();
+      if (state) {
+        // If state exists, just update it
+        state.appliedBy = appliedBy;
+        state.appliedAt = new Date();
+        state.reason = reason || 'No reason provided';
+        await state.save();
         
-        // Also update the Room document
+        logger.info(`Updated ban state for user ${userId} in room ${roomId}`);
+      } else {
+        try {
+          // Try to create a new state
+          state = new UserState({
+            guildId,
+            userId,
+            roomId,
+            state: 'BANNED',
+            appliedBy,
+            appliedAt: new Date(),
+            reason: reason || 'No reason provided'
+          });
+          
+          await state.save();
+          logger.info(`Created new ban state for user ${userId} in room ${roomId}`);
+        } catch (insertError) {
+          // If we get a duplicate key error, try a different approach
+          if (insertError.code === 11000) {
+            logger.warn(`Duplicate key detected when banning user ${userId} in room ${roomId}, trying updateOne instead`);
+            
+            // Use updateOne with a filter instead of findOneAndUpdate
+            await UserState.updateOne(
+              {
+                guildId,
+                userId,
+                roomId,
+                state: 'BANNED'
+              },
+              {
+                appliedBy,
+                appliedAt: new Date(),
+                reason: reason || 'No reason provided'
+              }
+            );
+            
+            // Fetch the updated document
+            state = await UserState.findOne({
+              guildId,
+              userId,
+              roomId,
+              state: 'BANNED'
+            });
+            
+            if (!state) {
+              logger.error(`Failed to find or create ban state for user ${userId} in room ${roomId} after updateOne`);
+              // Continue anyway to update the Room document
+            } else {
+              logger.info(`Successfully updated ban state for user ${userId} in room ${roomId} using updateOne`);
+            }
+          } else {
+            // If it's not a duplicate key error, rethrow
+            throw insertError;
+          }
+        }
+      }
+      
+      // Update the Room document regardless of whether the UserState operation succeeded
+      try {
         const room = await Room.findOne({ channelId: roomId });
         if (room) {
+          if (!room.bannedUsers) {
+            room.bannedUsers = [];
+          }
+          
           // Remove the user from bannedUsers if they're already there
           room.bannedUsers = room.bannedUsers.filter(user => user.userId !== userId);
           
-          // Add updated ban info
+          // Add to bannedUsers array
           room.bannedUsers.push({
             userId,
             username: username || 'Unknown User',
@@ -167,47 +145,151 @@ class UserStateTrackerService {
           });
           
           await room.save();
+          logger.info(`Updated room document with ban for user ${userId} in room ${roomId}`);
         }
-        
-        return existingState;
-      }
-      
-      // Create new state entry
-      const state = new UserState({
-        guildId,
-        userId,
-        roomId,
-        state: 'BANNED',
-        appliedBy,
-        reason: reason || 'No reason provided'
-      });
-      
-      await state.save();
-      logger.info(`User ${userId} banned from room ${roomId} by ${appliedBy}`);
-      
-      // Also update the Room document
-      const room = await Room.findOne({ channelId: roomId });
-      if (room) {
-        if (!room.bannedUsers) {
-          room.bannedUsers = [];
-        }
-        
-        // Add to bannedUsers array
-        room.bannedUsers.push({
-          userId,
-          username: username || 'Unknown User',
-          reason: reason || 'No reason provided',
-          bannedAt: new Date(),
-          bannedBy: appliedBy
-        });
-        
-        await room.save();
+      } catch (roomError) {
+        logger.error(`Error updating room document: ${roomError.message}`);
+        // Continue anyway, as the UserState is more important
       }
       
       return state;
     } catch (error) {
       logger.error(`Error tracking banned user:`, error);
-      throw error;
+      // Return a dummy state object so calling code can continue
+      return {
+        guildId,
+        userId,
+        roomId,
+        state: 'BANNED',
+        appliedBy,
+        reason: reason || 'No reason provided',
+        _errorOccurred: true
+      };
+    }
+  }
+  
+  /**
+   * Track when a user is muted in a room - with robust error handling
+   * @param {Object} options - State tracking options
+   * @returns {Promise<Object>} Updated or created state entry
+   */
+  async trackMutedUser(options) {
+    try {
+      const { guildId, userId, roomId, appliedBy, reason, username } = options;
+      
+      // First try to find an existing state
+      let state = await UserState.findOne({
+        guildId,
+        userId,
+        roomId,
+        state: 'MUTED'
+      });
+      
+      if (state) {
+        // If state exists, just update it
+        state.appliedBy = appliedBy;
+        state.appliedAt = new Date();
+        state.reason = reason || 'No reason provided';
+        await state.save();
+        
+        logger.info(`Updated mute state for user ${userId} in room ${roomId}`);
+      } else {
+        try {
+          // Try to create a new state
+          state = new UserState({
+            guildId,
+            userId,
+            roomId,
+            state: 'MUTED',
+            appliedBy,
+            appliedAt: new Date(),
+            reason: reason || 'No reason provided'
+          });
+          
+          await state.save();
+          logger.info(`Created new mute state for user ${userId} in room ${roomId}`);
+        } catch (insertError) {
+          // If we get a duplicate key error, try a different approach
+          if (insertError.code === 11000) {
+            logger.warn(`Duplicate key detected when muting user ${userId} in room ${roomId}, trying updateOne instead`);
+            
+            // Use updateOne with a filter instead of findOneAndUpdate
+            await UserState.updateOne(
+              {
+                guildId,
+                userId,
+                roomId,
+                state: 'MUTED'
+              },
+              {
+                appliedBy,
+                appliedAt: new Date(),
+                reason: reason || 'No reason provided'
+              }
+            );
+            
+            // Fetch the updated document
+            state = await UserState.findOne({
+              guildId,
+              userId,
+              roomId,
+              state: 'MUTED'
+            });
+            
+            if (!state) {
+              logger.error(`Failed to find or create mute state for user ${userId} in room ${roomId} after updateOne`);
+              // Continue anyway to update the Room document
+            } else {
+              logger.info(`Successfully updated mute state for user ${userId} in room ${roomId} using updateOne`);
+            }
+          } else {
+            // If it's not a duplicate key error, rethrow
+            throw insertError;
+          }
+        }
+      }
+      
+      // Update the Room document regardless of whether the UserState operation succeeded
+      try {
+        const room = await Room.findOne({ channelId: roomId });
+        if (room) {
+          if (!room.mutedUsers) {
+            room.mutedUsers = [];
+          }
+          
+          // Remove the user from mutedUsers if they're already there
+          room.mutedUsers = room.mutedUsers.filter(user => user.userId !== userId);
+          
+          // Add to mutedUsers array
+          room.mutedUsers.push({
+            userId,
+            username: username || 'Unknown User',
+            reason: reason || 'No reason provided',
+            mutedAt: new Date(),
+            mutedBy: appliedBy
+          });
+          
+          await room.save();
+          logger.info(`Updated room document with mute for user ${userId} in room ${roomId}`);
+        }
+      } catch (roomError) {
+        logger.error(`Error updating room document: ${roomError.message}`);
+        // Continue anyway, as the UserState is more important
+      }
+      
+      return state;
+    } catch (error) {
+      logger.error(`Error tracking muted user:`, error);
+      // Return a dummy state object so calling code can continue
+      return {
+        guildId,
+        userId,
+        roomId,
+        state: 'MUTED',
+        appliedBy,
+        reason: reason || 'No reason provided',
+        _errorOccurred: true
+      };
     }
   }
   
@@ -412,74 +494,6 @@ class UserStateTrackerService {
       };
     } catch (error) {
       logger.error(`Error getting room moderation stats:`, error);
-      throw error;
-    }
-  }
-  
-  /**
-   * Synchronize states between UserState collection and Room document
-   * This ensures both data sources have the same information
-   * @param {String} guildId - Guild ID
-   * @param {String} roomId - Room ID
-   * @returns {Promise<Object>} Sync results
-   */
-  async syncRoomStates(guildId, roomId) {
-    try {
-      // Get the room
-      const room = await Room.findOne({ channelId: roomId });
-      if (!room) {
-        throw new Error(`Room not found: ${roomId}`);
-      }
-      
-      // Get all states from UserState collection
-      const mutedStates = await UserState.find({
-        guildId,
-        roomId,
-        state: 'MUTED'
-      });
-      
-      const bannedStates = await UserState.find({
-        guildId,
-        roomId,
-        state: 'BANNED'
-      });
-      
-      // Reset room arrays
-      room.mutedUsers = [];
-      room.bannedUsers = [];
-      
-      // Sync muted users
-      for (const state of mutedStates) {
-        room.mutedUsers.push({
-          userId: state.userId,
-          username: 'Unknown User', // We don't have this info in UserState
-          reason: state.reason,
-          mutedAt: state.appliedAt,
-          mutedBy: state.appliedBy
-        });
-      }
-      
-      // Sync banned users
-      for (const state of bannedStates) {
-        room.bannedUsers.push({
-          userId: state.userId,
-          username: 'Unknown User', // We don't have this info in UserState
-          reason: state.reason,
-          bannedAt: state.appliedAt,
-          bannedBy: state.appliedBy
-        });
-      }
-      
-      // Save the room
-      await room.save();
-      
-      return {
-        success: true,
-        mutedCount: mutedStates.length,
-        bannedCount: bannedStates.length
-      };
-    } catch (error) {
-      logger.error(`Error syncing room states:`, error);
       throw error;
     }
   }

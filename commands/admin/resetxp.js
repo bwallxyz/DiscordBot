@@ -1,5 +1,5 @@
 // commands/admin/resetxp.js
-const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionFlagBits } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionsBitField } = require('discord.js');
 const logger = require('../../utils/logger');
 const { UserLevel } = require('../../database/schemas/userLevel');
 
@@ -28,13 +28,13 @@ module.exports = {
             .setRequired(true)
         )
     )
-    .setDefaultMemberPermissions(PermissionFlagBits.Administrator),
+    .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
   
   // Command execution
   async execute(client, interaction) {
     try {
       // Check if user has admin permissions
-      if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+      if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
         return interaction.reply({ 
           content: 'You need Administrator permissions to use this command.',
           ephemeral: true 

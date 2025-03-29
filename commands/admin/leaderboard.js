@@ -1,5 +1,5 @@
 // commands/currency/leaderboard.js
-const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Colors, PermissionsBitField } = require('discord.js');
 const logger = require('../../utils/logger');
 const CurrencyService = require('../../services/CurrencyService');
 
@@ -8,7 +8,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName('richest')
     .setDescription('Show the richest users in the server')
-    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+    .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
     
   // Command execution
   async execute(client, interaction) {

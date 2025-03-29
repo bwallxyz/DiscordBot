@@ -997,3 +997,1122 @@ Require stack:
 [2025-03-28 07:16:10] [INFO]: Stopping room reminder service 
 [2025-03-28 07:16:10] [INFO]: Logging out of Discord... 
 [2025-03-28 07:16:10] [INFO]: Closing database connection... 
+[2025-03-28 07:16:20] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:16:21] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 07:16:21] [INFO]: Database connected successfully 
+[2025-03-28 07:16:21] [INFO]: Loaded command: givexp 
+[2025-03-28 07:16:21] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:16:21] [INFO]: Loaded command: paidcommands 
+[2025-03-28 07:16:21] [INFO]: Loaded command: permanent 
+[2025-03-28 07:16:21] [INFO]: Loaded command: reminders 
+[2025-03-28 07:16:21] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:16:21] [INFO]: Loaded command: setcurrency 
+[2025-03-28 07:16:21] [INFO]: Loaded command: setup 
+[2025-03-28 07:16:21] [INFO]: Loaded command: setxp 
+[2025-03-28 07:16:21] [INFO]: Loaded command: testreminder 
+[2025-03-28 07:16:21] [INFO]: Loaded command: xpboost 
+[2025-03-28 07:16:21] [INFO]: Loaded command: xpconfig 
+[2025-03-28 07:16:21] [INFO]: Loaded command: balance 
+[2025-03-28 07:16:21] [INFO]: Loaded command: daily 
+[2025-03-28 07:16:21] [INFO]: Loaded command: pay 
+[2025-03-28 07:16:21] [INFO]: Loaded command: level 
+[2025-03-28 07:16:21] [INFO]: Loaded command: levelboard 
+[2025-03-28 07:16:21] [INFO]: Loaded command: rank 
+[2025-03-28 07:16:21] [INFO]: Loaded command: ban 
+[2025-03-28 07:16:21] [INFO]: Loaded command: kick 
+[2025-03-28 07:16:21] [INFO]: Loaded command: limit 
+[2025-03-28 07:16:21] [INFO]: Loaded command: listban 
+[2025-03-28 07:16:21] [INFO]: Loaded command: listmute 
+[2025-03-28 07:16:21] [INFO]: Loaded command: listsubmod 
+[2025-03-28 07:16:21] [INFO]: Loaded command: mute 
+[2025-03-28 07:16:21] [INFO]: Loaded command: rename 
+[2025-03-28 07:16:21] [INFO]: Loaded command: submod 
+[2025-03-28 07:16:21] [INFO]: Loaded command: transfer 
+[2025-03-28 07:16:21] [INFO]: Loaded command: unban 
+[2025-03-28 07:16:21] [INFO]: Loaded command: unmute 
+[2025-03-28 07:16:21] [INFO]: Loaded command: unsubmod 
+[2025-03-28 07:16:21] [INFO]: Loaded command: votemute 
+[2025-03-28 07:16:21] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 07:16:21] [INFO]: Registered event: interactionCreate 
+[2025-03-28 07:16:21] [INFO]: Registered event: messageCreate 
+[2025-03-28 07:16:21] [INFO]: Registered event: ready 
+[2025-03-28 07:16:21] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 07:16:21] [INFO]: Events registered successfully 
+[2025-03-28 07:16:21] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 07:16:22] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 07:16:22] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 07:16:22] [INFO]: Starting room reminder service 
+[2025-03-28 07:16:22] [INFO]: Stopping room reminder service 
+[2025-03-28 07:16:22] [INFO]: Room reminder service initialized and started 
+[2025-03-28 07:16:22] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 07:16:22] [INFO]: Registered 30 global commands after ready 
+[2025-03-28 07:16:42] [INFO]: Awarded highest level role big brain to bwall1062 for level 32 
+[2025-03-28 07:16:43] [INFO]: User bwall1062 gave 5000 XP to bwall1062 
+[2025-03-28 07:17:06] [INFO]: User bwall1062 removed role award for level 28 
+[2025-03-28 07:17:15] [INFO]: User bwall1062 set role wizard to be awarded at level 28 
+[2025-03-28 07:17:29] [INFO]: User bwall1062 checked their own balance and level 
+[2025-03-28 07:17:54] [INFO]: User bwall1062 set role brainiac to be awarded at level 32 
+[2025-03-28 07:18:15] [INFO]: Removed lower level role big brain from bwall1062 because they now qualify for a higher level role 
+[2025-03-28 07:18:15] [INFO]: Awarded highest level role brainiac to bwall1062 for level 34 
+[2025-03-28 07:18:15] [INFO]: User bwall1062 gave 4000 XP to bwall1062 
+[2025-03-28 07:19:14] [INFO]: Awarded highest level role brainiac to bwall1063 for level 942 
+[2025-03-28 07:19:14] [INFO]: User bwall1062 gave 423423423 XP to bwall1063 
+[2025-03-28 07:21:09] [INFO]: Test votemuteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-28 07:21:15] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-28 07:21:17] [INFO]: Test inviteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-28 07:21:20] [INFO]: Test votemuteReminder reminder sent to room bwall's Room (1354000864851005480) by bwall1062 
+[2025-03-28 07:29:30] [INFO]: Started tracking user bwall1063 in channel CREATE 
+[2025-03-28 07:29:30] [INFO]: Reset server mute for bwall1063 after leaving room bwall's Room, but kept mute state 
+[2025-03-28 07:29:30] [INFO]: User bwall1063 joined creation channel, creating a room 
+[2025-03-28 07:29:30] [INFO]: User bwall1063 joined creation channel, creating a room 
+[2025-03-28 07:29:31] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:29:31] [INFO]: Created room bwall's Room for bwall1063 
+[2025-03-28 07:29:31] [INFO]: Successfully created room and moved user bwall1063 
+[2025-03-28 07:29:32] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:29:32] [INFO]: Created room bwall's Room for bwall1063 
+[2025-03-28 07:29:32] [INFO]: Successfully created room and moved user bwall1063 
+[2025-03-28 07:29:32] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:29:35] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 07:29:36] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:29:43] [INFO]: User 1303511083809636423 muted in room 1355187053381423177 by 1333017107444797450 
+[2025-03-28 07:29:43] [INFO]: Applied permission-based mute to 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:44] [INFO]: Applied server mute to 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:44] [INFO]: Applied permission-based mute to 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:44] [INFO]: Reapplied mute to bwall1062 when joining room bwall's Room 
+[2025-03-28 07:29:44] [INFO]: User bwall1062 muted in room bwall's Room by bwall1063 with persistence 
+[2025-03-28 07:29:51] [INFO]: Removed permission-based mute from 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:51] [INFO]: Removed server mute from 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:51] [INFO]: Removed MUTED state for user 1303511083809636423 in room 1355187053381423177 
+[2025-03-28 07:29:52] [INFO]: User bwall1062 unmuted in room bwall's Room by bwall1063 
+[2025-03-28 07:29:52] [INFO]: Applied permission-based mute to 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:52] [INFO]: Applied server mute to 1303511083809636423 in bwall's Room 
+[2025-03-28 07:29:52] [INFO]: Reapplied mute to bwall1062 when joining room bwall's Room 
+[2025-03-28 07:29:52] [INFO]: Removed incorrect mute from bwall1062 when joining room bwall's Room 
+[2025-03-28 07:29:52] [INFO]: Removed incorrect Speak permission overwrite from bwall1062 
+[2025-03-28 07:29:55] [INFO]: Removed incorrect mute from bwall1062 when joining room bwall's Room 
+[2025-03-28 07:30:01] [INFO]: Removed incorrect mute from bwall1062 when joining room bwall's Room 
+[2025-03-28 07:30:05] [INFO]: Removed incorrect mute from bwall1063 when joining room bwall's Room 
+[2025-03-28 07:30:55] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:31:03] [INFO]: Removed incorrect mute from bwall4157 when joining room bwall's Room 
+[2025-03-28 07:35:07] [INFO]: Started tracking user bwall4157 in channel CREATE 
+[2025-03-28 07:35:07] [INFO]: User bwall4157 joined creation channel, creating a room 
+[2025-03-28 07:35:08] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:35:08] [INFO]: Created room bwall's Room for bwall4157 
+[2025-03-28 07:35:08] [INFO]: Successfully created room and moved user bwall4157 
+[2025-03-28 07:35:16] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:35:17] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:35:46] [INFO]: User 1333017107444797450 muted in room 1355188464546480261 by 297845894424952832 
+[2025-03-28 07:35:46] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:35:47] [INFO]: Applied server mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:35:47] [INFO]: User bwall1063 muted in room bwall's Room by bwall4157 with persistence 
+[2025-03-28 07:35:47] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:35:47] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:36:23] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:36:24] [INFO]: Reset server mute for bwall1063 after leaving room bwall's Room, but kept mute state 
+[2025-03-28 07:36:38] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:37:14] [INFO]: Started tracking user bwall1063 in channel CREATE 
+[2025-03-28 07:37:14] [INFO]: User bwall1063 joined creation channel, creating a room 
+[2025-03-28 07:37:15] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:37:15] [INFO]: Created room bwall's Room for bwall1063 
+[2025-03-28 07:37:15] [INFO]: Successfully created room and moved user bwall1063 
+[2025-03-28 07:37:31] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:37:32] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:37:32] [INFO]: Applied server mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:37:32] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:37:33] [INFO]: Applied permission-based mute to 1333017107444797450 in bwall's Room 
+[2025-03-28 07:37:33] [INFO]: Reapplied mute to bwall1063 when joining room bwall's Room 
+[2025-03-28 07:37:33] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:37:40] [INFO]: Started tracking user bwall4157 in channel CREATE 
+[2025-03-28 07:37:40] [INFO]: User bwall4157 joined creation channel, creating a room 
+[2025-03-28 07:37:40] [INFO]: Successfully created room and moved user bwall4157 
+[2025-03-28 07:37:40] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:37:47] [INFO]: Started tracking user bwall1063 in channel CREATE 
+[2025-03-28 07:37:47] [INFO]: Reset server mute for bwall1063 after leaving room bwall's Room, but kept mute state 
+[2025-03-28 07:37:47] [INFO]: User bwall1063 joined creation channel, creating a room 
+[2025-03-28 07:37:47] [INFO]: User bwall1063 joined creation channel, creating a room 
+[2025-03-28 07:37:48] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:37:48] [INFO]: Created room bwall's Room for bwall1063 
+[2025-03-28 07:37:48] [INFO]: Successfully created room and moved user bwall1063 
+[2025-03-28 07:37:48] [INFO]: Started tracking user bwall1063 in channel bwall's Room 
+[2025-03-28 07:37:48] [INFO]: Created room bwall's Room for bwall1063 
+[2025-03-28 07:37:48] [INFO]: Successfully created room and moved user bwall1063 
+[2025-03-28 07:37:49] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:37:51] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:37:52] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 07:38:24] [INFO]: User 297845894424952832 muted in room 1355189135886909460 by 1333017107444797450 
+[2025-03-28 07:38:24] [INFO]: Applied permission-based mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:25] [INFO]: Applied server mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:25] [INFO]: User bwall4157 muted in room bwall's Room by bwall1063 with persistence 
+[2025-03-28 07:38:25] [INFO]: Applied permission-based mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:25] [INFO]: Reapplied mute to bwall4157 when joining room bwall's Room 
+[2025-03-28 07:38:40] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:38:40] [INFO]: Reset server mute for bwall4157 after leaving room bwall's Room, but kept mute state 
+[2025-03-28 07:38:46] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:38:48] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 07:38:48] [INFO]: Applied permission-based mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:49] [INFO]: Applied server mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:49] [INFO]: Reapplied mute to bwall4157 when joining room bwall's Room 
+[2025-03-28 07:38:49] [INFO]: Applied permission-based mute to 297845894424952832 in bwall's Room 
+[2025-03-28 07:38:49] [INFO]: Reapplied mute to bwall4157 when joining room bwall's Room 
+[2025-03-28 07:40:01] [INFO]: Banned 297845894424952832 from bwall's Room 
+[2025-03-28 07:40:01] [ERROR]: Failed to temporarily unmute user bwall4157 when leaving room: Target user is not connected to voice. 
+[2025-03-28 07:40:01] [ERROR]: Error tracking banned user: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "stack": "MongoServerError: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at InsertOneOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\insert.js:51:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.insertOne (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:157:16)"
+}
+[2025-03-28 07:40:01] [ERROR]: Error executing ban command: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "stack": "MongoServerError: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at InsertOneOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\insert.js:51:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.insertOne (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:157:16)"
+}
+[2025-03-28 07:57:34] [INFO]: Shutting down gracefully... 
+[2025-03-28 07:57:34] [INFO]: Stopping room reminder service 
+[2025-03-28 07:57:34] [INFO]: Logging out of Discord... 
+[2025-03-28 07:57:34] [INFO]: Closing database connection... 
+[2025-03-28 07:57:40] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 07:57:41] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 07:57:41] [INFO]: Database connected successfully 
+[2025-03-28 07:57:41] [INFO]: Loaded command: givexp 
+[2025-03-28 07:57:41] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:57:41] [INFO]: Loaded command: paidcommands 
+[2025-03-28 07:57:41] [INFO]: Loaded command: permanent 
+[2025-03-28 07:57:41] [INFO]: Loaded command: reminders 
+[2025-03-28 07:57:41] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:57:41] [INFO]: Loaded command: setcurrency 
+[2025-03-28 07:57:41] [INFO]: Loaded command: setup 
+[2025-03-28 07:57:41] [INFO]: Loaded command: setxp 
+[2025-03-28 07:57:41] [INFO]: Loaded command: testreminder 
+[2025-03-28 07:57:41] [INFO]: Loaded command: xpboost 
+[2025-03-28 07:57:41] [INFO]: Loaded command: xpconfig 
+[2025-03-28 07:57:41] [INFO]: Loaded command: balance 
+[2025-03-28 07:57:41] [INFO]: Loaded command: daily 
+[2025-03-28 07:57:41] [INFO]: Loaded command: pay 
+[2025-03-28 07:57:41] [INFO]: Loaded command: level 
+[2025-03-28 07:57:41] [INFO]: Loaded command: levelboard 
+[2025-03-28 07:57:41] [INFO]: Loaded command: rank 
+[2025-03-28 07:57:41] [INFO]: Loaded command: ban 
+[2025-03-28 07:57:41] [INFO]: Loaded command: kick 
+[2025-03-28 07:57:41] [INFO]: Loaded command: limit 
+[2025-03-28 07:57:41] [INFO]: Loaded command: listban 
+[2025-03-28 07:57:41] [INFO]: Loaded command: listmute 
+[2025-03-28 07:57:41] [INFO]: Loaded command: listsubmod 
+[2025-03-28 07:57:41] [INFO]: Loaded command: mute 
+[2025-03-28 07:57:41] [INFO]: Loaded command: rename 
+[2025-03-28 07:57:41] [INFO]: Loaded command: submod 
+[2025-03-28 07:57:41] [INFO]: Loaded command: transfer 
+[2025-03-28 07:57:41] [INFO]: Loaded command: unban 
+[2025-03-28 07:57:41] [INFO]: Loaded command: unmute 
+[2025-03-28 07:57:41] [INFO]: Loaded command: unsubmod 
+[2025-03-28 07:57:41] [INFO]: Loaded command: votemute 
+[2025-03-28 07:57:41] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 07:57:41] [INFO]: Registered event: interactionCreate 
+[2025-03-28 07:57:41] [INFO]: Registered event: messageCreate 
+[2025-03-28 07:57:41] [INFO]: Registered event: ready 
+[2025-03-28 07:57:41] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 07:57:41] [INFO]: Events registered successfully 
+[2025-03-28 07:57:41] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 07:57:41] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 07:57:41] [INFO]: Starting room reminder service 
+[2025-03-28 07:57:41] [INFO]: Stopping room reminder service 
+[2025-03-28 07:57:41] [INFO]: Room reminder service initialized and started 
+[2025-03-28 07:57:41] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 07:57:41] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 07:57:42] [INFO]: Registered 30 global commands after ready 
+[2025-03-28 08:10:20] [INFO]: Shutting down gracefully... 
+[2025-03-28 08:10:20] [INFO]: Stopping room reminder service 
+[2025-03-28 08:10:20] [INFO]: Logging out of Discord... 
+[2025-03-28 08:10:20] [INFO]: Closing database connection... 
+[2025-03-28 08:10:23] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 08:10:24] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 08:10:24] [INFO]: Database connected successfully 
+[2025-03-28 08:10:24] [INFO]: Loaded command: givexp 
+[2025-03-28 08:10:24] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:10:24] [INFO]: Loaded command: paidcommands 
+[2025-03-28 08:10:24] [INFO]: Loaded command: permanent 
+[2025-03-28 08:10:24] [INFO]: Loaded command: reminders 
+[2025-03-28 08:10:24] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:10:24] [INFO]: Loaded command: setcurrency 
+[2025-03-28 08:10:24] [INFO]: Loaded command: setup 
+[2025-03-28 08:10:24] [INFO]: Loaded command: setxp 
+[2025-03-28 08:10:24] [INFO]: Loaded command: syncroom 
+[2025-03-28 08:10:24] [INFO]: Loaded command: testreminder 
+[2025-03-28 08:10:24] [INFO]: Loaded command: xpboost 
+[2025-03-28 08:10:24] [INFO]: Loaded command: xpconfig 
+[2025-03-28 08:10:24] [INFO]: Loaded command: balance 
+[2025-03-28 08:10:24] [INFO]: Loaded command: daily 
+[2025-03-28 08:10:24] [INFO]: Loaded command: pay 
+[2025-03-28 08:10:24] [INFO]: Loaded command: level 
+[2025-03-28 08:10:24] [INFO]: Loaded command: levelboard 
+[2025-03-28 08:10:24] [INFO]: Loaded command: rank 
+[2025-03-28 08:10:24] [INFO]: Loaded command: ban 
+[2025-03-28 08:10:24] [INFO]: Loaded command: kick 
+[2025-03-28 08:10:24] [INFO]: Loaded command: limit 
+[2025-03-28 08:10:24] [INFO]: Loaded command: listban 
+[2025-03-28 08:10:24] [INFO]: Loaded command: listmute 
+[2025-03-28 08:10:24] [INFO]: Loaded command: listsubmod 
+[2025-03-28 08:10:24] [INFO]: Loaded command: mute 
+[2025-03-28 08:10:24] [INFO]: Loaded command: rename 
+[2025-03-28 08:10:24] [INFO]: Loaded command: submod 
+[2025-03-28 08:10:24] [INFO]: Loaded command: transfer 
+[2025-03-28 08:10:24] [INFO]: Loaded command: unban 
+[2025-03-28 08:10:24] [INFO]: Loaded command: unmute 
+[2025-03-28 08:10:24] [INFO]: Loaded command: unsubmod 
+[2025-03-28 08:10:24] [INFO]: Loaded command: votemute 
+[2025-03-28 08:10:24] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 08:10:24] [INFO]: Registered event: interactionCreate 
+[2025-03-28 08:10:24] [INFO]: Registered event: messageCreate 
+[2025-03-28 08:10:24] [INFO]: Registered event: ready 
+[2025-03-28 08:10:24] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 08:10:24] [INFO]: Events registered successfully 
+[2025-03-28 08:10:24] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 08:10:25] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 08:10:25] [INFO]: Starting room reminder service 
+[2025-03-28 08:10:25] [INFO]: Stopping room reminder service 
+[2025-03-28 08:10:25] [INFO]: Room reminder service initialized and started 
+[2025-03-28 08:10:25] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 08:10:25] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 08:10:25] [INFO]: Registered 31 global commands after ready 
+[2025-03-28 08:10:39] [INFO]: Started tracking user bwall4157 in channel CREATE 
+[2025-03-28 08:10:39] [INFO]: User bwall4157 joined creation channel, creating a room 
+[2025-03-28 08:10:40] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 08:10:40] [INFO]: Created room bwall's Room for bwall4157 
+[2025-03-28 08:10:40] [INFO]: Successfully created room and moved user bwall4157 
+[2025-03-28 08:10:40] [INFO]: Removed incorrect mute from bwall4157 when joining room bwall's Room 
+[2025-03-28 08:11:00] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 08:11:16] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:11:16] [INFO]: User bwall1062 synchronized all permissions in room bwall's Room 
+[2025-03-28 08:11:29] [INFO]: Started tracking user bwall1062 in channel bwall's Room 
+[2025-03-28 08:12:35] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 08:18:24] [INFO]: User 297845894424952832 muted in room 1355189135886909460 by 1303511083809636423 
+[2025-03-28 08:18:24] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:18:24] [INFO]: User bwall1062 synchronized all permissions in room bwall's Room 
+[2025-03-28 08:18:54] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 08:20:00] [INFO]: Applied permission-based mute to 297845894424952832 in bwall's Room 
+[2025-03-28 08:20:00] [INFO]: User 297845894424952832 not currently in channel, only applied permission mute 
+[2025-03-28 08:20:00] [INFO]: User 297845894424952832 muted in room 1355189135886909460 by 1303511083809636423 
+[2025-03-28 08:20:00] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:20:00] [INFO]: User bwall1062 synchronized all permissions in room bwall's Room 
+[2025-03-28 08:20:25] [INFO]: User bwall4157 (297845894424952832) leveled up to 1 in guild 1352484741995171891 
+[2025-03-28 08:20:56] [INFO]: Started tracking user bwall4157 in channel CREATE 
+[2025-03-28 08:20:56] [INFO]: User bwall4157 joined creation channel, creating a room 
+[2025-03-28 08:20:58] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 08:20:58] [INFO]: Created room bwall's Room for bwall4157 
+[2025-03-28 08:20:58] [INFO]: Successfully created room and moved user bwall4157 
+[2025-03-28 08:21:12] [INFO]: Removed incorrect mute from bwall4157 when joining room bwall's Room 
+[2025-03-28 08:22:01] [INFO]: Banned 1333017107444797450 from bwall's Room 
+[2025-03-28 08:22:01] [INFO]: User 1333017107444797450 banned in room 1355199995896135912 by 297845894424952832 
+[2025-03-28 08:22:02] [INFO]: User bwall1063 banned from room bwall's Room by bwall4157 
+[2025-03-28 08:22:46] [INFO]: Banned 297845894424952832 from bwall's Room 
+[2025-03-28 08:22:46] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881188162830352"
+      },
+      "signature": {
+        "hash": "r4vjCz227MznX0ZMHkFKfl0UQPc=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881188162830352"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881188162830352"
+    },
+    "signature": {
+      "hash": "r4vjCz227MznX0ZMHkFKfl0UQPc=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881188162830352"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:22:46] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:22:46] [INFO]: User bwall4157 banned from room bwall's Room by bwall1063 
+[2025-03-28 08:23:15] [INFO]: Banned 297845894424952832 from bwall's Room 
+[2025-03-28 08:23:15] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881312716881953"
+      },
+      "signature": {
+        "hash": "2itmcacTVfgBOnWUki1PjyzZDUs=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881312716881953"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881312716881953"
+    },
+    "signature": {
+      "hash": "2itmcacTVfgBOnWUki1PjyzZDUs=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881312716881953"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:23:15] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:23:15] [INFO]: User bwall4157 banned from room bwall's Room by bwall1063 
+[2025-03-28 08:23:25] [INFO]: Banned 297845894424952832 from bwall's Room 
+[2025-03-28 08:23:25] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881355666554914"
+      },
+      "signature": {
+        "hash": "CQUTe63290p0VTW5+EULspCyQ0E=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881355666554914"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881355666554914"
+    },
+    "signature": {
+      "hash": "CQUTe63290p0VTW5+EULspCyQ0E=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881355666554914"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:23:25] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:23:25] [INFO]: User bwall4157 banned from room bwall's Room by bwall1063 
+[2025-03-28 08:25:58] [INFO]: Shutting down gracefully... 
+[2025-03-28 08:25:58] [INFO]: Stopping room reminder service 
+[2025-03-28 08:25:58] [INFO]: Logging out of Discord... 
+[2025-03-28 08:25:58] [INFO]: Closing database connection... 
+[2025-03-28 08:26:00] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 08:26:01] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 08:26:01] [INFO]: Database connected successfully 
+[2025-03-28 08:26:01] [INFO]: Loaded command: givexp 
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:26:01] [INFO]: Loaded command: paidcommands 
+[2025-03-28 08:26:01] [INFO]: Loaded command: permanent 
+[2025-03-28 08:26:01] [INFO]: Loaded command: reminders 
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:26:01] [INFO]: Loaded command: setcurrency 
+[2025-03-28 08:26:01] [INFO]: Loaded command: setup 
+[2025-03-28 08:26:01] [INFO]: Loaded command: setxp 
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\syncroom.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\syncroom.js:5:48)"
+}
+[2025-03-28 08:26:01] [INFO]: Loaded command: testreminder 
+[2025-03-28 08:26:01] [INFO]: Loaded command: xpboost 
+[2025-03-28 08:26:01] [INFO]: Loaded command: xpconfig 
+[2025-03-28 08:26:01] [INFO]: Loaded command: balance 
+[2025-03-28 08:26:01] [INFO]: Loaded command: daily 
+[2025-03-28 08:26:02] [INFO]: Loaded command: pay 
+[2025-03-28 08:26:02] [INFO]: Loaded command: level 
+[2025-03-28 08:26:02] [INFO]: Loaded command: levelboard 
+[2025-03-28 08:26:02] [INFO]: Loaded command: rank 
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\ban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\ban.js:7:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Loaded command: kick 
+[2025-03-28 08:26:02] [INFO]: Loaded command: limit 
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\listban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\listban.js:5:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\listmuted.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\listmuted.js:5:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Loaded command: listsubmod 
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\mute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\mute.js:7:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Loaded command: rename 
+[2025-03-28 08:26:02] [INFO]: Loaded command: submod 
+[2025-03-28 08:26:02] [INFO]: Loaded command: transfer 
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\unban.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unmute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\unmute.js:7:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Loaded command: unsubmod 
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\votemute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\votemute.js:7:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 08:26:02] [INFO]: Registered event: interactionCreate 
+[2025-03-28 08:26:02] [INFO]: Registered event: messageCreate 
+[2025-03-28 08:26:02] [INFO]: Registered event: ready 
+[2025-03-28 08:26:02] [ERROR]: Error loading event voiceStateUpdate.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\events\\voiceStateUpdate.js:5:37)"
+}
+[2025-03-28 08:26:02] [INFO]: Events registered successfully 
+[2025-03-28 08:26:02] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 08:26:03] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 08:26:03] [INFO]: Starting room reminder service 
+[2025-03-28 08:26:03] [INFO]: Stopping room reminder service 
+[2025-03-28 08:26:03] [INFO]: Room reminder service initialized and started 
+[2025-03-28 08:26:03] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 08:26:03] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 08:26:03] [INFO]: Registered 23 global commands after ready 
+[2025-03-28 08:31:03] [INFO]: User bwall4157 (297845894424952832) leveled up to 3 in guild 1352484741995171891 
+[2025-03-28 08:32:33] [INFO]: Shutting down gracefully... 
+[2025-03-28 08:32:33] [INFO]: Stopping room reminder service 
+[2025-03-28 08:32:33] [INFO]: Logging out of Discord... 
+[2025-03-28 08:32:33] [INFO]: Closing database connection... 
+[2025-03-28 08:32:33] [INFO]: Disconnected from MongoDB 
+[2025-03-28 08:32:35] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 08:32:36] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 08:32:36] [INFO]: Database connected successfully 
+[2025-03-28 08:32:36] [INFO]: Loaded command: givexp 
+[2025-03-28 08:32:36] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:32:36] [INFO]: Loaded command: paidcommands 
+[2025-03-28 08:32:36] [INFO]: Loaded command: permanent 
+[2025-03-28 08:32:36] [INFO]: Loaded command: reminders 
+[2025-03-28 08:32:36] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:32:36] [INFO]: Loaded command: setcurrency 
+[2025-03-28 08:32:36] [INFO]: Loaded command: setup 
+[2025-03-28 08:32:36] [INFO]: Loaded command: setxp 
+[2025-03-28 08:32:36] [INFO]: Loaded command: syncroom 
+[2025-03-28 08:32:36] [INFO]: Loaded command: testreminder 
+[2025-03-28 08:32:36] [INFO]: Loaded command: xpboost 
+[2025-03-28 08:32:36] [INFO]: Loaded command: xpconfig 
+[2025-03-28 08:32:36] [INFO]: Loaded command: balance 
+[2025-03-28 08:32:36] [INFO]: Loaded command: daily 
+[2025-03-28 08:32:36] [INFO]: Loaded command: pay 
+[2025-03-28 08:32:36] [INFO]: Loaded command: level 
+[2025-03-28 08:32:36] [INFO]: Loaded command: levelboard 
+[2025-03-28 08:32:36] [INFO]: Loaded command: rank 
+[2025-03-28 08:32:36] [INFO]: Loaded command: ban 
+[2025-03-28 08:32:36] [INFO]: Loaded command: kick 
+[2025-03-28 08:32:36] [INFO]: Loaded command: limit 
+[2025-03-28 08:32:36] [INFO]: Loaded command: listban 
+[2025-03-28 08:32:36] [INFO]: Loaded command: listmute 
+[2025-03-28 08:32:36] [INFO]: Loaded command: listsubmod 
+[2025-03-28 08:32:36] [INFO]: Loaded command: mute 
+[2025-03-28 08:32:36] [INFO]: Loaded command: rename 
+[2025-03-28 08:32:36] [INFO]: Loaded command: submod 
+[2025-03-28 08:32:36] [INFO]: Loaded command: transfer 
+[2025-03-28 08:32:36] [INFO]: Loaded command: unban 
+[2025-03-28 08:32:36] [INFO]: Loaded command: unmute 
+[2025-03-28 08:32:36] [INFO]: Loaded command: unsubmod 
+[2025-03-28 08:32:36] [INFO]: Loaded command: votemute 
+[2025-03-28 08:32:36] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 08:32:36] [INFO]: Registered event: interactionCreate 
+[2025-03-28 08:32:36] [INFO]: Registered event: messageCreate 
+[2025-03-28 08:32:36] [INFO]: Registered event: ready 
+[2025-03-28 08:32:36] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 08:32:36] [INFO]: Events registered successfully 
+[2025-03-28 08:32:36] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 08:32:37] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 08:32:37] [INFO]: Starting room reminder service 
+[2025-03-28 08:32:37] [INFO]: Stopping room reminder service 
+[2025-03-28 08:32:37] [INFO]: Room reminder service initialized and started 
+[2025-03-28 08:32:37] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 08:32:37] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 08:32:37] [INFO]: Registered 31 global commands after ready 
+[2025-03-28 08:34:56] [INFO]: Deleted empty room bwall's Room 
+[2025-03-28 09:02:33] [INFO]: Shutting down gracefully... 
+[2025-03-28 09:02:33] [INFO]: Stopping room reminder service 
+[2025-03-28 09:02:33] [INFO]: Logging out of Discord... 
+[2025-03-28 09:02:33] [INFO]: Closing database connection... 
+[2025-03-28 09:02:33] [INFO]: Disconnected from MongoDB 
+[2025-03-28 09:02:36] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 09:02:37] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 09:02:37] [INFO]: Database connected successfully 
+[2025-03-28 09:02:37] [INFO]: Loaded command: givexp 
+[2025-03-28 09:02:37] [INFO]: Loaded command: richest 
+[2025-03-28 09:02:37] [INFO]: Loaded command: paidcommands 
+[2025-03-28 09:02:37] [INFO]: Loaded command: permanent 
+[2025-03-28 09:02:37] [INFO]: Loaded command: reminders 
+[2025-03-28 09:02:37] [INFO]: Loaded command: richest 
+[2025-03-28 09:02:37] [INFO]: Loaded command: setcurrency 
+[2025-03-28 09:02:37] [INFO]: Loaded command: setup 
+[2025-03-28 09:02:37] [INFO]: Loaded command: setxp 
+[2025-03-28 09:02:37] [INFO]: Loaded command: syncroom 
+[2025-03-28 09:02:37] [INFO]: Loaded command: testreminder 
+[2025-03-28 09:02:37] [INFO]: Loaded command: xpboost 
+[2025-03-28 09:02:37] [INFO]: Loaded command: xpconfig 
+[2025-03-28 09:02:37] [INFO]: Loaded command: balance 
+[2025-03-28 09:02:37] [INFO]: Loaded command: daily 
+[2025-03-28 09:02:37] [INFO]: Loaded command: pay 
+[2025-03-28 09:02:37] [INFO]: Loaded command: level 
+[2025-03-28 09:02:37] [INFO]: Loaded command: levelboard 
+[2025-03-28 09:02:37] [INFO]: Loaded command: rank 
+[2025-03-28 09:02:37] [INFO]: Loaded command: ban 
+[2025-03-28 09:02:37] [INFO]: Loaded command: kick 
+[2025-03-28 09:02:37] [INFO]: Loaded command: limit 
+[2025-03-28 09:02:37] [INFO]: Loaded command: listban 
+[2025-03-28 09:02:37] [INFO]: Loaded command: listmute 
+[2025-03-28 09:02:37] [INFO]: Loaded command: listsubmod 
+[2025-03-28 09:02:37] [INFO]: Loaded command: mute 
+[2025-03-28 09:02:37] [INFO]: Loaded command: rename 
+[2025-03-28 09:02:37] [INFO]: Loaded command: submod 
+[2025-03-28 09:02:37] [INFO]: Loaded command: transfer 
+[2025-03-28 09:02:37] [INFO]: Loaded command: unban 
+[2025-03-28 09:02:37] [INFO]: Loaded command: unmute 
+[2025-03-28 09:02:37] [INFO]: Loaded command: unsubmod 
+[2025-03-28 09:02:37] [INFO]: Loaded command: votemute 
+[2025-03-28 09:02:37] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 09:02:37] [INFO]: Registered event: interactionCreate 
+[2025-03-28 09:02:37] [INFO]: Registered event: messageCreate 
+[2025-03-28 09:02:37] [INFO]: Registered event: ready 
+[2025-03-28 09:02:37] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 09:02:37] [INFO]: Events registered successfully 
+[2025-03-28 09:02:37] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 09:02:37] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 09:02:37] [INFO]: Starting room reminder service 
+[2025-03-28 09:02:37] [INFO]: Stopping room reminder service 
+[2025-03-28 09:02:37] [INFO]: Room reminder service initialized and started 
+[2025-03-28 09:02:37] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 09:02:37] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 09:02:38] [INFO]: Registered 32 global commands after ready 
+[2025-03-28 09:02:44] [INFO]: Started tracking user bwall4157 in channel CREATE 
+[2025-03-28 09:02:44] [INFO]: User bwall4157 joined creation channel, creating a room 
+[2025-03-28 09:02:45] [INFO]: Started tracking user bwall4157 in channel bwall's Room 
+[2025-03-28 09:02:45] [INFO]: Created room bwall's Room for bwall4157 
+[2025-03-28 09:02:45] [INFO]: Successfully created room and moved user bwall4157 
+[2025-03-28 09:04:11] [INFO]: Shutting down gracefully... 
+[2025-03-28 09:04:11] [INFO]: Stopping room reminder service 
+[2025-03-28 09:04:11] [INFO]: Logging out of Discord... 
+[2025-03-28 09:04:11] [INFO]: Closing database connection... 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: givexp 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: richest 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: paidcommands 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: permanent 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: reminders 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: resetxp 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: setcurrency 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: setup 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: setxp 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: syncroom 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: testreminder 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: xpboost 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: xpconfig 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: balance 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: daily 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: pay 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: level 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: levelboard 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: rank 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: ban 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: kick 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: limit 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: listban 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: listmute 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: listsubmod 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: mute 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: rename 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: submod 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: transfer 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: unban 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: unmute 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: unsubmod 
+[2025-03-28 09:05:49] [INFO]: Loaded command for deployment: votemute 
+[2025-03-28 09:05:49] [INFO]: Started refreshing application (/) commands. 
+[2025-03-28 09:05:49] [INFO]: Successfully reloaded 33 application (/) commands. 
+[2025-03-28 09:06:53] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-03-28 09:06:54] [INFO]: Connected to MongoDB Atlas 
+[2025-03-28 09:06:54] [INFO]: Database connected successfully 
+[2025-03-28 09:06:54] [INFO]: Loaded command: givexp 
+[2025-03-28 09:06:54] [INFO]: Loaded command: richest 
+[2025-03-28 09:06:54] [INFO]: Loaded command: paidcommands 
+[2025-03-28 09:06:54] [INFO]: Loaded command: permanent 
+[2025-03-28 09:06:54] [INFO]: Loaded command: reminders 
+[2025-03-28 09:06:54] [INFO]: Loaded command: resetxp 
+[2025-03-28 09:06:54] [INFO]: Loaded command: setcurrency 
+[2025-03-28 09:06:54] [INFO]: Loaded command: setup 
+[2025-03-28 09:06:54] [INFO]: Loaded command: setxp 
+[2025-03-28 09:06:54] [INFO]: Loaded command: syncroom 
+[2025-03-28 09:06:54] [INFO]: Loaded command: testreminder 
+[2025-03-28 09:06:54] [INFO]: Loaded command: xpboost 
+[2025-03-28 09:06:54] [INFO]: Loaded command: xpconfig 
+[2025-03-28 09:06:54] [INFO]: Loaded command: balance 
+[2025-03-28 09:06:54] [INFO]: Loaded command: daily 
+[2025-03-28 09:06:54] [INFO]: Loaded command: pay 
+[2025-03-28 09:06:54] [INFO]: Loaded command: level 
+[2025-03-28 09:06:54] [INFO]: Loaded command: levelboard 
+[2025-03-28 09:06:54] [INFO]: Loaded command: rank 
+[2025-03-28 09:06:54] [INFO]: Loaded command: ban 
+[2025-03-28 09:06:54] [INFO]: Loaded command: kick 
+[2025-03-28 09:06:54] [INFO]: Loaded command: limit 
+[2025-03-28 09:06:54] [INFO]: Loaded command: listban 
+[2025-03-28 09:06:54] [INFO]: Loaded command: listmute 
+[2025-03-28 09:06:54] [INFO]: Loaded command: listsubmod 
+[2025-03-28 09:06:54] [INFO]: Loaded command: mute 
+[2025-03-28 09:06:54] [INFO]: Loaded command: rename 
+[2025-03-28 09:06:54] [INFO]: Loaded command: submod 
+[2025-03-28 09:06:54] [INFO]: Loaded command: transfer 
+[2025-03-28 09:06:54] [INFO]: Loaded command: unban 
+[2025-03-28 09:06:54] [INFO]: Loaded command: unmute 
+[2025-03-28 09:06:54] [INFO]: Loaded command: unsubmod 
+[2025-03-28 09:06:54] [INFO]: Loaded command: votemute 
+[2025-03-28 09:06:54] [INFO]: Commands loaded and ready for registration 
+[2025-03-28 09:06:54] [INFO]: Registered event: interactionCreate 
+[2025-03-28 09:06:54] [INFO]: Registered event: messageCreate 
+[2025-03-28 09:06:54] [INFO]: Registered event: ready 
+[2025-03-28 09:06:54] [INFO]: Registered event: voiceStateUpdate 
+[2025-03-28 09:06:54] [INFO]: Events registered successfully 
+[2025-03-28 09:06:54] [INFO]: Attempting to log in to Discord... 
+[2025-03-28 09:06:54] [INFO]: Logged in as dev-bot#6522 
+[2025-03-28 09:06:54] [INFO]: Starting room reminder service 
+[2025-03-28 09:06:54] [INFO]: Stopping room reminder service 
+[2025-03-28 09:06:54] [INFO]: Room reminder service initialized and started 
+[2025-03-28 09:06:54] [INFO]: Bot initialization complete, now listening for events 
+[2025-03-28 09:06:54] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-03-28 09:06:55] [INFO]: Registered 33 global commands after ready 
+[2025-03-28 09:07:10] [INFO]: Banned 297845894424952832 from bwall's Room 
+[2025-03-28 09:07:10] [INFO]: Updated room document with ban for user 297845894424952832 in room 1355189135886909460 
+[2025-03-28 09:07:10] [WARN]: Duplicate key detected when banning user 297845894424952832 in room 1355189135886909460, trying updateOne instead 
+[2025-03-28 09:07:10] [ERROR]: Failed to find or create ban state for user 297845894424952832 in room 1355189135886909460 after updateOne 
+[2025-03-28 09:07:10] [INFO]: Updated room document with ban for user 297845894424952832 in room 1355189135886909460 
+[2025-03-28 09:07:11] [INFO]: User bwall4157 banned from room bwall's Room by bwall1063 
+[2025-03-28 09:07:26] [WARN]: Duplicate key detected when banning user 297845894424952832 in room 1355189135886909460, trying updateOne instead 
+[2025-03-28 09:07:26] [ERROR]: Failed to find or create ban state for user 297845894424952832 in room 1355189135886909460 after updateOne 
+[2025-03-28 09:07:26] [INFO]: Updated room document with ban for user 297845894424952832 in room 1355189135886909460 
+[2025-03-28 09:07:26] [INFO]: Updated mute state for user 297845894424952832 in room 1355189135886909460 
+[2025-03-28 09:07:26] [INFO]: Updated room document with mute for user 297845894424952832 in room 1355189135886909460 
+[2025-03-28 09:07:26] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 09:07:26] [INFO]: User bwall1063 synchronized all permissions in room bwall's Room 
+[2025-03-28 09:08:05] [INFO]: Unbanned 297845894424952832 from bwall's Room 
+[2025-03-28 09:08:06] [INFO]: User bwall4157 unbanned from room bwall's Room by bwall1063 
+[2025-03-28 09:11:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 4 in guild 1352484741995171891 
+[2025-03-28 09:21:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 5 in guild 1352484741995171891 
+[2025-03-28 09:26:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 6 in guild 1352484741995171891 
+[2025-03-28 09:31:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 7 in guild 1352484741995171891 
+[2025-03-28 09:36:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 8 in guild 1352484741995171891 
+[2025-03-28 09:41:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 9 in guild 1352484741995171891 
+[2025-03-28 09:46:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 10 in guild 1352484741995171891 
+[2025-03-28 09:51:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 11 in guild 1352484741995171891 
+[2025-03-28 09:56:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 12 in guild 1352484741995171891 
+[2025-03-28 10:04:23] [INFO]: Sent owner info reminder to room bwall's Room (1355189135886909460) 
+[2025-03-28 10:06:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 13 in guild 1352484741995171891 
+[2025-03-28 10:11:54] [INFO]: User bwall4157 (297845894424952832) leveled up to 14 in guild 1352484741995171891 
+[2025-03-28 10:16:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 15 in guild 1352484741995171891 
+[2025-03-28 10:21:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 16 in guild 1352484741995171891 
+[2025-03-28 10:31:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 17 in guild 1352484741995171891 
+[2025-03-28 10:36:43] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 10:36:43] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 10:36:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 18 in guild 1352484741995171891 
+[2025-03-28 10:46:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 19 in guild 1352484741995171891 
+[2025-03-28 10:51:55] [INFO]: User bwall4157 (297845894424952832) leveled up to 20 in guild 1352484741995171891 
+[2025-03-28 11:20:00] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 11:20:01] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 11:40:53] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 11:40:53] [INFO]: Sent owner info reminder to room bwall's Room (1355189135886909460) 
+[2025-03-28 12:25:05] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 12:25:05] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 13:20:07] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 13:20:07] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 14:18:30] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 14:18:30] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 14:31:55] [INFO]: User bwall1063 (1333017107444797450) leveled up to 943 in guild 1352484741995171891 
+[2025-03-28 15:00:10] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 15:00:10] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 15:26:11] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 15:26:12] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 16:13:00] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 16:13:00] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 16:38:33] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 16:38:33] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 17:12:01] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 17:12:02] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 18:03:20] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 18:03:20] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 18:55:17] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 18:55:17] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 19:34:56] [INFO]: Deleted previous reminder message in bwall's Room (1355189135886909460) 
+[2025-03-28 19:34:57] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 20:19:34] [INFO]: Shutting down gracefully... 
+[2025-03-28 20:19:34] [INFO]: Stopping room reminder service 
+[2025-03-28 20:19:34] [INFO]: Logging out of Discord... 
+[2025-03-28 20:19:34] [INFO]: Closing database connection... 

@@ -284,3 +284,484 @@ Require stack:
   "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
 }
 [2025-03-28 07:07:57] [ERROR]: Failed to temporarily unmute user bwall1063 when leaving room: Target user is not connected to voice. 
+[2025-03-28 07:16:21] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:16:21] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:40:01] [ERROR]: Failed to temporarily unmute user bwall4157 when leaving room: Target user is not connected to voice. 
+[2025-03-28 07:40:01] [ERROR]: Error tracking banned user: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "stack": "MongoServerError: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at InsertOneOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\insert.js:51:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.insertOne (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:157:16)"
+}
+[2025-03-28 07:40:01] [ERROR]: Error executing ban command: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "stack": "MongoServerError: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at InsertOneOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\insert.js:51:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.insertOne (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:157:16)"
+}
+[2025-03-28 07:57:41] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 07:57:41] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:10:24] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:10:24] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:11:16] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:18:24] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:20:00] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 08:22:46] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881188162830352"
+      },
+      "signature": {
+        "hash": "r4vjCz227MznX0ZMHkFKfl0UQPc=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881188162830352"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881188162830352"
+    },
+    "signature": {
+      "hash": "r4vjCz227MznX0ZMHkFKfl0UQPc=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881188162830352"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:22:46] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:23:15] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881312716881953"
+      },
+      "signature": {
+        "hash": "2itmcacTVfgBOnWUki1PjyzZDUs=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881312716881953"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881312716881953"
+    },
+    "signature": {
+      "hash": "2itmcacTVfgBOnWUki1PjyzZDUs=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881312716881953"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:23:15] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:23:25] [ERROR]: Error tracking banned user: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } {
+  "errorLabelSet": {},
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "guildId": 1,
+      "roomId": 1,
+      "userId": 1
+    },
+    "keyValue": {
+      "guildId": "1352484741995171891",
+      "roomId": "1355189135886909460",
+      "userId": "297845894424952832"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7486881355666554914"
+      },
+      "signature": {
+        "hash": "CQUTe63290p0VTW5+EULspCyQ0E=",
+        "keyId": {
+          "low": 9,
+          "high": 1728566585,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7486881355666554914"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "guildId": 1,
+    "roomId": 1,
+    "userId": 1
+  },
+  "keyValue": {
+    "guildId": "1352484741995171891",
+    "roomId": "1355189135886909460",
+    "userId": "297845894424952832"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7486881355666554914"
+    },
+    "signature": {
+      "hash": "CQUTe63290p0VTW5+EULspCyQ0E=",
+      "keyId": {
+        "low": 9,
+        "high": 1728566585,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7486881355666554914"
+  },
+  "stack": "MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: \"1352484741995171891\", roomId: \"1355189135886909460\", userId: \"297845894424952832\" }\n    at Connection.sendCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:299:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Connection.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\cmap\\connection.js:327:26)\n    at async Server.command (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\sdam\\server.js:168:29)\n    at async FindOneAndUpdateOperation.executeCommand (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\command.js:76:16)\n    at async FindOneAndUpdateOperation.execute (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\find_and_modify.js:85:24)\n    at async tryOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:207:20)\n    at async executeOperation (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\operations\\execute_operation.js:75:16)\n    at async Collection.findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongodb\\lib\\collection.js:500:16)\n    at async model.Query._findOneAndUpdate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\query.js:3477:13)"
+}
+[2025-03-28 08:23:25] [ERROR]: Error tracking banned state: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: test.userstates index: guildId_1_roomId_1_userId_1 dup key: { guildId: "1352484741995171891", roomId: "1355189135886909460", userId: "297845894424952832" } 
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:26:01] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\syncroom.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\syncroom.js:5:48)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\ban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\ban.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\listban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\listban.js:5:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\listmuted.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\listmuted.js:5:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\mute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\mute.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unban.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\unban.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\unmute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\unmute.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\room\votemute.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\room\\votemute.js:7:37)"
+}
+[2025-03-28 08:26:02] [ERROR]: Error loading event voiceStateUpdate.js: Unexpected identifier 'trackBannedUser' {
+  "stack": "C:\\Users\\user\\Downloads\\test\\DiscordBot\\services\\UserStateTrackerService.js:6\nasync trackBannedUser(options) {\n      ^^^^^^^^^^^^^^^\n\nSyntaxError: Unexpected identifier 'trackBannedUser'\n    at wrapSafe (node:internal/modules/cjs/loader:1671:18)\n    at Module._compile (node:internal/modules/cjs/loader:1714:20)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\events\\voiceStateUpdate.js:5:37)"
+}
+[2025-03-28 08:32:36] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\leaderboard.js: PermissionFlagsBits is not defined {
+  "stack": "ReferenceError: PermissionFlagsBits is not defined\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\leaderboard.js:11:34)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 08:32:36] [ERROR]: Error loading command from C:\Users\user\Downloads\test\DiscordBot\commands\admin\resetxp.js: Cannot read properties of undefined (reading 'Administrator') {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'Administrator')\n    at Object.<anonymous> (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\admin\\resetxp.js:31:53)\n    at Module._compile (node:internal/modules/cjs/loader:1740:14)\n    at Object..js (node:internal/modules/cjs/loader:1905:10)\n    at Module.load (node:internal/modules/cjs/loader:1474:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)\n    at Module.require (node:internal/modules/cjs/loader:1496:12)\n    at require (node:internal/modules/helpers:135:16)\n    at loadCommands (C:\\Users\\user\\Downloads\\test\\DiscordBot\\commands\\index.js:28:25)"
+}
+[2025-03-28 09:07:10] [ERROR]: Failed to find or create ban state for user 297845894424952832 in room 1355189135886909460 after updateOne 
+[2025-03-28 09:07:26] [ERROR]: Failed to find or create ban state for user 297845894424952832 in room 1355189135886909460 after updateOne 
+[2025-03-28 09:07:26] [ERROR]: Error logging audit action: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`. {
+  "errors": {
+    "actionType": {
+      "name": "ValidatorError",
+      "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+      "properties": {
+        "message": "`ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.",
+        "type": "enum",
+        "enumValues": [
+          "ROOM_CREATE",
+          "ROOM_DELETE",
+          "ROOM_RENAME",
+          "ROOM_TRANSFER",
+          "ROOM_SET_PERMANENT",
+          "ROOM_SET_TEMPORARY",
+          "ROOM_LIMIT_CHANGE",
+          "ROOM_ADD_SUBMOD",
+          "ROOM_REMOVE_SUBMOD",
+          "USER_MUTE",
+          "USER_UNMUTE",
+          "USER_KICK",
+          "USER_BAN",
+          "USER_UNBAN",
+          "ROOM_LOCK",
+          "ROOM_UNLOCK"
+        ],
+        "path": "actionType",
+        "value": "ROOM_SYNC_ALL_PERMISSIONS"
+      },
+      "kind": "enum",
+      "path": "actionType",
+      "value": "ROOM_SYNC_ALL_PERMISSIONS"
+    }
+  },
+  "_message": "AuditLog validation failed",
+  "stack": "ValidationError: AuditLog validation failed: actionType: `ROOM_SYNC_ALL_PERMISSIONS` is not a valid enum value for path `actionType`.\n    at Document.invalidate (C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3329:32)\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\document.js:3090:17\n    at C:\\Users\\user\\Downloads\\test\\DiscordBot\\node_modules\\mongoose\\lib\\schemaType.js:1407:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)"
+}
+[2025-03-28 10:36:43] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 11:20:01] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 12:25:05] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 13:20:07] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 14:18:30] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 15:00:10] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 15:26:12] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 16:13:00] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 16:38:33] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 17:12:02] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 18:03:20] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 18:55:17] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 
+[2025-03-28 19:34:57] [ERROR]: Error sending reminder: ReferenceError: channelId is not defined 

@@ -1,4 +1,4 @@
-// Updated Room ban command with enhanced tracking
+// Updated Room ban command with enhanced error handling
 const { SlashCommandBuilder, EmbedBuilder, Colors } = require('discord.js');
 const logger = require('../../utils/logger');
 const RoomService = require('../../services/RoomService');
@@ -6,6 +6,7 @@ const PermissionService = require('../../services/PermissionService');
 const AuditLogService = require('../../services/AuditLogService');
 const { UserStateTrackerService } = require('../../services/UserStateTrackerService');
 const { isInVoiceChannel } = require('../../utils/validators');
+const Room = require('../../models/Room');
 
 module.exports = {
   // Command definition
@@ -89,18 +90,51 @@ module.exports = {
         }
       }
       
-      // Ban the user from the channel
+      // Ban the user from the channel by updating Discord permissions
       await permissionService.banUser(voiceChannel, targetUser.id);
       
-      // Track the banned state
-      await stateTracker.trackBannedUser({
-        guildId: interaction.guild.id,
-        userId: targetUser.id,
-        roomId: voiceChannel.id,
-        appliedBy: interaction.user.id,
-        reason,
-        username: targetUser.tag // Add username for better record-keeping
-      });
+      // Manually update the Room document as a fallback method
+      try {
+        const room = await Room.findOne({ channelId: voiceChannel.id });
+        if (room) {
+          if (!room.bannedUsers) {
+            room.bannedUsers = [];
+          }
+          
+          // Remove the user if they're already in the banned list
+          room.bannedUsers = room.bannedUsers.filter(user => user.userId !== targetUser.id);
+          
+          // Add to bannedUsers array
+          room.bannedUsers.push({
+            userId: targetUser.id,
+            username: targetUser.tag,
+            reason: reason,
+            bannedAt: new Date(),
+            bannedBy: interaction.user.id
+          });
+          
+          await room.save();
+          logger.info(`Updated room document with ban for user ${targetUser.id} in room ${voiceChannel.id}`);
+        }
+      } catch (roomError) {
+        logger.error(`Error updating room document: ${roomError.message}`);
+        // Continue anyway, we'll still try to log the ban
+      }
+      
+      // Track the banned state (might fail, but we'll handle that)
+      try {
+        await stateTracker.trackBannedUser({
+          guildId: interaction.guild.id,
+          userId: targetUser.id,
+          roomId: voiceChannel.id,
+          appliedBy: interaction.user.id,
+          reason,
+          username: targetUser.tag
+        });
+      } catch (trackError) {
+        // Log the error but continue with the ban operation
+        logger.error(`Error tracking banned state: ${trackError.message}`);
+      }
       
       // Log the ban action
       await auditLogService.logUserBan(
@@ -130,13 +164,6 @@ module.exports = {
       await interaction.reply({ 
         embeds: [banEmbed]
       });
-      
-      /* Try to notify the user
-      try {
-        await targetUser.send(`You have been banned from room "${voiceChannel.name}" by ${interaction.user.tag}. Reason: ${reason}`);
-      } catch (error) {
-        logger.warn(`Could not send DM to ${targetUser.tag}`);
-      }*/
       
       logger.info(`User ${targetUser.tag} banned from room ${voiceChannel.name} by ${interaction.user.tag}`);
     } catch (error) {
