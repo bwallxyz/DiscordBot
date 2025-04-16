@@ -96,8 +96,7 @@ module.exports = {
       
       // Update channel permissions to allow muting
       await voiceChannel.permissionOverwrites.edit(targetUser.id, {
-        MuteMembers: true,
-        DeafenMembers: true
+        MuteMembers: true
       });
       
       // Initialize audit log service

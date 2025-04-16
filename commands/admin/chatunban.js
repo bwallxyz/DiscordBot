@@ -86,9 +86,9 @@ module.exports = {
         }
       } else {
         // If no category specified, process all categories
-        categoriesToProcess = interaction.guild.channels.cache.filter(
+        categoriesToProcess = Array.from(interaction.guild.channels.cache.filter(
           channel => channel.type === ChannelType.GuildCategory
-        ).toArray();
+        ).values());
       }
       
       // Find all text channels in the specified categories

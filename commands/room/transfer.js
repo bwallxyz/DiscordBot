@@ -113,9 +113,7 @@ module.exports = {
         Stream: true,
         PrioritySpeaker: true,
         UseEmbeddedActivities: true,
-        MuteMembers: true,
-        DeafenMembers: true,
-        MoveMembers: true
+        MuteMembers: true
       });
       
       // Log the transfer - FIXED TARGET USER INFO

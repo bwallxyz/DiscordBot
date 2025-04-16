@@ -2116,3 +2116,138 @@ Require stack:
 [2025-03-28 20:19:34] [INFO]: Stopping room reminder service 
 [2025-03-28 20:19:34] [INFO]: Logging out of Discord... 
 [2025-03-28 20:19:34] [INFO]: Closing database connection... 
+[2025-04-15 23:28:53] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-04-15 23:28:53] [INFO]: Connected to MongoDB Atlas 
+[2025-04-15 23:28:53] [INFO]: Database connected successfully 
+[2025-04-15 23:28:53] [INFO]: Loaded command: chatban 
+[2025-04-15 23:28:53] [INFO]: Loaded command: chatunban 
+[2025-04-15 23:28:53] [INFO]: Loaded command: givexp 
+[2025-04-15 23:28:53] [INFO]: Loaded command: richest 
+[2025-04-15 23:28:53] [INFO]: Loaded command: paidcommands 
+[2025-04-15 23:28:53] [INFO]: Loaded command: permanent 
+[2025-04-15 23:28:53] [INFO]: Loaded command: reminders 
+[2025-04-15 23:28:53] [INFO]: Loaded command: resetxp 
+[2025-04-15 23:28:53] [INFO]: Loaded command: setcurrency 
+[2025-04-15 23:28:53] [INFO]: Loaded command: setup 
+[2025-04-15 23:28:53] [INFO]: Loaded command: setxp 
+[2025-04-15 23:28:53] [INFO]: Loaded command: syncroom 
+[2025-04-15 23:28:53] [INFO]: Loaded command: testreminder 
+[2025-04-15 23:28:53] [INFO]: Loaded command: xpboost 
+[2025-04-15 23:28:53] [INFO]: Loaded command: xpconfig 
+[2025-04-15 23:28:53] [INFO]: Loaded command: balance 
+[2025-04-15 23:28:53] [INFO]: Loaded command: daily 
+[2025-04-15 23:28:53] [INFO]: Loaded command: pay 
+[2025-04-15 23:28:53] [INFO]: Loaded command: level 
+[2025-04-15 23:28:53] [INFO]: Loaded command: levelboard 
+[2025-04-15 23:28:53] [INFO]: Loaded command: rank 
+[2025-04-15 23:28:53] [INFO]: Loaded command: ban 
+[2025-04-15 23:28:53] [INFO]: Loaded command: kick 
+[2025-04-15 23:28:53] [INFO]: Loaded command: limit 
+[2025-04-15 23:28:53] [INFO]: Loaded command: listban 
+[2025-04-15 23:28:53] [INFO]: Loaded command: listmute 
+[2025-04-15 23:28:53] [INFO]: Loaded command: listsubmod 
+[2025-04-15 23:28:53] [INFO]: Loaded command: mute 
+[2025-04-15 23:28:53] [INFO]: Loaded command: rename 
+[2025-04-15 23:28:53] [INFO]: Loaded command: submod 
+[2025-04-15 23:28:53] [INFO]: Loaded command: transfer 
+[2025-04-15 23:28:53] [INFO]: Loaded command: unban 
+[2025-04-15 23:28:53] [INFO]: Loaded command: unmute 
+[2025-04-15 23:28:53] [INFO]: Loaded command: unsubmod 
+[2025-04-15 23:28:53] [INFO]: Loaded command: votemute 
+[2025-04-15 23:28:53] [INFO]: Commands loaded and ready for registration 
+[2025-04-15 23:28:53] [INFO]: Registered event: interactionCreate 
+[2025-04-15 23:28:53] [INFO]: Registered event: messageCreate 
+[2025-04-15 23:28:53] [INFO]: Registered event: ready 
+[2025-04-15 23:28:54] [INFO]: Registered event: voiceStateUpdate 
+[2025-04-15 23:28:54] [INFO]: Events registered successfully 
+[2025-04-15 23:28:54] [INFO]: Attempting to log in to Discord... 
+[2025-04-15 23:28:54] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-04-15 23:28:54] [INFO]: Logged in as dev-bot#6522 
+[2025-04-15 23:28:54] [INFO]: Starting room reminder service 
+[2025-04-15 23:28:54] [INFO]: Stopping room reminder service 
+[2025-04-15 23:28:54] [INFO]: Room reminder service initialized and started 
+[2025-04-15 23:28:54] [INFO]: Bot initialization complete, now listening for events 
+[2025-04-15 23:28:55] [INFO]: Registered 35 global commands after ready 
+[2025-04-15 23:28:59] [ERROR]: Error executing chatban command: interaction.guild.channels.cache.filter(...).toArray is not a function {
+  "stack": "TypeError: interaction.guild.channels.cache.filter(...).toArray is not a function\n    at Object.execute (C:\\Users\\user\\Desktop\\DiscordBot-2\\commands\\admin\\chatban.js:122:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Object.execute (C:\\Users\\user\\Desktop\\DiscordBot-2\\events\\interactionCreate.js:17:7)"
+}
+[2025-04-15 23:29:46] [INFO]: Shutting down gracefully... 
+[2025-04-15 23:29:46] [INFO]: Stopping room reminder service 
+[2025-04-15 23:29:46] [INFO]: Logging out of Discord... 
+[2025-04-15 23:29:46] [INFO]: Closing database connection... 
+[2025-04-15 23:29:49] [INFO]: Environment variables loaded: {
+  "MONGODB_URI": "Defined",
+  "BOT_TOKEN": "Defined",
+  "CLIENT_ID": "Defined",
+  "GUILD_ID": "Defined",
+  "NODE_ENV": "development",
+  "LOG_LEVEL": "info"
+}
+[2025-04-15 23:29:49] [INFO]: Connected to MongoDB Atlas 
+[2025-04-15 23:29:49] [INFO]: Database connected successfully 
+[2025-04-15 23:29:49] [INFO]: Loaded command: chatban 
+[2025-04-15 23:29:49] [INFO]: Loaded command: chatunban 
+[2025-04-15 23:29:49] [INFO]: Loaded command: givexp 
+[2025-04-15 23:29:49] [INFO]: Loaded command: richest 
+[2025-04-15 23:29:49] [INFO]: Loaded command: paidcommands 
+[2025-04-15 23:29:49] [INFO]: Loaded command: permanent 
+[2025-04-15 23:29:49] [INFO]: Loaded command: reminders 
+[2025-04-15 23:29:49] [INFO]: Loaded command: resetxp 
+[2025-04-15 23:29:49] [INFO]: Loaded command: setcurrency 
+[2025-04-15 23:29:49] [INFO]: Loaded command: setup 
+[2025-04-15 23:29:49] [INFO]: Loaded command: setxp 
+[2025-04-15 23:29:49] [INFO]: Loaded command: syncroom 
+[2025-04-15 23:29:49] [INFO]: Loaded command: testreminder 
+[2025-04-15 23:29:49] [INFO]: Loaded command: xpboost 
+[2025-04-15 23:29:49] [INFO]: Loaded command: xpconfig 
+[2025-04-15 23:29:49] [INFO]: Loaded command: balance 
+[2025-04-15 23:29:49] [INFO]: Loaded command: daily 
+[2025-04-15 23:29:49] [INFO]: Loaded command: pay 
+[2025-04-15 23:29:49] [INFO]: Loaded command: level 
+[2025-04-15 23:29:49] [INFO]: Loaded command: levelboard 
+[2025-04-15 23:29:49] [INFO]: Loaded command: rank 
+[2025-04-15 23:29:49] [INFO]: Loaded command: ban 
+[2025-04-15 23:29:49] [INFO]: Loaded command: kick 
+[2025-04-15 23:29:49] [INFO]: Loaded command: limit 
+[2025-04-15 23:29:49] [INFO]: Loaded command: listban 
+[2025-04-15 23:29:49] [INFO]: Loaded command: listmute 
+[2025-04-15 23:29:49] [INFO]: Loaded command: listsubmod 
+[2025-04-15 23:29:49] [INFO]: Loaded command: mute 
+[2025-04-15 23:29:49] [INFO]: Loaded command: rename 
+[2025-04-15 23:29:49] [INFO]: Loaded command: submod 
+[2025-04-15 23:29:49] [INFO]: Loaded command: transfer 
+[2025-04-15 23:29:49] [INFO]: Loaded command: unban 
+[2025-04-15 23:29:49] [INFO]: Loaded command: unmute 
+[2025-04-15 23:29:49] [INFO]: Loaded command: unsubmod 
+[2025-04-15 23:29:49] [INFO]: Loaded command: votemute 
+[2025-04-15 23:29:49] [INFO]: Commands loaded and ready for registration 
+[2025-04-15 23:29:49] [INFO]: Registered event: interactionCreate 
+[2025-04-15 23:29:49] [INFO]: Registered event: messageCreate 
+[2025-04-15 23:29:49] [INFO]: Registered event: ready 
+[2025-04-15 23:29:49] [INFO]: Registered event: voiceStateUpdate 
+[2025-04-15 23:29:49] [INFO]: Events registered successfully 
+[2025-04-15 23:29:49] [INFO]: Attempting to log in to Discord... 
+[2025-04-15 23:29:50] [INFO]: Logged in as dev-bot#6522 
+[2025-04-15 23:29:50] [INFO]: Starting room reminder service 
+[2025-04-15 23:29:50] [INFO]: Stopping room reminder service 
+[2025-04-15 23:29:50] [INFO]: Room reminder service initialized and started 
+[2025-04-15 23:29:50] [INFO]: Bot initialization complete, now listening for events 
+[2025-04-15 23:29:50] [INFO]: Ready! Logged in as dev-bot#6522 
+[2025-04-15 23:29:50] [INFO]: Registered 35 global commands after ready 
+[2025-04-15 23:29:57] [INFO]: Skipped moderation logs channel moderation-logs to maintain visibility 
+[2025-04-15 23:29:58] [INFO]: bwall1062 chat banned bwall4157 from 1 channels 
+[2025-04-15 23:30:48] [INFO]: Started tracking user bwall4157 in channel General 
+[2025-04-15 23:31:04] [ERROR]: Error executing chatunban command: interaction.guild.channels.cache.filter(...).toArray is not a function {
+  "stack": "TypeError: interaction.guild.channels.cache.filter(...).toArray is not a function\n    at Object.execute (C:\\Users\\user\\Desktop\\DiscordBot-2\\commands\\admin\\chatunban.js:91:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Object.execute (C:\\Users\\user\\Desktop\\DiscordBot-2\\events\\interactionCreate.js:17:7)"
+}
+[2025-04-15 23:31:41] [INFO]: Shutting down gracefully... 
+[2025-04-15 23:31:41] [INFO]: Stopping room reminder service 
+[2025-04-15 23:31:41] [INFO]: Logging out of Discord... 
+[2025-04-15 23:31:41] [INFO]: Closing database connection... 
