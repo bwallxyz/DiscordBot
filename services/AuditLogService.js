@@ -176,6 +176,15 @@ class AuditLogService {
         embed.setColor(Colors.Orange)
           .setTitle('👮 Sub-Moderator Removed');
         break;
+      // Chat moderation actions
+      case 'CHAT_BAN':
+        embed.setColor(Colors.Red)
+          .setTitle('🚫 Chat Ban');
+        break;
+      case 'CHAT_UNBAN':
+        embed.setColor(Colors.Green)
+          .setTitle('✅ Chat Unban');
+        break;
       default:
         embed.setColor(Colors.Grey)
           .setTitle('📝 Room Action');
@@ -239,10 +248,43 @@ class AuditLogService {
       }
       
       // Add duration for temporary actions
-      if (entry.details.duration) {
+      if (entry.details.duration && entry.details.duration !== 'Permanent') {
         embed.addFields({
           name: 'Duration',
           value: entry.details.duration,
+          inline: true
+        });
+      }
+      
+      // Add expiration for temporary bans
+      if (entry.details.expiresAt) {
+        const expiryTimestamp = Math.floor(new Date(entry.details.expiresAt).getTime() / 1000);
+        embed.addFields({
+          name: 'Expires',
+          value: `<t:${expiryTimestamp}:F> (<t:${expiryTimestamp}:R>)`,
+          inline: true
+        });
+      }
+      
+      // Add scope for chat bans
+      if (entry.details.categoryName) {
+        embed.addFields({
+          name: 'Scope',
+          value: entry.details.categoryName === 'All categories' 
+            ? 'All text channels' 
+            : `Category: ${entry.details.categoryName}`,
+          inline: true
+        });
+      }
+      
+      // Add results for chat bans
+      if (typeof entry.details.successCount !== 'undefined') {
+        embed.addFields({
+          name: 'Results',
+          value: 
+            `✅ Success: ${entry.details.successCount}\n` +
+            `⏩ Skipped: ${entry.details.skippedCount || 0}\n` +
+            `❌ Errors: ${entry.details.errorCount || 0}`,
           inline: true
         });
       }
@@ -388,6 +430,64 @@ class AuditLogService {
       details: {
         oldName,
         newName
+      }
+    });
+  }
+  
+  /**
+   * Log chat ban action
+   * @param {Object} guild - Discord guild
+   * @param {Object} moderator - Moderator who performed the ban
+   * @param {Object} targetUser - User who was banned
+   * @param {String} reason - Reason for the ban
+   * @param {Object} details - Additional details about the ban
+   */
+  async logChatBan(guild, moderator, targetUser, reason, details = {}) {
+    await this.logAction({
+      guildId: guild.id,
+      actionType: 'CHAT_BAN',
+      performedBy: {
+        id: moderator.id,
+        tag: moderator.tag || moderator.user?.tag,
+        displayName: moderator.displayName
+      },
+      targetUser: {
+        id: targetUser.id,
+        tag: targetUser.tag || targetUser.user?.tag,
+        displayName: targetUser.displayName
+      },
+      details: {
+        reason,
+        ...details
+      }
+    });
+  }
+  
+  /**
+   * Log chat unban action
+   * @param {Object} guild - Discord guild
+   * @param {Object} moderator - Moderator who performed the unban
+   * @param {Object} targetUser - User who was unbanned
+   * @param {String} reason - Reason for the unban
+   * @param {Object} details - Additional details about the unban
+   */
+  async logChatUnban(guild, moderator, targetUser, reason, details = {}) {
+    await this.logAction({
+      guildId: guild.id,
+      actionType: 'CHAT_UNBAN',
+      performedBy: {
+        id: moderator.id,
+        tag: moderator.tag || moderator.user?.tag,
+        displayName: moderator.displayName
+      },
+      targetUser: {
+        id: targetUser.id,
+        tag: targetUser.tag || targetUser.user?.tag,
+        displayName: targetUser.displayName
+      },
+      details: {
+        reason,
+        ...details
       }
     });
   }

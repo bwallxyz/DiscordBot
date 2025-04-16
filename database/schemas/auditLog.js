@@ -33,7 +33,13 @@ const auditLogSchema = new mongoose.Schema({
       'USER_BAN',
       'USER_UNBAN',
       'ROOM_LOCK',
-      'ROOM_UNLOCK'
+      'ROOM_UNLOCK',
+      'ROOM_SYNC_PERMISSIONS',
+      'ROOM_SYNC_ALL_PERMISSIONS',
+      
+      // Chat moderation actions
+      'CHAT_BAN',
+      'CHAT_UNBAN'
     ],
     index: true
   },
@@ -142,9 +148,24 @@ async function getRoomAuditLogs(guildId, channelId, limit = 50) {
     .limit(limit);
 }
 
+/**
+ * Get active temporary chat bans
+ * @param {String} guildId - The Discord guild ID
+ * @returns {Promise<Array>} Array of temporary chat ban entries
+ */
+async function getActiveTemporaryChatBans(guildId) {
+  const now = new Date();
+  return await AuditLog.find({
+    guildId,
+    actionType: 'CHAT_BAN',
+    'details.expiresAt': { $gt: now }
+  }).sort({ 'details.expiresAt': 1 });
+}
+
 module.exports = {
   AuditLog,
   logAuditEntry,
   getAuditLogs,
-  getRoomAuditLogs
+  getRoomAuditLogs,
+  getActiveTemporaryChatBans
 };
